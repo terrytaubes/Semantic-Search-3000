@@ -1,0 +1,38 @@
+Email filtering is the processing of email to organize it according to specified criteria. Most often this refers to the automatic processing of incoming messages, but the term also applies to the intervention of human intelligence in addition to anti-spam techniques, and to outgoing emails as well as those being received.
+Email filtering software inputs email. For its output, it might pass the message through unchanged for delivery to the user's mailbox, redirect the message for delivery elsewhere, or even throw the message away. Some mail filters are able to edit messages during processing.
+
+
+== Motivation ==
+Common uses for mail filters include organizing incoming email and removal of spam and computer viruses. A less common use is to inspect outgoing email at some companies to ensure that employees comply with appropriate laws. Users might also employ a mail filter to prioritize messages, and to sort them into folders based on subject matter or other criteria.
+
+
+== Methods ==
+
+Mail filters can be installed by the user, either as separate programs (see links below), or as part of their email program (email client). In email programs, users can make personal, "manual" filters that then automatically filter mail according to the chosen criteria. Most email programs now also have an automatic spam filtering function.
+Mailbox providers can also install mail filters in their mail transfer agents as a service to all of their customers. Besides pass, redirect, and drop actions, this kind of filters can also reject a message back to the sender, who is presumed to generate a bounce message in this case. Anti-virus, anti-spam, URL filtering, and authentication-based rejections are common filter types. Corporations often use filters to protect their employees and their information technology assets.
+
+
+== Inbound and Outbound Filtering ==
+Mail filters can operate on inbound and outbound email traffic. Inbound email filtering involves scanning messages from the Internet addressed to users protected by the filtering system or for lawful interception. Outbound email filtering involves the reverse - scanning email messages from local users before any potentially harmful messages can be delivered to others on the Internet. One method of outbound email filtering that is commonly used by Internet service providers is transparent SMTP proxying, in which email traffic is intercepted and filtered via a transparent proxy within the network. Outbound filtering can also take place in an email server. Many corporations employ data leak prevention technology in their outbound mail servers to prevent the leakage of sensitive information via email.
+
+
+== Customization ==
+Mail filters have varying degrees of configurability. Sometimes they make decisions based on matching a regular expression. Other times, code may match keywords in the message body, or perhaps the email address of the sender of the message. More complex control flow and logic is possible with programming languages; this is typically implemented with a data-driven programming language, such as procmail, which specifies conditions to match and actions to take on matching, which may involve further matching. Some more advanced filters, particularly anti-spam filters, use statistical document classification techniques such as the naive Bayes classifier. Image filtering can use complex image-analysis algorithms to detect skin-tones and specific body shapes normally associated with pornographic images.
+Microsoft Outlook includes user-generated email filters called "rules".
+
+
+== See also ==
+Bayesian spam filtering
+CRM114
+Information filtering
+Markovian discrimination
+Outbound Spam Protection
+Sieve (mail filtering language) is an RFC standard for describing mail filters
+White list#Email whitelists
+
+
+== References ==
+
+
+== External links ==
+Spam filtering at DMOZ

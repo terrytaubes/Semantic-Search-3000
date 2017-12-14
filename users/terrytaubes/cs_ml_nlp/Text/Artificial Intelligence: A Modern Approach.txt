@@ -1,0 +1,31 @@
+Artificial Intelligence: A Modern Approach (AIMA) is a university textbook on artificial intelligence, written by Stuart J. Russell and Peter Norvig. It was first published in 1995 and the third edition of the book was released 11 December 2009. It is used in over 1100 universities worldwide and has been called "the most popular artificial intelligence textbook in the world". It is considered the standard text in the field of artificial intelligence.
+The book is intended for an undergraduate audience but can also be used for graduate-level studies with the suggestion of adding some of the primary sources listed in the extensive bibliography.
+
+
+== Editions ==
+1st 1995, red cover
+2nd 2003
+3rd 2009 (as illustrated)
+
+
+== Structure of 3rd edition ==
+Artificial Intelligence: A Modern Approach is divided into seven parts with a total of 27 chapters. The authors state that it is a large text which would take two semesters to cover all the chapters and projects.
+Part I: Artificial Intelligence - Sets the stage for the following sections by viewing AI systems as intelligent agents that can decide what actions to take and when to take them.
+Part II: Problem-solving - Focuses on methods for deciding what action to take when needing to think several steps ahead such as playing a game of chess.
+Part III: Knowledge, reasoning, and planning - Discusses ways to represent knowledge about the intelligent agents' environment and how to reason logically with that knowledge.
+Part IV: Uncertain knowledge and reasoning - This section is analogous to Parts III, but deals with reasoning and decision-making in the presence of uncertainty in the environment.
+Part V: Learning - Describes ways for generating knowledge required by the decision-making components and introduces a new component: the artificial neural network
+Part VI: Communicating, perceiving, and acting - Concentrates on ways an intelligent agent can perceive its environment whether by touch or vision.
+Part VII: Conclusions - Considers the past and future of AI by discussing what AI really is and why it has succeeded to some degree. Also, the views of those philosophers who believe that AI can never succeed are given discussion.
+
+
+== Code ==
+Programs in the book are presented in pseudo code with implementations in Java, Python, and Lisp available online. There are also unsupported implementations in Prolog, C++, C#, and several other languages. A github repository exists that is dedicated to implementations of the subject material.
+
+
+== References ==
+
+
+== External links ==
+"AIMA" (1st ed.). S Russell. 
+"AIMA". Computer Science Division (3rd ed.). Berkeley CoE.

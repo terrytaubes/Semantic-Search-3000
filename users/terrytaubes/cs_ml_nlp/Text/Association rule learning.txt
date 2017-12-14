@@ -1,0 +1,1181 @@
+Association rule learning is a rule-based machine learning method for discovering interesting relations between variables in large databases. It is intended to identify strong rules discovered in databases using some measures of interestingness. Based on the concept of strong rules, Rakesh Agrawal, Tomasz Imieliński and Arun Swami  introduced association rules for discovering regularities between products in large-scale transaction data recorded by point-of-sale (POS) systems in supermarkets. For example, the rule 
+  
+    
+      
+        {
+        
+          o
+          n
+          i
+          o
+          n
+          s
+          ,
+          p
+          o
+          t
+          a
+          t
+          o
+          e
+          s
+        
+        }
+        ⇒
+        {
+        
+          b
+          u
+          r
+          g
+          e
+          r
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {onions,potatoes} \}\Rightarrow \{\mathrm {burger} \}}
+   found in the sales data of a supermarket would indicate that if a customer buys onions and potatoes together, they are likely to also buy hamburger meat. Such information can be used as the basis for decisions about marketing activities such as, e.g., promotional pricing or product placements. In addition to the above example from market basket analysis association rules are employed today in many application areas including Web usage mining, intrusion detection, continuous production, and bioinformatics. In contrast with sequence mining, association rule learning typically does not consider the order of items either within a transaction or across transactions.
+
+
+== Definition ==
+Following the original definition by Agrawal, Imieliński, Swami the problem of association rule mining is defined as:
+Let 
+  
+    
+      
+        I
+        =
+        {
+        
+          i
+          
+            1
+          
+        
+        ,
+        
+          i
+          
+            2
+          
+        
+        ,
+        …
+        ,
+        
+          i
+          
+            n
+          
+        
+        }
+      
+    
+    {\displaystyle I=\{i_{1},i_{2},\ldots ,i_{n}\}}
+   be a set of 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   binary attributes called items.
+Let 
+  
+    
+      
+        D
+        =
+        {
+        
+          t
+          
+            1
+          
+        
+        ,
+        
+          t
+          
+            2
+          
+        
+        ,
+        …
+        ,
+        
+          t
+          
+            m
+          
+        
+        }
+      
+    
+    {\displaystyle D=\{t_{1},t_{2},\ldots ,t_{m}\}}
+   be a set of transactions called the database.
+Each transaction in 
+  
+    
+      
+        D
+      
+    
+    {\displaystyle D}
+   has a unique transaction ID and contains a subset of the items in 
+  
+    
+      
+        I
+      
+    
+    {\displaystyle I}
+  .
+A rule is defined as an implication of the form:
+
+  
+    
+      
+        X
+        ⇒
+        Y
+      
+    
+    {\displaystyle X\Rightarrow Y}
+  , where 
+  
+    
+      
+        X
+        ,
+        Y
+        ⊆
+        I
+      
+    
+    {\displaystyle X,Y\subseteq I}
+  .
+In Agrawal, Imieliński, Swami a rule is defined only between a set and a single item, 
+  
+    
+      
+        X
+        ⇒
+        
+          i
+          
+            j
+          
+        
+      
+    
+    {\displaystyle X\Rightarrow i_{j}}
+   for 
+  
+    
+      
+        
+          i
+          
+            j
+          
+        
+        ∈
+        I
+      
+    
+    {\displaystyle i_{j}\in I}
+  .
+Every rule is composed by two different sets of items, also known as itemsets, 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   and 
+  
+    
+      
+        Y
+      
+    
+    {\displaystyle Y}
+  , where 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   is called antecedent or left-hand-side (LHS) and 
+  
+    
+      
+        Y
+      
+    
+    {\displaystyle Y}
+   consequent or right-hand-side (RHS).
+To illustrate the concepts, we use a small example from the supermarket domain. The set of items is 
+  
+    
+      
+        I
+        =
+        {
+        
+          m
+          i
+          l
+          k
+          ,
+          b
+          r
+          e
+          a
+          d
+          ,
+          b
+          u
+          t
+          t
+          e
+          r
+          ,
+          b
+          e
+          e
+          r
+          ,
+          d
+          i
+          a
+          p
+          e
+          r
+          s
+        
+        }
+      
+    
+    {\displaystyle I=\{\mathrm {milk,bread,butter,beer,diapers} \}}
+   and in the table is shown a small database containing the items, where, in each entry, the value 1 means the presence of the item in the corresponding transaction, and the value 0 represents the absence of an item in that transaction.
+An example rule for the supermarket could be 
+  
+    
+      
+        {
+        
+          b
+          u
+          t
+          t
+          e
+          r
+          ,
+          b
+          r
+          e
+          a
+          d
+        
+        }
+        ⇒
+        {
+        
+          m
+          i
+          l
+          k
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {butter,bread} \}\Rightarrow \{\mathrm {milk} \}}
+   meaning that if butter and bread are bought, customers also buy milk.
+Note: this example is extremely small. In practical applications, a rule needs a support of several hundred transactions before it can be considered statistically significant, and datasets often contain thousands or millions of transactions.
+
+
+== Useful Concepts ==
+In order to select interesting rules from the set of all possible rules, constraints on various measures of significance and interest are used. The best-known constraints are minimum thresholds on support and confidence.
+Let 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   be an itemset, 
+  
+    
+      
+        X
+        ⇒
+        Y
+      
+    
+    {\displaystyle X\Rightarrow Y}
+   an association rule and 
+  
+    
+      
+        T
+      
+    
+    {\displaystyle T}
+   a set of transactions of a given database.
+
+
+=== Support ===
+Support is an indication of how frequently the itemset appears in the dataset.
+The support of 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   with respect to 
+  
+    
+      
+        T
+      
+    
+    {\displaystyle T}
+   is defined as the proportion of transactions 
+  
+    
+      
+        t
+      
+    
+    {\displaystyle t}
+   in the dataset which contains the itemset 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  .
+
+  
+    
+      
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        )
+        =
+        
+          
+            
+              
+                |
+              
+              {
+              t
+              ∈
+              T
+              ;
+              X
+              ⊆
+              t
+              }
+              
+                |
+              
+            
+            
+              
+                |
+              
+              T
+              
+                |
+              
+            
+          
+        
+      
+    
+    {\displaystyle \mathrm {supp} (X)={\frac {|\{t\in T;X\subseteq t\}|}{|T|}}}
+  
+In the example dataset, the itemset 
+  
+    
+      
+        X
+        =
+        {
+        
+          b
+          e
+          e
+          r
+          ,
+          d
+          i
+          a
+          p
+          e
+          r
+          s
+        
+        }
+      
+    
+    {\displaystyle X=\{\mathrm {beer,diapers} \}}
+   has a support of 
+  
+    
+      
+        1
+        
+          /
+        
+        5
+        =
+        0.2
+      
+    
+    {\displaystyle 1/5=0.2}
+   since it occurs in 20% of all transactions (1 out of 5 transactions). The argument of 
+  
+    
+      
+        
+          s
+          u
+          p
+          p
+        
+        (
+        )
+      
+    
+    {\displaystyle \mathrm {supp} ()}
+   is a set of preconditions, and thus becomes more restrictive as it grows (instead of more inclusive).
+
+
+=== Confidence ===
+Confidence is an indication of how often the rule has been found to be true.
+The confidence value of a rule, 
+  
+    
+      
+        X
+        ⇒
+        Y
+      
+    
+    {\displaystyle X\Rightarrow Y}
+   , with respect to a set of transactions 
+  
+    
+      
+        T
+      
+    
+    {\displaystyle T}
+  , is the proportion of the transactions that contains 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   which also contains 
+  
+    
+      
+        Y
+      
+    
+    {\displaystyle Y}
+  .
+Confidence is defined as:
+
+  
+    
+      
+        
+          c
+          o
+          n
+          f
+        
+        (
+        X
+        ⇒
+        Y
+        )
+        =
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        ∪
+        Y
+        )
+        
+          /
+        
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        )
+      
+    
+    {\displaystyle \mathrm {conf} (X\Rightarrow Y)=\mathrm {supp} (X\cup Y)/\mathrm {supp} (X)}
+  .
+For example, the rule 
+  
+    
+      
+        {
+        
+          b
+          u
+          t
+          t
+          e
+          r
+          ,
+          b
+          r
+          e
+          a
+          d
+        
+        }
+        ⇒
+        {
+        
+          m
+          i
+          l
+          k
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {butter,bread} \}\Rightarrow \{\mathrm {milk} \}}
+   has a confidence of 
+  
+    
+      
+        0.2
+        
+          /
+        
+        0.2
+        =
+        1.0
+      
+    
+    {\displaystyle 0.2/0.2=1.0}
+   in the database, which means that for 100% of the transactions containing butter and bread the rule is correct (100% of the times a customer buys butter and bread, milk is bought as well).
+Note that 
+  
+    
+      
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        ∪
+        Y
+        )
+      
+    
+    {\displaystyle \mathrm {supp} (X\cup Y)}
+   means the support of the union of the items in X and Y. This is somewhat confusing since we normally think in terms of probabilities of events and not sets of items. We can rewrite 
+  
+    
+      
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        ∪
+        Y
+        )
+      
+    
+    {\displaystyle \mathrm {supp} (X\cup Y)}
+   as the probability 
+  
+    
+      
+        P
+        (
+        
+          E
+          
+            X
+          
+        
+        ∧
+        
+          E
+          
+            Y
+          
+        
+        )
+      
+    
+    {\displaystyle P(E_{X}\wedge E_{Y})}
+  , where 
+  
+    
+      
+        
+          E
+          
+            X
+          
+        
+      
+    
+    {\displaystyle E_{X}}
+   and 
+  
+    
+      
+        
+          E
+          
+            Y
+          
+        
+      
+    
+    {\displaystyle E_{Y}}
+   are the events that a transaction contains itemset 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+   and 
+  
+    
+      
+        Y
+      
+    
+    {\displaystyle Y}
+  , respectively.
+Thus confidence can be interpreted as an estimate of the conditional probability 
+  
+    
+      
+        P
+        (
+        
+          E
+          
+            Y
+          
+        
+        
+          |
+        
+        
+          E
+          
+            X
+          
+        
+        )
+      
+    
+    {\displaystyle P(E_{Y}|E_{X})}
+  , the probability of finding the RHS of the rule in transactions under the condition that these transactions also contain the LHS.
+
+
+=== Lift ===
+The lift of a rule is defined as:
+
+  
+    
+      
+        
+          l
+          i
+          f
+          t
+        
+        (
+        X
+        ⇒
+        Y
+        )
+        =
+        
+          
+            
+              
+                s
+                u
+                p
+                p
+              
+              (
+              X
+              ∪
+              Y
+              )
+            
+            
+              
+                s
+                u
+                p
+                p
+              
+              (
+              X
+              )
+              ×
+              
+                s
+                u
+                p
+                p
+              
+              (
+              Y
+              )
+            
+          
+        
+      
+    
+    {\displaystyle \mathrm {lift} (X\Rightarrow Y)={\frac {\mathrm {supp} (X\cup Y)}{\mathrm {supp} (X)\times \mathrm {supp} (Y)}}}
+  
+or the ratio of the observed support to that expected if X and Y were independent.
+For example, the rule 
+  
+    
+      
+        {
+        
+          m
+          i
+          l
+          k
+          ,
+          b
+          r
+          e
+          a
+          d
+        
+        }
+        ⇒
+        {
+        
+          b
+          u
+          t
+          t
+          e
+          r
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {milk,bread} \}\Rightarrow \{\mathrm {butter} \}}
+   has a lift of 
+  
+    
+      
+        
+          
+            0.2
+            
+              0.4
+              ×
+              0.4
+            
+          
+        
+        =
+        1.25
+      
+    
+    {\displaystyle {\frac {0.2}{0.4\times 0.4}}=1.25}
+  .
+If the rule had a lift of 1, it would imply that the probability of occurrence of the antecedent and that of the consequent are independent of each other. When two events are independent of each other, no rule can be drawn involving those two events.
+If the lift is > 1, that lets us know the degree to which those two occurrences are dependent on one another, and makes those rules potentially useful for predicting the consequent in future data sets.
+The value of lift is that it considers both the confidence of the rule and the overall data set.
+
+
+=== Conviction ===
+The conviction of a rule is defined as 
+  
+    
+      
+        
+          c
+          o
+          n
+          v
+        
+        (
+        X
+        ⇒
+        Y
+        )
+        =
+        
+          
+            
+              1
+              −
+              
+                s
+                u
+                p
+                p
+              
+              (
+              Y
+              )
+            
+            
+              1
+              −
+              
+                c
+                o
+                n
+                f
+              
+              (
+              X
+              ⇒
+              Y
+              )
+            
+          
+        
+      
+    
+    {\displaystyle \mathrm {conv} (X\Rightarrow Y)={\frac {1-\mathrm {supp} (Y)}{1-\mathrm {conf} (X\Rightarrow Y)}}}
+  .
+For example, the rule 
+  
+    
+      
+        {
+        
+          m
+          i
+          l
+          k
+          ,
+          b
+          r
+          e
+          a
+          d
+        
+        }
+        ⇒
+        {
+        
+          b
+          u
+          t
+          t
+          e
+          r
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {milk,bread} \}\Rightarrow \{\mathrm {butter} \}}
+   has a conviction of 
+  
+    
+      
+        
+          
+            
+              1
+              −
+              0.4
+            
+            
+              1
+              −
+              0.5
+            
+          
+        
+        =
+        1.2
+      
+    
+    {\displaystyle {\frac {1-0.4}{1-0.5}}=1.2}
+  , and can be interpreted as the ratio of the expected frequency that X occurs without Y (that is to say, the frequency that the rule makes an incorrect prediction) if X and Y were independent divided by the observed frequency of incorrect predictions. In this example, the conviction value of 1.2 shows that the rule 
+  
+    
+      
+        {
+        
+          m
+          i
+          l
+          k
+          ,
+          b
+          r
+          e
+          a
+          d
+        
+        }
+        ⇒
+        {
+        
+          b
+          u
+          t
+          t
+          e
+          r
+        
+        }
+      
+    
+    {\displaystyle \{\mathrm {milk,bread} \}\Rightarrow \{\mathrm {butter} \}}
+   would be correct 20% more often (1.2 times as often) if the association between X and Y was purely random chance.
+
+
+== Process ==
+
+Association rules are usually required to satisfy a user-specified minimum support and a user-specified minimum confidence at the same time. Association rule generation is usually split up into two separate steps:
+A minimum support threshold is applied to find all frequent itemsets in a database.
+A minimum confidence constraint is applied to these frequent itemsets in order to form rules.
+While the second step is straightforward, the first step needs more attention.
+Finding all frequent itemsets in a database is difficult since it involves searching all possible itemsets (item combinations). The set of possible itemsets is the power set over 
+  
+    
+      
+        I
+      
+    
+    {\displaystyle I}
+   and has size 
+  
+    
+      
+        
+          2
+          
+            n
+          
+        
+        −
+        1
+      
+    
+    {\displaystyle 2^{n}-1}
+   (excluding the empty set which is not a valid itemset). Although the size of the power-set grows exponentially in the number of items 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   in 
+  
+    
+      
+        I
+      
+    
+    {\displaystyle I}
+  , efficient search is possible using the downward-closure property of support (also called anti-monotonicity) which guarantees that for a frequent itemset, all its subsets are also frequent and thus no infrequent itemset can be a subset of a frequent itemset. Exploiting this property, efficient algorithms (e.g., Apriori and Eclat) can find all frequent itemsets.
+
+
+== History ==
+The concept of association rules was popularised particularly due to the 1993 article of Agrawal et al., which has acquired more than 18,000 citations according to Google Scholar, as of August 2015, and is thus one of the most cited papers in the Data Mining field. However, it is possible that what is now called "association rules" is similar to what appears in the 1966 paper on GUHA, a general data mining method developed by Petr Hájek et al.
+An early (circa 1989) use of minimum support and confidence to find all association rules is the Feature Based Modeling framework, which found all rules with 
+  
+    
+      
+        
+          s
+          u
+          p
+          p
+        
+        (
+        X
+        )
+      
+    
+    {\displaystyle \mathrm {supp} (X)}
+   and 
+  
+    
+      
+        
+          c
+          o
+          n
+          f
+        
+        (
+        X
+        ⇒
+        Y
+        )
+      
+    
+    {\displaystyle \mathrm {conf} (X\Rightarrow Y)}
+   greater than user defined constraints.
+
+
+== Alternative measures of interestingness ==
+In addition to confidence, other measures of interestingness for rules have been proposed. Some popular measures are:
+All-confidence
+Collective strength
+Conviction
+Leverage
+Lift (originally called interest)
+Several more measures are presented and compared by Tan et al. and by Hahsler. Looking for techniques that can model what the user has known (and using these models as interestingness measures) is currently an active research trend under the name of "Subjective Interestingness."
+
+
+== Statistically sound associations ==
+One limitation of the standard approach to discovering associations is that by searching massive numbers of possible associations to look for collections of items that appear to be associated, there is a large risk of finding many spurious associations. These are collections of items that co-occur with unexpected frequency in the data, but only do so by chance. For example, suppose we are considering a collection of 10,000 items and looking for rules containing two items in the left-hand-side and 1 item in the right-hand-side. There are approximately 1,000,000,000,000 such rules. If we apply a statistical test for independence with a significance level of 0.05 it means there is only a 5% chance of accepting a rule if there is no association. If we assume there are no associations, we should nonetheless expect to find 50,000,000,000 rules. Statistically sound association discovery controls this risk, in most cases reducing the risk of finding any spurious associations to a user-specified significance level.
+
+
+== Algorithms ==
+Many algorithms for generating association rules have been proposed.
+Some well-known algorithms are Apriori, Eclat and FP-Growth, but they only do half the job, since they are algorithms for mining frequent itemsets. Another step needs to be done after to generate rules from frequent itemsets found in a database.
+
+
+=== Apriori algorithm ===
+
+Apriori uses a breadth-first search strategy to count the support of itemsets and uses a candidate generation function which exploits the downward closure property of support.
+
+
+=== Eclat algorithm ===
+Eclat (alt. ECLAT, stands for Equivalence Class Transformation) is a depth-first search algorithm using set intersection. It is a naturally elegant algorithm suitable for both sequential as well as parallel execution with locality-enhancing properties. It was first introduced by Zaki, Parthasarathy, Li and Ogihara in a series of papers written in 1997.
+Mohammed Javeed Zaki, Srinivasan Parthasarathy, M. Ogihara, Wei Li: New Algorithms for Fast Discovery of Association Rules. KDD 1997.
+Mohammed Javeed Zaki, Srinivasan Parthasarathy, Mitsunori Ogihara, Wei Li: Parallel Algorithms for Discovery of Association Rules. Data Min. Knowl. Discov. 1(4): 343-373 (1997)
+
+
+=== FP-growth algorithm ===
+FP stands for frequent pattern.
+In the first pass, the algorithm counts occurrence of items (attribute-value pairs) in the dataset, and stores them to 'header table'. In the second pass, it builds the FP-tree structure by inserting instances. Items in each instance have to be sorted by descending order of their frequency in the dataset, so that the tree can be processed quickly. Items in each instance that do not meet minimum coverage threshold are discarded. If many instances share most frequent items, FP-tree provides high compression close to tree root.
+Recursive processing of this compressed version of main dataset grows large item sets directly, instead of generating candidate items and testing them against the entire database. Growth starts from the bottom of the header table (having longest branches), by finding all instances matching given condition. New tree is created, with counts projected from the original tree corresponding to the set of instances that are conditional on the attribute, with each node getting sum of its children counts. Recursive growth ends when no individual items conditional on the attribute meet minimum support threshold, and processing continues on the remaining header items of the original FP-tree.
+Once the recursive process has completed, all large item sets with minimum coverage have been found, and association rule creation begins.
+
+
+=== Others ===
+
+
+==== AprioriDP ====
+AprioriDP utilizes Dynamic Programming in Frequent itemset mining. The working principle is to eliminate the candidate generation like FP-tree, but it stores support count in specialized data structure instead of tree.
+
+
+==== Context Based Association Rule Mining Algorithm ====
+
+CBPNARM is an algorithm, developed in 2013, to mine association rules on the basis of context. It uses context variable on the basis of which the support of an itemset is changed on the basis of which the rules are finally populated to the rule set.
+
+
+==== Node-set-based algorithms ====
+FIN, PrePost  and PPV  are three algorithms based on node sets. They use nodes in a coding FP-tree to represent itemsets, and employ a depth-first search strategy to discovery frequent itemsets using "intersection" of node sets.
+
+
+==== GUHA procedure ASSOC ====
+GUHA is a general method for exploratory data analysis that has theoretical foundations in observational calculi.
+The ASSOC procedure is a GUHA method which mines for generalized association rules using fast bitstrings operations. The association rules mined by this method are more general than those output by apriori, for example "items" can be connected both with conjunction and disjunctions and the relation between antecedent and consequent of the rule is not restricted to setting minimum support and confidence as in apriori: an arbitrary combination of supported interest measures can be used.
+
+
+==== OPUS search ====
+OPUS is an efficient algorithm for rule discovery that, in contrast to most alternatives, does not require either monotone or anti-monotone constraints such as minimum support. Initially used to find rules for a fixed consequent it has subsequently been extended to find rules with any item as a consequent. OPUS search is the core technology in the popular Magnum Opus association discovery system.
+
+
+== Lore ==
+A famous story about association rule mining is the "beer and diaper" story. A purported survey of behavior of supermarket shoppers discovered that customers (presumably young men) who buy diapers tend also to buy beer. This anecdote became popular as an example of how unexpected association rules might be found from everyday data. There are varying opinions as to how much of the story is true. Daniel Powers says:
+
+In 1992, Thomas Blischok, manager of a retail consulting group at Teradata, and his staff prepared an analysis of 1.2 million market baskets from about 25 Osco Drug stores. Database queries were developed to identify affinities. The analysis "did discover that between 5:00 and 7:00 p.m. that consumers bought beer and diapers". Osco managers did NOT exploit the beer and diapers relationship by moving the products closer together on the shelves.
+
+
+== Other types of association rule mining ==
+Multi-Relation Association Rules: Multi-Relation Association Rules (MRAR) are association rules where each item may have several relations. These relations indicate indirect relationship between the entities. Consider the following MRAR where the first item consists of three relations live in, nearby and humid: “Those who live in a place which is nearby a city with humid climate type and also are younger than 20 -> their health condition is good”. Such association rules are extractable from RDBMS data or semantic web data.
+Context Based Association Rules are a form of association rule. Context Based Association Rules claims more accuracy in association rule mining by considering a hidden variable named context variable which changes the final set of association rules depending upon the value of context variables. For example, the baskets orientation in market basket analysis reflects an odd pattern in the early days of month. This might be because of abnormal context i.e. salary is drawn at the start of the month 
+Contrast set learning is a form of associative learning. Contrast set learners use rules that differ meaningfully in their distribution across subsets.
+Weighted class learning is another form of associative learning in which weight may be assigned to classes to give focus to a particular issue of concern for the consumer of the data mining results.
+High-order pattern discovery facilitate the capture of high-order (polythetic) patterns or event associations that are intrinsic to complex real-world data. 
+K-optimal pattern discovery provides an alternative to the standard approach to association rule learning that requires that each pattern appear frequently in the data.
+Approximate Frequent Itemset mining is a relaxed version of Frequent Itemset mining that allows some of the items in some of the rows to be 0.
+Generalized Association Rules hierarchical taxonomy (concept hierarchy)
+Quantitative Association Rules categorical and quantitative data 
+Interval Data Association Rules e.g. partition the age into 5-year-increment ranged
+Sequential pattern mining discovers subsequences that are common to more than minsup sequences in a sequence database, where minsup is set by the user. A sequence is an ordered list of transactions.
+Subspace Clustering, a specific type of Clustering high-dimensional data, is in many variants also based on the downward-closure property for specific clustering models.
+Warmr is shipped as part of the ACE data mining suite. It allows association rule learning for first order relational rules.
+
+
+== See also ==
+Sequence mining
+Production system (computer science)
+Learning classifier system
+Rule-based machine learning
+
+
+== References ==
+
+
+== External links ==
+
+
+=== Bibliographies ===
+Extensive Bibliography on Association Rules by J.M. Luna
+Annotated Bibliography on Association Rules by M. Hahsler
+Statsoft Electronic Statistics Textbook: Association Rules by Dell Software

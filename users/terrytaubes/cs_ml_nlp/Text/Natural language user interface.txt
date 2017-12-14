@@ -1,0 +1,108 @@
+Natural language user interfaces (LUI or NLUI) are a type of computer human interface where linguistic phenomena such as verbs, phrases and clauses act as UI controls for creating, selecting and modifying data in software applications.
+In interface design natural language interfaces are sought after for their speed and ease of use, but most suffer the challenges to understanding wide varieties of ambiguous input. Natural language interfaces are an active area of study in the field of natural language processing and computational linguistics. An intuitive general natural language interface is one of the active goals of the Semantic Web.
+Text interfaces are "natural" to varying degrees. Many formal (un-natural) programming languages incorporate idioms of natural human language. Likewise, a traditional keyword search engine could be described as a "shallow" natural language user interface.
+
+
+== Overview ==
+A natural language search engine would in theory find targeted answers to user questions (as opposed to keyword search). For example, when confronted with a question of the form 'which U.S. state has the highest income tax?', conventional search engines ignore the question and instead search on the keywords 'state', 'income' and 'tax'. Natural language search, on the other hand, attempts to use natural language processing to understand the nature of the question and then to search and return a subset of the web that contains the answer to the question. If it works, results would have a higher relevance than results from a keyword search engine.
+
+
+== History ==
+Prototype Nl interfaces had already appeared in the late sixties and early seventies.
+SHRDLU, a natural language interface that manipulates blocks in a virtual "blocks world"
+Lunar, a natural language interface to a database containing chemical analyses of Apollo-11 moon rocks by William A. Woods.
+Chat-80 transformed English questions into Prolog expressions, which were evaluated against the Prolog database. The code of Chat-80 was circulated widely, and formed the basis of several other experimental Nl interfaces. An online demo is available on the LPA website.
+ELIZA, written at MIT by Joseph Weizenbaum between 1964 and 1966, mimicked a psychotherapist and was operated by processing users' responses to scripts. Using almost no information about human thought or emotion, the DOCTOR script sometimes provided a startlingly human-like interaction. An online demo is available on the LPA website.
+Janus is also one of the few systems to support temporal questions.
+Intellect from Trinzic (formed by the merger of AICorp and Aion).
+BBN’s Parlance built on experience from the development of the Rus and Irus systems.
+IBM Languageaccess
+Q&A from Symantec.
+Datatalker from Natural Language Inc.
+Loqui from BIM Systems.
+English Wizard from Linguistic Technology Corporation.
+iAskWeb from Anserity Inc. fully implemented in Prolog was providing interactive recommendations in NL to users in tax and investment domains in 1999-2001
+
+
+== Challenges ==
+Natural language interfaces have in the past led users to anthropomorphize the computer, or at least to attribute more intelligence to machines than is warranted. On the part of the user, this has led to unrealistic expectations of the capabilities of the system. Such expectations will make it difficult to learn the restrictions of the system if users attribute too much capability to it, and will ultimately lead to disappointment when the system fails to perform as expected as was the case in the AI winter of the 1970s and 80s.
+A 1995 paper titled 'Natural Language Interfaces to Databases – An Introduction', describes some challenges:
+Modifier attachment
+The request "List all employees in the company with a driving licence" is ambiguous unless you know that companies can't have driving licences.
+Conjunction and disjunction
+"List all applicants who live in California and Arizona" is ambiguous unless you know that a person can't live in two places at once.
+Anaphora resolution
+resolve what a user means by 'he', 'she' or 'it', in a self-referential query.
+Other goals to consider more generally are the speed and efficiency of the interface, in all algorithms these two points are the main point that will determine if some methods are better than others and therefore have greater success in the market. In addition, localisation across multiple language sites requires extra consideration - this is based on differing sentence structure and language syntax variations between most languages.
+Finally, regarding the methods used, the main problem to be solved is creating a general algorithm that can recognize the entire spectrum of different voices, while disregarding nationality, gender or age. The significant differences between the extracted features - even from speakers who says the same word or phrase - must be successfully overcome.
+
+
+== Uses and applications ==
+The natural language interface gives rise to technology used for many different applications.
+Some of the main uses are:
+Dictation, is the most common use for automated speech recognition (ASR) systems today. This includes medical transcriptions, legal and business dictation, and general word processing. In some cases special vocabularies are used to increase the accuracy of the system.
+Command and control, ASR systems that are designed to perform functions and actions on the system are defined as command and control systems. Utterances like "Open Netscape" and "Start a new xterm" will do just that.
+Telephony, some PBX/Voice Mail systems allow callers to speak commands instead of pressing buttons to send specific tones.
+Wearables, because inputs are limited for wearable devices, speaking is a natural possibility.
+Medical, disabilities, many people have difficulty typing due to physical limitations such as repetitive strain injuries (RSI), muscular dystrophy, and many others. For example, people with difficulty hearing could use a system connected to their telephone to convert a caller's speech to text.
+Embedded applications, some new cellular phones include C&C speech recognition that allow utterances such as "call home". This may be a major factor in the future of automatic speech recognition and Linux.
+Below are named and defined some of the applications that use natural language recognition, and so have integrated utilities listed above.
+
+
+=== Ubiquity ===
+
+Ubiquity, an add-on for Mozilla Firefox, is a collection of quick and easy natural-language-derived commands that act as mashups of web services, thus allowing users to get information and relate it to current and other webpages.
+
+
+=== Wolfram Alpha ===
+
+Wolfram Alpha is an online service that answers factual queries directly by computing the answer from structured data, rather than providing a list of documents or web pages that might contain the answer as a search engine would. It was announced in March 2009 by Stephen Wolfram, and was released to the public on May 15, 2009.
+
+
+=== Siri ===
+
+Siri is an intelligent personal assistant application integrated with operating system iOS. The application uses natural language processing to answer questions and make recommendations.
+Siri's marketing claims include that it adapts to a user's individual preferences over time and personalizes results, and performs tasks such as making dinner reservations while trying to catch a cab.
+
+
+=== Others ===
+Ask.com - The original idea behind Ask Jeeves (Ask.com) was traditional keyword searching with an ability to get answers to questions posed in everyday, natural language. The current Ask.com still supports this, with added support for math, dictionary, and conversion questions.
+Braina - Braina is a natural language interface for Windows OS that allows to type or speak English language sentences to perform a certain action or find information.
+CMANTIK - CMANTIK is a semantic information search engine which is trying to answer user's questions by looking up relevant information in Wikipedia and some news sources.
+C-Phrase - is a web-based natural language front end to relational databases. C-Phrase runs under Linux, connects with PostgreSQL databases via ODBC and supports both select queries and updates. Currently there is only support for English.
+EasyQuery - is a component library (for .NET framework first of all) which allows you to implement natural language query builder in your application. Works both with relational databases or ORM solutions like Entity Framework.
+FriendlyData is a pioneering API-based natural language interface for relational databases. FriendlyData API accepts plain text or voice messages, it turns natural language into a SQL request and returns data in a simple format like JSON or XML.
+
+Enguage - this is an open source text understanding interface for web/mobile devices, using publicly available speech-to-text and text-to-speech facilities. This is directed at controlling apps, rather than as a front-end database query or web search. The interpretation of utterances is programmed, and programmable, in natural language utterances; thus, it is (or at least asserts that language is) an autopoietic system. It can achieve a deep understanding of text. A reference app is available on Google Play
+GNOME Do - Allows for quick finding miscellaneous artifacts of GNOME environment (applications, Evolution and Pidgin contacts, Firefox bookmarks, Rhythmbox artists and albums, and so on) and execute the basic actions on them (launch, open, email, chat, play, etc.).
+hakia - hakia is an Internet search engine. The company has invented an alternative new infrastructure to indexing that uses SemanticRank algorithm, a solution mix from the disciplines of ontological semantics, fuzzy logic, computational linguistics, and mathematics.
+Lexxe - Lexxe is an Internet search engine that uses natural language processing for queries (semantic search). Searches can be made with keywords, phrases, and questions, such as "How old is Wikipedia?" When it comes to facts, Lexxe is quite effective, though needs much improvement in natural language analysis in the area of facts and in other areas.
+Mnemoo - Mnemoo is an answer engine that aimed to directly answer questions posed in plain text (Natural Language), which is accomplished using a database of facts and an inference engine.
+Natural Date and Time - Natural language date and time zone engine. It allows you to ask questions about time, daylight saving information and to do time zone conversions via plain English questions such as 'What is the time in São Paulo when it is 6pm on the 2nd of June in Detroit'.
+NLUI Server - an enterprise-oriented multilingual application server by LinguaSys for natural language user interface scripts, supporting English, Spanish, Portuguese, German, Japanese, Chinese, Pashto, Thai, Russian, Vietnamese, Malay, with Arabic, French, and more languages in development.
+Pikimal - Pikimal uses natural language tied to user preference to make search recommendations by template.
+Powerset — On May 11, 2008, the company unveiled a tool for searching a fixed subset of Wikipedia using conversational phrases rather than keywords. On July 1, 2008, it was purchased by Microsoft.
+Q-go - The Q-go technology provides relevant answers to users in response to queries on a company’s internet website or corporate intranet, formulated in natural sentences or keyword input alike. Q-go was acquired by RightNow Technologies in 2011
+START (MIT project) - START, Web-based question answering system. Unlike information retrieval systems such as search engines, START aims to supply users with "just the right information," instead of merely providing a list of hits. Currently, the system can answer millions of English questions about places, movies, people and dictionary definitions.
+StatMuse - Natural language analytics platform, currently in private beta with NBA data. Ask natural questions and get rich visualizations and raw data.
+Swingly - Swingly is an answer engine designed to find exact answers to factual questions. Just ask a question in plain English - and Swingly will find you the answer (or answers) you're looking for (according to their site).
+Yebol - Yebol is a vertical "decision" search engine that had developed a knowledge-based, semantic search platform. Yebol's artificial intelligence human intelligence-infused algorithms automatically cluster and categorize search results, web sites, pages and content that it presents in a visually indexed format that is more aligned with initial human intent. Yebol uses association, ranking and clustering algorithms to analyze related keywords or web pages. Yebol integrates natural language processing, metasynthetic-engineered open complex systems, and machine algorithms with human knowledge for each query to establish a web directory that actually 'learns', using correlation, clustering and classification algorithms to automatically generate the knowledge query, which is retained and regenerated forward.
+
+
+== See also ==
+Attempto Controlled English
+Natural user interface
+Natural language programming
+Natural language processing
+xTalk, a family of English-like programming languages
+
+Chatterbot, a computer program that simulates human conversations
+Noisy text
+Question answering
+Selection-based search
+Semantic search
+Semantic query
+Semantic Web
+
+
+== References ==

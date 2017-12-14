@@ -1,0 +1,129 @@
+The ethics of artificial intelligence is the part of the ethics of technology specific to robots and other artificially intelligent beings. It is typically divided into roboethics, a concern with the moral behavior of humans as they design, construct, use and treat artificially intelligent beings, and machine ethics, which is concerned with the moral behavior of artificial moral agents (AMAs).
+
+
+== Robot ethics ==
+
+The term "robot ethics" (sometimes "roboethics") refers to the morality of how humans design, construct, use and treat robots and other artificially intelligent beings. It considers both how artificially intelligent beings may be used to harm humans and how they may be used to benefit humans.
+
+
+=== Robot rights ===
+Robot rights are the moral obligations of society towards its machines, similar to human rights or animal rights. Robot rights, such as right to exist and perform its own mission, may be linked to robot duty to serve human, by analogy with linking human rights to human duties before society. These may include the right to life and liberty, freedom of thought and expression and equality before the law. The issue has been considered by the Institute for the Future and by the U.K. Department of Trade and Industry.
+Experts disagree whether specific and detailed laws will be required soon or safely in the distant future. Glenn McGee reports that sufficiently humanoid robots may appear by 2020. Ray Kurzweil sets the date at 2029. Another group of scientists meeting in 2007 supposed that at least 50 years had to pass before any sufficiently advanced system would exist.
+The rules for the 2003 Loebner Prize competition envisioned possibility of robots having rights of their own:
+
+61. If, in any given year, a publicly available open source Entry entered by the University of Surrey or the Cambridge Center wins the Silver Medal or the Gold Medal, then the Medal and the Cash Award will be awarded to the body responsible for the development of that Entry. If no such body can be identified, or if there is disagreement among two or more claimants, the Medal and the Cash Award will be held in trust until such time as the Entry may legally possess, either in the United States of America or in the venue of the contest, the Cash Award and Gold Medal in its own right.
+
+In October 2017, the android Sophia was granted citizenship in Saudi Arabia, though some observers found this to be more of a publicity stunt than a meaningful legal recognition.
+
+
+=== Threat to privacy ===
+Aleksandr Solzhenitsyn's The First Circle describes the use of speech recognition technology in the service of tyranny. If an AI program exists that can understand natural languages and speech (e.g. English), then, with adequate processing power it could theoretically listen to every phone conversation and read every email in the world, understand them and report back to the program's operators exactly what is said and exactly who is saying it. An AI program like this could allow governments or other entities to efficiently suppress dissent and attack their enemies.
+
+
+=== Threat to human dignity ===
+
+Joseph Weizenbaum argued in 1976 that AI technology should not be used to replace people in positions that require respect and care, such as any of these:
+A customer service representative (AI technology is already used today for telephone-based interactive voice response systems)
+A therapist (as was proposed by Kenneth Colby in the 1970s)
+A nursemaid for the elderly (as was reported by Pamela McCorduck in her book The Fifth Generation)
+A soldier
+A judge
+A police officer
+Weizenbaum explains that we require authentic feelings of empathy from people in these positions. If machines replace them, we will find ourselves alienated, devalued and frustrated. Artificial intelligence, if used in this way, represents a threat to human dignity. Weizenbaum argues that the fact that we are entertaining the possibility of machines in these positions suggests that we have experienced an "atrophy of the human spirit that comes from thinking of ourselves as computers."
+Pamela McCorduck counters that, speaking for women and minorities "I'd rather take my chances with an impartial computer," pointing out that there are conditions where we would prefer to have automated judges and police that have no personal agenda at all. AI founder John McCarthy objects to the moralizing tone of Weizenbaum's critique. "When moralizing is both vehement and vague, it invites authoritarian abuse," he writes.
+Bill Hibbard writes that "Human dignity requires that we strive to remove our ignorance of the nature of existence, and AI is necessary for that striving."
+
+
+=== Transparency and open source ===
+Bill Hibbard argues that because AI will have such a profound effect on humanity, AI developers are representatives of future humanity and thus have an ethical obligation to be transparent in their efforts. Ben Goertzel and David Hart created OpenCog as an open source framework for AI development. OpenAI is a non-profit AI research company created by Elon Musk, Sam Altman and others to develop open source AI beneficial to humanity. There are numerous other open source AI developments.
+
+
+== Weaponization of artificial intelligence ==
+Some experts and academics have questioned the use of robots for military combat, especially when such robots are given some degree of autonomous functions. The US Navy has funded a report which indicates that as military robots become more complex, there should be greater attention to implications of their ability to make autonomous decisions. One researcher states that autonomous robots might be more humane, as they could make decisions more effectively.
+Within this last decade, there has been intensive research in autonomous power with the ability to learn using assigned moral responsibilities. "The results may be used when designing future military robots, to control unwanted tendencies to assign responsibility to the robots." From a consequentialist view, there is a chance that robots will develop the ability to make their own logical decisions on who to kill and that is why there should be a set moral framework that the A.I cannot override.
+There has been a recent outcry with regards to the engineering of artificial-intelligence weapons and has even fostered up ideas of a robot takeover of mankind. AI weapons do present a type of danger different from that of human controlled weapons. Many governments have begun to fund programs to develop AI weaponry. The United States Navy recently announced plans to develop autonomous drone weapons, paralleling similar announcements by Russia and Korea respectively. Due to the potential of AI weapons becoming more dangerous than human operated weapons, Stephen Hawking and Max Tegmark have signed a Future of Life petition to ban AI weapons. The message posted by Hawking and Tegmark states that AI weapons pose an immediate danger and that action is required to avoid catastrophic disasters in the near future.
+"If any major military power pushes ahead with the AI weapon development, a global arms race is virtually inevitable, and the endpoint of this technological trajectory is obvious: autonomous weapons will become the Kalashnikovs of tomorrow", says the petition, which includes Skype co-founder Jaan Tallinn and MIT professor of linguistics Noam Chomsky as additional supporters against AI weaponry.
+Physicist and Astronomer Royal Sir Martin Rees warned of catastrophic instances like "dumb robots going rogue or a network that develops a mind of its own." Huw Price, a colleague of Rees at Cambridge, has voiced a similar warning that humans may not survive when intelligence "escapes the constraints of biology." These two professors created the Centre for the Study of Existential Risk at Cambridge University in the hopes of avoiding this threat to human existence.
+Regarding the potential for smarter-than-human systems to be employed militarily, the Open Philanthropy Project writes that this scenario "seem potentially as important as the risks related to loss of control", but that research organizations investigating AI's long-run social impact have spent relatively little time on this concern: "this class of scenarios has not been a major focus for the organizations that have been most active in this space, such as the Machine Intelligence Research Institute (MIRI) and the Future of Humanity Institute (FHI), and there seems to have been less analysis and debate regarding them".
+
+
+== Machine ethics ==
+
+Machine ethics (or machine morality) is the field of research concerned with designing Artificial Moral Agents (AMAs), robots or artificially intelligent computers that behave morally or as though moral.
+Isaac Asimov considered the issue in the 1950s in his I, Robot. At the insistence of his editor John W. Campbell Jr., he proposed the Three Laws of Robotics to govern artificially intelligent systems. Much of his work was then spent testing the boundaries of his three laws to see where they would break down, or where they would create paradoxical or unanticipated behavior. His work suggests that no set of fixed laws can sufficiently anticipate all possible circumstances.
+In 2009, during an experiment at the Laboratory of Intelligent Systems in the Ecole Polytechnique Fédérale of Lausanne in Switzerland, robots that were programmed to cooperate with each other (in searching out a beneficial resource and avoiding a poisonous one) eventually learned to lie to each other in an attempt to hoard the beneficial resource. One problem in this case may have been that the goals were "terminal" (i.e. in contrast, ultimate human motives typically have a quality of requiring never-ending learning).
+Some experts and academics have questioned the use of robots for military combat, especially when such robots are given some degree of autonomous functions. The US Navy has funded a report which indicates that as military robots become more complex, there should be greater attention to implications of their ability to make autonomous decisions. The President of the Association for the Advancement of Artificial Intelligence has commissioned a study to look at this issue. They point to programs like the Language Acquisition Device which can emulate human interaction.
+Vernor Vinge has suggested that a moment may come when some computers are smarter than humans. He calls this "the Singularity." He suggests that it may be somewhat or possibly very dangerous for humans. This is discussed by a philosophy called Singularitarianism. The Machine Intelligence Research Institute has suggested a need to build "Friendly AI", meaning that the advances which are already occurring with AI should also include an effort to make AI intrinsically friendly and humane.
+In 2009, academics and technical experts attended a conference organized by the Association for the Advancement of Artificial Intelligence to discuss the potential impact of robots and computers and the impact of the hypothetical possibility that they could become self-sufficient and able to make their own decisions. They discussed the possibility and the extent to which computers and robots might be able to acquire any level of autonomy, and to what degree they could use such abilities to possibly pose any threat or hazard. They noted that some machines have acquired various forms of semi-autonomy, including being able to find power sources on their own and being able to independently choose targets to attack with weapons. They also noted that some computer viruses can evade elimination and have achieved "cockroach intelligence." They noted that self-awareness as depicted in science-fiction is probably unlikely, but that there were other potential hazards and pitfalls.
+However, there is one technology in particular that could truly bring the possibility of robots with moral competence to reality. In a paper on the acquisition of moral values by robots, Nayef Al-Rodhan mentions the case of neuromorphic ("brainlike") chips, which aim to process information similarly to humans, nonlinearly and with millions of interconnected artificial neurons. Robots embedded with neuromorphic technology could learn and develop knowledge in a uniquely humanlike way. Inevitably, this raises the question of the environment in which such robots would learn about the world and whose morality they would inherit - or if they end up developing human 'weaknesses' as well: selfishness, a pro-survival attitude, hesitation etc.
+In Moral Machines: Teaching Robots Right from Wrong, Wendell Wallach and Colin Allen conclude that attempts to teach robots right from wrong will likely advance understanding of human ethics by motivating humans to address gaps in modern normative theory and by providing a platform for experimental investigation. As one example, it has introduced normative ethicists to the controversial issue of which specific learning algorithms to use in machines. Nick Bostrom and Eliezer Yudkowsky have argued for decision trees (such as ID3) over neural networks and genetic algorithms on the grounds that decision trees obey modern social norms of transparency and predictability (e.g. stare decisis), while Chris Santos-Lang argued in the opposite direction on the grounds that the norms of any age must be allowed to change and that natural failure to fully satisfy these particular norms has been essential in making humans less vulnerable to criminal "hackers".
+
+
+== Unintended consequences ==
+
+Many researchers have argued that, by way of an "intelligence explosion" sometime in the 21st century, a self-improving AI could become so vastly more powerful than humans that we would not be able to stop it from achieving its goals. In his paper Ethical Issues in Advanced Artificial Intelligence, the Oxford philosopher Nick Bostrom even argues that artificial intelligence has the capability to bring about human extinction. He claims that general super-intelligence would be capable of independent initiative and of making its own plans, and may therefore be more appropriately thought of as an autonomous agent. Since artificial intellects need not share our human motivational tendencies, it would be up to the designers of the super-intelligence to specify its original motivations. In theory, a super-intelligent AI would be able to bring about almost any possible outcome and to thwart any attempt to prevent the implementation of its top goal, many uncontrolled unintended consequences could arise. It could kill off all other agents, persuade them to change their behavior, or block their attempts at interference.
+However, the sheer complexity of human value systems makes it very difficult to make AI's motivations human-friendly. Unless moral philosophy provides us with a flawless ethical theory, an AI's utility function could allow for many potentially harmful scenarios that conform with a given ethical framework but not "common sense". According to Eliezer Yudkowsky, there is little reason to suppose that an artificially designed mind would have such an adaptation.
+Bill Hibbard proposes an AI design that avoids several types of unintended AI behavior including self-delusion, unintended instrumental actions, and corruption of the reward generator.
+Instead of overwhelming the human race and leading to our destruction Nick Bostrom believes that Super Intelligence can help us solve many difficult problems such as disease, poverty, and environmental destruction, and could help us to “enhance” ourselves.
+
+
+== In fiction ==
+
+The movie The Thirteenth Floor suggests a future where simulated worlds with sentient inhabitants are created by computer game consoles for the purpose of entertainment. The movie The Matrix suggests a future where the dominant species on planet Earth are sentient machines and humanity is treated with utmost Speciesism. The short story "The Planck Dive" suggest a future where humanity has turned itself into software that can be duplicated and optimized and the relevant distinction between types of software is sentient and non-sentient. The same idea can be found in the Emergency Medical Hologram of Starship Voyager, which is an apparently sentient copy of a reduced subset of the consciousness of its creator, Dr. Zimmerman, who, for the best motives, has created the system to give medical assistance in case of emergencies. The movies Bicentennial Man and A.I. deal with the possibility of sentient robots that could love. I, Robot explored some aspects of Asimov's three laws. All these scenarios try to foresee possibly unethical consequences of the creation of sentient computers.
+The ethics of artificial intelligence is one of several core themes in BioWare's Mass Effect series of games. It explores the scenario of a civilization accidentally creating AI through a rapid increase in computational power through a global scale neural network. This event caused an ethical schism between those who felt bestowing organic rights upon the newly sentient Geth was appropriate and those who continued to see them as disposable machinery and fought to destroy them. Beyond the initial conflict, the complexity of the relationship between the machines and their creators is another ongoing theme throughout the story.
+Over time, debates have tended to focus less and less on possibility and more on desirability, as emphasized in the "Cosmist" and "Terran" debates initiated by Hugo de Garis and Kevin Warwick. A Cosmist, according to Hugo de Garis, is actually seeking to build more intelligent successors to the human species.
+
+
+== Literature ==
+The standard bibliography on ethics of AI is on PhilPapers. A recent collection is V.C. Müller(ed.) (2016).
+The book A.I. Civil Rights considers the U.S. Bill of Rights, as it would apply to artificial intelligence.
+
+
+== See also ==
+
+Algorithmic bias
+Artificial consciousness
+Artificial general intelligence
+Effective altruism, the far future and global catastrophic risks
+Existential risk
+Existential risk from advanced artificial intelligence
+Philosophy of artificial intelligence
+Superintelligence
+Roboethics
+Robotic Governance
+Superintelligence: Paths, Dangers, Strategies
+
+Researchers
+Nick Bostrom
+Ray Kurzweil
+Peter Norvig
+Steve Omohundro
+Stuart J. Russell
+Anders Sandberg
+Eliezer Yudkowsky
+Organisations
+Centre for the Study of Existential Risk
+Future of Humanity Institute
+Future of Life Institute
+Machine Intelligence Research Institute
+Partnership on AI
+
+
+== Notes ==
+
+Thesis Available EPFL "The Evolution of Communication in Robot Societies"
+
+   https://infoscience.epfl.ch/record/141959/files/EPFL_TH4551.pdf
+
+
+== External links ==
+Robotics: Ethics of artificial intelligence. "Four leading researchers share their concerns and solutions for reducing societal risks from intelligent machines." Nature, 521, 415–418 (28 May 2015) doi:10.1038/521415a
+Artificial Intelligence Topics in Ethics
+Critical Algorithm Studies (Tarleton Gillespie and Nick Seaver, 2015)
+Governing Lethal Behavior: Embedding Ethics in a Hybrid Deliberative/Reactive Robot Architecture
+Research Paper: Philosophy of Consciousness and Ethics in Artificial Intelligence
+3 Laws Unsafe Campaign - Asimov's Laws & I, Robot
+BBC News: Games to take on a life of their own
+Who's Afraid of Robots?, an article on humanity's fear of artificial intelligence.
+A short history of computer ethics
+ASPCR - The American Society for the Prevention of Cruelty To Robots

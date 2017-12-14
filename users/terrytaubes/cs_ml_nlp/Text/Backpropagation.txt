@@ -1,0 +1,2762 @@
+Backpropagation is a method used in artificial neural networks to calculate the error contribution of each neuron after a batch of data (in image recognition, multiple images) is processed. It is a special case of an older and more general technique called automatic differentiation. In the context of learning, backpropagation is commonly used by the gradient descent optimization algorithm to adjust the weight of neurons by calculating the gradient of the loss function. This technique is also sometimes called backward propagation of errors, because the error is calculated at the output and distributed back through the network layers.
+The backpropagation algorithm has been repeatedly rediscovered and is equivalent to automatic differentiation in reverse accumulation mode. Backpropagation requires a known, desired output for each input value—it is therefore considered to be a supervised learning method (although it is used in some unsupervised networks such as autoencoders). Backpropagation is also a generalization of the delta rule to multi-layered feedforward networks, made possible by using the chain rule to iteratively compute gradients for each layer. It is closely related to the Gauss–Newton algorithm, and is part of continuing research in neural backpropagation. Backpropagation can be used with any gradient-based optimizer, such as L-BFGS or truncated Newton.
+Backpropagation is commonly used to train deep neural networks , a term used to describe neural networks with more than one hidden layer.
+
+
+== Motivation ==
+The goal of any supervised learning algorithm is to find a function that best maps a set of inputs to their correct output. An example would be a classification task, where the input is an image of an animal, and the correct output is the name of the animal.
+The motivation for backpropagation is to train a multi-layered neural network such that it can learn the appropriate internal representations to allow it to learn any arbitrary mapping of input to output.
+
+
+== Loss function ==
+
+Sometimes referred to as the cost function or error function (not to be confused with the Gauss error function), the loss function is a function that maps values of one or more variables onto a real number intuitively representing some "cost" associated with those values. For backpropagation, the loss function calculates the difference between the network output and its expected output, after a case propagates through the network.
+
+
+=== Assumptions ===
+Two assumptions must be made about the form of the error function. The first is that it can be written as an average 
+  
+    
+      
+        E
+        =
+        
+          
+            1
+            n
+          
+        
+        
+          ∑
+          
+            x
+          
+        
+        
+          E
+          
+            x
+          
+        
+      
+    
+    {\textstyle E={\frac {1}{n}}\sum _{x}E_{x}}
+   over error functions 
+  
+    
+      
+        
+          E
+          
+            x
+          
+        
+      
+    
+    {\textstyle E_{x}}
+  , for individual training examples, 
+  
+    
+      
+        x
+      
+    
+    {\textstyle x}
+  . The reason for this assumption is that the backpropagation algorithm calculates the gradient of the error function for a single training example, which needs to be generalized to the overall error function. The second assumption is that it can be written as a function of the outputs from the neural network.
+
+
+=== Example loss function ===
+Let 
+  
+    
+      
+        y
+        ,
+        
+          y
+          ′
+        
+      
+    
+    {\displaystyle y,y'}
+   be vectors in 
+  
+    
+      
+        
+          
+            R
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{n}}
+  .
+Select an error function 
+  
+    
+      
+        E
+        (
+        y
+        ,
+        
+          y
+          ′
+        
+        )
+      
+    
+    {\displaystyle E(y,y')}
+   measuring the difference between two outputs.
+The standard choice is 
+  
+    
+      
+        E
+        (
+        y
+        ,
+        
+          y
+          ′
+        
+        )
+        =
+        
+          
+            
+              1
+              2
+            
+          
+        
+        ∥
+        y
+        −
+        
+          y
+          ′
+        
+        
+          ∥
+          
+            2
+          
+        
+      
+    
+    {\displaystyle E(y,y')={\tfrac {1}{2}}\lVert y-y'\rVert ^{2}}
+  ,
+the square of the Euclidean distance between the vectors 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   and 
+  
+    
+      
+        
+          y
+          ′
+        
+      
+    
+    {\displaystyle y'}
+  .
+The factor of 
+  
+    
+      
+        
+          
+            
+              1
+              2
+            
+          
+        
+      
+    
+    {\displaystyle {\tfrac {1}{2}}}
+   conveniently cancels the exponent when the error function is subsequently differentiated.
+The error function over 
+  
+    
+      
+        n
+      
+    
+    {\textstyle n}
+   training examples can be written as an average:
+and the partial derivative with respect to the outputs:
+
+
+== Optimization ==
+The optimization algorithm repeats a two phase cycle, propagation and weight update. When an input vector is presented to the network, it is propagated forward through the network, layer by layer, until it reaches the output layer. The output of the network is then compared to the desired output, using a loss function. The resulting error value is calculated for each of the neurons in the output layer. The error values are then propagated from the output back through the network, until each neuron has an associated error value that reflects its contribution to the original output.
+Backpropagation uses these error values to calculate the gradient of the loss function. In the second phase, this gradient is fed to the optimization method, which in turn uses it to update the weights, in an attempt to minimize the loss function.
+
+
+=== Algorithm ===
+Let 
+  
+    
+      
+        N
+      
+    
+    {\displaystyle N}
+   be a neural network with 
+  
+    
+      
+        e
+      
+    
+    {\displaystyle e}
+   connections, 
+  
+    
+      
+        m
+      
+    
+    {\displaystyle m}
+   inputs, and 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   outputs.
+Below, 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+        ,
+        
+          x
+          
+            2
+          
+        
+        ,
+        …
+      
+    
+    {\displaystyle x_{1},x_{2},\dots }
+   will denote vectors in 
+  
+    
+      
+        
+          
+            R
+          
+          
+            m
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{m}}
+  , 
+  
+    
+      
+        
+          y
+          
+            1
+          
+        
+        ,
+        
+          y
+          
+            2
+          
+        
+        ,
+        …
+      
+    
+    {\displaystyle y_{1},y_{2},\dots }
+   vectors in 
+  
+    
+      
+        
+          
+            R
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{n}}
+  , and 
+  
+    
+      
+        
+          w
+          
+            0
+          
+        
+        ,
+        
+          w
+          
+            1
+          
+        
+        ,
+        
+          w
+          
+            2
+          
+        
+        ,
+        …
+      
+    
+    {\displaystyle w_{0},w_{1},w_{2},\ldots }
+   vectors in 
+  
+    
+      
+        
+          
+            R
+          
+          
+            e
+          
+        
+      
+    
+    {\displaystyle \mathbb {R} ^{e}}
+  . These are called inputs, outputs and weights respectively.
+The neural network corresponds to a function 
+  
+    
+      
+        y
+        =
+        
+          f
+          
+            N
+          
+        
+        (
+        w
+        ,
+        x
+        )
+      
+    
+    {\displaystyle y=f_{N}(w,x)}
+   which, given a weight 
+  
+    
+      
+        w
+      
+    
+    {\displaystyle w}
+  , maps an input 
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+   to an output 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  .
+The optimization takes as input a sequence of training examples 
+  
+    
+      
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        
+          y
+          
+            1
+          
+        
+        )
+        ,
+        …
+        ,
+        (
+        
+          x
+          
+            p
+          
+        
+        ,
+        
+          y
+          
+            p
+          
+        
+        )
+      
+    
+    {\displaystyle (x_{1},y_{1}),\dots ,(x_{p},y_{p})}
+   and produces a sequence of weights 
+  
+    
+      
+        
+          w
+          
+            0
+          
+        
+        ,
+        
+          w
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          w
+          
+            p
+          
+        
+      
+    
+    {\displaystyle w_{0},w_{1},\dots ,w_{p}}
+   starting from some initial weight 
+  
+    
+      
+        
+          w
+          
+            0
+          
+        
+      
+    
+    {\displaystyle w_{0}}
+  , usually chosen at random.
+These weights are computed in turn: first compute 
+  
+    
+      
+        
+          w
+          
+            i
+          
+        
+      
+    
+    {\displaystyle w_{i}}
+   using only 
+  
+    
+      
+        (
+        
+          x
+          
+            i
+          
+        
+        ,
+        
+          y
+          
+            i
+          
+        
+        ,
+        
+          w
+          
+            i
+            −
+            1
+          
+        
+        )
+      
+    
+    {\displaystyle (x_{i},y_{i},w_{i-1})}
+   for 
+  
+    
+      
+        i
+        =
+        1
+        ,
+        …
+        ,
+        p
+      
+    
+    {\displaystyle i=1,\dots ,p}
+  . The output of the algorithm is then 
+  
+    
+      
+        
+          w
+          
+            p
+          
+        
+      
+    
+    {\displaystyle w_{p}}
+  , giving us a new function 
+  
+    
+      
+        x
+        ↦
+        
+          f
+          
+            N
+          
+        
+        (
+        
+          w
+          
+            p
+          
+        
+        ,
+        x
+        )
+      
+    
+    {\displaystyle x\mapsto f_{N}(w_{p},x)}
+  . The computation is the same in each step, hence only the case 
+  
+    
+      
+        i
+        =
+        1
+      
+    
+    {\displaystyle i=1}
+   is described.
+Calculating 
+  
+    
+      
+        
+          w
+          
+            1
+          
+        
+      
+    
+    {\displaystyle w_{1}}
+   from 
+  
+    
+      
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        
+          y
+          
+            1
+          
+        
+        ,
+        
+          w
+          
+            0
+          
+        
+        )
+      
+    
+    {\displaystyle (x_{1},y_{1},w_{0})}
+   is done by considering a variable weight 
+  
+    
+      
+        w
+      
+    
+    {\displaystyle w}
+   and applying gradient descent to the function 
+  
+    
+      
+        w
+        ↦
+        E
+        (
+        
+          f
+          
+            N
+          
+        
+        (
+        w
+        ,
+        
+          x
+          
+            1
+          
+        
+        )
+        ,
+        
+          y
+          
+            1
+          
+        
+        )
+      
+    
+    {\displaystyle w\mapsto E(f_{N}(w,x_{1}),y_{1})}
+   to find a local minimum, starting at 
+  
+    
+      
+        w
+        =
+        
+          w
+          
+            0
+          
+        
+      
+    
+    {\displaystyle w=w_{0}}
+  .
+This makes 
+  
+    
+      
+        
+          w
+          
+            1
+          
+        
+      
+    
+    {\displaystyle w_{1}}
+   the minimizing weight found by gradient descent.
+
+
+== Algorithm in code ==
+To implement the algorithm above, explicit formulas are required for the gradient of the function 
+  
+    
+      
+        w
+        ↦
+        E
+        (
+        
+          f
+          
+            N
+          
+        
+        (
+        w
+        ,
+        x
+        )
+        ,
+        y
+        )
+      
+    
+    {\displaystyle w\mapsto E(f_{N}(w,x),y)}
+   where the function is
+  
+    
+      
+        E
+        (
+        y
+        ,
+        
+          y
+          ′
+        
+        )
+        =
+        
+          |
+        
+        y
+        −
+        
+          y
+          ′
+        
+        
+          
+            |
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle E(y,y')=|y-y'|^{2}}
+  .
+The learning algorithm can be divided into two phases: propagation and weight update.
+
+
+=== Phase 1: propagation ===
+Each propagation involves the following steps:
+Propagation forward through the network to generate the output value(s)
+Calculation of the cost (error term)
+Propagation of the output activations back through the network using the training pattern target in order to generate the deltas (the difference between the targeted and actual output values) of all output and hidden neurons.
+
+
+=== Phase 2: weight update ===
+For each weight, the following steps must be followed:
+The weight's output delta and input activation are multiplied to find the gradient of the weight.
+A ratio (percentage) of the weight's gradient is subtracted from the weight.
+This ratio (percentage) influences the speed and quality of learning; it is called the learning rate. The greater the ratio, the faster the neuron trains, but the lower the ratio, the more accurate the training is. The sign of the gradient of a weight indicates whether the error varies directly with, or inversely to, the weight. Therefore, the weight must be updated in the opposite direction, "descending" the gradient.
+Learning is repeated (on new batches) until the network performs adequately.
+
+
+=== Pseudocode ===
+The following is pseudocode for a stochastic gradient descent algorithm for training a three-layer network (only one hidden layer):
+
+  initialize network weights (often small random values)
+  do
+     forEach training example named ex
+        prediction = neural-net-output(network, ex)  // forward pass
+        actual = teacher-output(ex)
+        compute error (prediction - actual) at the output units
+        compute 
+  
+    
+      
+        Δ
+        
+          w
+          
+            h
+          
+        
+      
+    
+    {\displaystyle \Delta w_{h}}
+   for all weights from hidden layer to output layer  // backward pass
+        compute 
+  
+    
+      
+        Δ
+        
+          w
+          
+            i
+          
+        
+      
+    
+    {\displaystyle \Delta w_{i}}
+   for all weights from input layer to hidden layer   // backward pass continued
+        update network weights // input layer not modified by error estimate
+  until all examples classified correctly or another stopping criterion satisfied
+  return the network
+
+The lines labeled "backward pass" can be implemented using the backpropagation algorithm, which calculates the gradient of the error of the network regarding the network's modifiable weights.
+
+
+== Intuition ==
+
+
+=== Learning as an optimization problem ===
+To understand the mathematical derivation of the backpropagation algorithm, it helps to first develop some intuitions about the relationship between the actual output of a neuron and the correct output for a particular training case. Consider a simple neural network with two input units, one output unit and no hidden units. Each neuron uses a linear output that is the weighted sum of its input.
+
+Initially, before training, the weights will be set randomly. Then the neuron learns from training examples, which in this case consists of a set of tuples 
+  
+    
+      
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        
+          x
+          
+            2
+          
+        
+        ,
+        t
+        )
+      
+    
+    {\displaystyle (x_{1},x_{2},t)}
+   where 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+      
+    
+    {\displaystyle x_{1}}
+   and 
+  
+    
+      
+        
+          x
+          
+            2
+          
+        
+      
+    
+    {\displaystyle x_{2}}
+   are the inputs to the network and t is the correct output (the output the network should eventually produce given those inputs). The initial network, given 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+      
+    
+    {\displaystyle x_{1}}
+   and 
+  
+    
+      
+        
+          x
+          
+            2
+          
+        
+      
+    
+    {\displaystyle x_{2}}
+  , will compute an output y that likely differs from t (given random weights). A common method for measuring the discrepancy between the expected output t and the actual output y is the squared error measure:
+
+  
+    
+      
+        E
+        =
+        (
+        t
+        −
+        y
+        
+          )
+          
+            2
+          
+        
+        ,
+      
+    
+    {\displaystyle E=(t-y)^{2},}
+  
+where E is the discrepancy or error.
+As an example, consider the network on a single training case: 
+  
+    
+      
+        (
+        1
+        ,
+        1
+        ,
+        0
+        )
+      
+    
+    {\displaystyle (1,1,0)}
+  , thus the input 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+      
+    
+    {\displaystyle x_{1}}
+   and 
+  
+    
+      
+        
+          x
+          
+            2
+          
+        
+      
+    
+    {\displaystyle x_{2}}
+   are 1 and 1 respectively and the correct output, t is 0. Now if the actual output y is plotted on the horizontal axis against the error E on the vertical axis, the result is a parabola. The minimum of the parabola corresponds to the output y which minimizes the error E. For a single training case, the minimum also touches the horizontal axis, which means the error will be zero and the network can produce an output y that exactly matches the expected output t. Therefore, the problem of mapping inputs to outputs can be reduced to an optimization problem of finding a function that will produce the minimal error.
+
+However, the output of a neuron depends on the weighted sum of all its inputs:
+
+  
+    
+      
+        y
+        =
+        
+          x
+          
+            1
+          
+        
+        
+          w
+          
+            1
+          
+        
+        +
+        
+          x
+          
+            2
+          
+        
+        
+          w
+          
+            2
+          
+        
+        ,
+      
+    
+    {\displaystyle y=x_{1}w_{1}+x_{2}w_{2},}
+  
+where 
+  
+    
+      
+        
+          w
+          
+            1
+          
+        
+      
+    
+    {\displaystyle w_{1}}
+   and 
+  
+    
+      
+        
+          w
+          
+            2
+          
+        
+      
+    
+    {\displaystyle w_{2}}
+   are the weights on the connection from the input units to the output unit. Therefore, the error also depends on the incoming weights to the neuron, which is ultimately what needs to be changed in the network to enable learning. If each weight is plotted on a separate horizontal axis and the error on the vertical axis, the result is a parabolic bowl. For a neuron with k weights, the same plot would require an elliptic paraboloid of 
+  
+    
+      
+        k
+        +
+        1
+      
+    
+    {\displaystyle k+1}
+   dimensions.
+
+One commonly used algorithm to find the set of weights that minimizes the error is gradient descent. Backpropagation is then used to calculate the steepest descent direction.
+
+
+== Derivation ==
+The gradient descent method involves calculating the derivative of the squared error function with respect to the weights of the network. This is normally done using backpropagation. Assuming one output neuron, the squared error function is:
+
+  
+    
+      
+        E
+        =
+        
+          
+            
+              1
+              2
+            
+          
+        
+        (
+        t
+        −
+        y
+        
+          )
+          
+            2
+          
+        
+        ,
+      
+    
+    {\displaystyle E={\tfrac {1}{2}}(t-y)^{2},}
+  
+where
+
+  
+    
+      
+        E
+      
+    
+    {\displaystyle E}
+   is the squared error,
+
+  
+    
+      
+        t
+      
+    
+    {\displaystyle t}
+   is the target output for a training sample, and
+
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   is the actual output of the output neuron.
+The factor of 
+  
+    
+      
+        
+          
+            
+              1
+              2
+            
+          
+        
+      
+    
+    {\displaystyle \textstyle {\frac {1}{2}}}
+   is included to cancel the exponent when differentiating. Later, the expression will be multiplied with an arbitrary learning rate, so that it doesn't matter if a constant coefficient is introduced now.
+For each neuron 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  , its output 
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+      
+    
+    {\displaystyle o_{j}}
+   is defined as
+
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+        =
+        φ
+        (
+        
+          
+            net
+          
+          
+            j
+          
+        
+        )
+        =
+        φ
+        
+          (
+          
+            ∑
+            
+              k
+              =
+              1
+            
+            
+              n
+            
+          
+          
+            w
+            
+              k
+              j
+            
+          
+          
+            o
+            
+              k
+            
+          
+          )
+        
+        .
+      
+    
+    {\displaystyle o_{j}=\varphi ({\text{net}}_{j})=\varphi \left(\sum _{k=1}^{n}w_{kj}o_{k}\right).}
+  
+The input 
+  
+    
+      
+        
+          
+            net
+          
+          
+            j
+          
+        
+      
+    
+    {\displaystyle {\text{net}}_{j}}
+   to a neuron is the weighted sum of outputs 
+  
+    
+      
+        
+          o
+          
+            k
+          
+        
+      
+    
+    {\displaystyle o_{k}}
+   of previous neurons. If the neuron is in the first layer after the input layer, the 
+  
+    
+      
+        
+          o
+          
+            k
+          
+        
+      
+    
+    {\displaystyle o_{k}}
+   of the input layer are simply the inputs 
+  
+    
+      
+        
+          x
+          
+            k
+          
+        
+      
+    
+    {\displaystyle x_{k}}
+   to the network. The number of input units to the neuron is 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  . The variable 
+  
+    
+      
+        
+          w
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle w_{ij}}
+   denotes the weight between neurons 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+   and 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  .
+The activation function 
+  
+    
+      
+        φ
+      
+    
+    {\displaystyle \varphi }
+   is non-linear and differentiable. A commonly used activation function is the logistic function:
+
+  
+    
+      
+        φ
+        (
+        z
+        )
+        =
+        
+          
+            1
+            
+              1
+              +
+              
+                e
+                
+                  −
+                  z
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle \varphi (z)={\frac {1}{1+e^{-z}}}}
+  
+which has a convenient derivative of:
+
+  
+    
+      
+        
+          
+            
+              d
+              φ
+            
+            
+              d
+              z
+            
+          
+        
+        (
+        z
+        )
+        =
+        φ
+        (
+        z
+        )
+        (
+        1
+        −
+        φ
+        (
+        z
+        )
+        )
+      
+    
+    {\displaystyle {\frac {d\varphi }{dz}}(z)=\varphi (z)(1-\varphi (z))}
+  
+
+
+=== Finding the derivative of the error ===
+Calculating the partial derivative of the error with respect to a weight 
+  
+    
+      
+        
+          w
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle w_{ij}}
+   is done using the chain rule twice:
+
+  
+    
+      
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+        
+          
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+          
+        
+        
+          
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\frac {\partial E}{\partial w_{ij}}}={\frac {\partial E}{\partial o_{j}}}{\frac {\partial o_{j}}{\partial {\text{net}}_{j}}}{\frac {\partial {\text{net}}_{j}}{\partial w_{ij}}}}
+  
+In the last factor of the right-hand side of the above, only one term in the sum 
+  
+    
+      
+        
+          
+            net
+          
+          
+            j
+          
+        
+      
+    
+    {\displaystyle {\text{net}}_{j}}
+   depends on 
+  
+    
+      
+        
+          w
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle w_{ij}}
+  , so that
+
+  
+    
+      
+        
+          
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            ∂
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        
+          (
+          
+            ∑
+            
+              k
+              =
+              1
+            
+            
+              n
+            
+          
+          
+            w
+            
+              k
+              j
+            
+          
+          
+            o
+            
+              k
+            
+          
+          )
+        
+        =
+        
+          
+            ∂
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        
+          w
+          
+            i
+            j
+          
+        
+        
+          o
+          
+            i
+          
+        
+        =
+        
+          o
+          
+            i
+          
+        
+        .
+      
+    
+    {\displaystyle {\frac {\partial {\text{net}}_{j}}{\partial w_{ij}}}={\frac {\partial }{\partial w_{ij}}}\left(\sum _{k=1}^{n}w_{kj}o_{k}\right)={\frac {\partial }{\partial w_{ij}}}w_{ij}o_{i}=o_{i}.}
+  
+If the neuron is in the first layer after the input layer, 
+  
+    
+      
+        
+          o
+          
+            i
+          
+        
+      
+    
+    {\displaystyle o_{i}}
+   is just 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle x_{i}}
+  .
+The derivative of the output of neuron 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+   with respect to its input is simply the partial derivative of the activation function (assuming here that the logistic function is used):
+
+  
+    
+      
+        
+          
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            ∂
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+          
+        
+        φ
+        (
+        
+          
+            net
+          
+          
+            j
+          
+        
+        )
+        =
+        φ
+        (
+        
+          
+            net
+          
+          
+            j
+          
+        
+        )
+        (
+        1
+        −
+        φ
+        (
+        
+          
+            net
+          
+          
+            j
+          
+        
+        )
+        )
+      
+    
+    {\displaystyle {\frac {\partial o_{j}}{\partial {\text{net}}_{j}}}={\frac {\partial }{\partial {\text{net}}_{j}}}\varphi ({\text{net}}_{j})=\varphi ({\text{net}}_{j})(1-\varphi ({\text{net}}_{j}))}
+  
+This is the reason why backpropagation requires the activation function to be differentiable.
+The first factor is straightforward to evaluate if the neuron is in the output layer, because then 
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+        =
+        y
+      
+    
+    {\displaystyle o_{j}=y}
+   and
+
+  
+    
+      
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              y
+            
+          
+        
+        =
+        
+          
+            ∂
+            
+              ∂
+              y
+            
+          
+        
+        
+          
+            1
+            2
+          
+        
+        (
+        t
+        −
+        y
+        
+          )
+          
+            2
+          
+        
+        =
+        y
+        −
+        t
+      
+    
+    {\displaystyle {\frac {\partial E}{\partial o_{j}}}={\frac {\partial E}{\partial y}}={\frac {\partial }{\partial y}}{\frac {1}{2}}(t-y)^{2}=y-t}
+  
+However, if 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+   is in an arbitrary inner layer of the network, finding the derivative 
+  
+    
+      
+        E
+      
+    
+    {\displaystyle E}
+   with respect to 
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+      
+    
+    {\displaystyle o_{j}}
+   is less obvious.
+Considering 
+  
+    
+      
+        E
+      
+    
+    {\displaystyle E}
+   as a function of the inputs of all neurons 
+  
+    
+      
+        L
+        =
+        
+          u
+          ,
+          v
+          ,
+          …
+          ,
+          w
+        
+      
+    
+    {\displaystyle L={u,v,\dots ,w}}
+   receiving input from neuron 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+  ,
+
+  
+    
+      
+        
+          
+            
+              ∂
+              E
+              (
+              
+                o
+                
+                  j
+                
+              
+              )
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            
+              ∂
+              E
+              (
+              
+                
+                  n
+                  e
+                  t
+                
+                
+                  u
+                
+              
+              ,
+              
+                
+                  net
+                
+                
+                  v
+                
+              
+              ,
+              …
+              ,
+              
+                
+                  n
+                  e
+                  t
+                
+                
+                  w
+                
+              
+              )
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\frac {\partial E(o_{j})}{\partial o_{j}}}={\frac {\partial E(\mathrm {net} _{u},{\text{net}}_{v},\dots ,\mathrm {net} _{w})}{\partial o_{j}}}}
+  
+and taking the total derivative with respect to 
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+      
+    
+    {\displaystyle o_{j}}
+  , a recursive expression for the derivative is obtained:
+
+  
+    
+      
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          ∑
+          
+            ℓ
+            ∈
+            L
+          
+        
+        
+          (
+          
+            
+              
+                ∂
+                E
+              
+              
+                ∂
+                
+                  
+                    net
+                  
+                  
+                    ℓ
+                  
+                
+              
+            
+          
+          
+            
+              
+                ∂
+                
+                  
+                    net
+                  
+                  
+                    ℓ
+                  
+                
+              
+              
+                ∂
+                
+                  o
+                  
+                    j
+                  
+                
+              
+            
+          
+          )
+        
+        =
+        
+          ∑
+          
+            ℓ
+            ∈
+            L
+          
+        
+        
+          (
+          
+            
+              
+                ∂
+                E
+              
+              
+                ∂
+                
+                  o
+                  
+                    ℓ
+                  
+                
+              
+            
+          
+          
+            
+              
+                ∂
+                
+                  o
+                  
+                    ℓ
+                  
+                
+              
+              
+                ∂
+                
+                  
+                    net
+                  
+                  
+                    ℓ
+                  
+                
+              
+            
+          
+          
+            w
+            
+              j
+              ℓ
+            
+          
+          )
+        
+      
+    
+    {\displaystyle {\frac {\partial E}{\partial o_{j}}}=\sum _{\ell \in L}\left({\frac {\partial E}{\partial {\text{net}}_{\ell }}}{\frac {\partial {\text{net}}_{\ell }}{\partial o_{j}}}\right)=\sum _{\ell \in L}\left({\frac {\partial E}{\partial o_{\ell }}}{\frac {\partial o_{\ell }}{\partial {\text{net}}_{\ell }}}w_{j\ell }\right)}
+  
+Therefore, the derivative with respect to 
+  
+    
+      
+        
+          o
+          
+            j
+          
+        
+      
+    
+    {\displaystyle o_{j}}
+   can be calculated if all the derivatives with respect to the outputs 
+  
+    
+      
+        
+          o
+          
+            ℓ
+          
+        
+      
+    
+    {\displaystyle o_{\ell }}
+   of the next layer – the one closer to the output neuron – are known.
+Putting it all together:
+
+  
+    
+      
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          o
+          
+            i
+          
+        
+        
+          δ
+          
+            j
+          
+        
+      
+    
+    {\displaystyle {\frac {\partial E}{\partial w_{ij}}}=o_{i}\delta _{j}}
+  
+with
+
+  
+    
+      
+        
+          δ
+          
+            j
+          
+        
+        =
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+          
+        
+        
+          
+            
+              ∂
+              
+                o
+                
+                  j
+                
+              
+            
+            
+              ∂
+              
+                
+                  net
+                
+                
+                  j
+                
+              
+            
+          
+        
+        =
+        
+          
+            {
+            
+              
+                
+                  (
+                  
+                    o
+                    
+                      j
+                    
+                  
+                  −
+                  
+                    t
+                    
+                      j
+                    
+                  
+                  )
+                  
+                    o
+                    
+                      j
+                    
+                  
+                  (
+                  1
+                  −
+                  
+                    o
+                    
+                      j
+                    
+                  
+                  )
+                
+                
+                  
+                    if 
+                  
+                  j
+                  
+                     is an output neuron,
+                  
+                
+              
+              
+                
+                  (
+                  
+                    ∑
+                    
+                      ℓ
+                      ∈
+                      L
+                    
+                  
+                  
+                    δ
+                    
+                      ℓ
+                    
+                  
+                  
+                    w
+                    
+                      j
+                      ℓ
+                    
+                  
+                  )
+                  
+                    o
+                    
+                      j
+                    
+                  
+                  (
+                  1
+                  −
+                  
+                    o
+                    
+                      j
+                    
+                  
+                  )
+                
+                
+                  
+                    if 
+                  
+                  j
+                  
+                     is an inner neuron.
+                  
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle \delta _{j}={\frac {\partial E}{\partial o_{j}}}{\frac {\partial o_{j}}{\partial {\text{net}}_{j}}}={\begin{cases}(o_{j}-t_{j})o_{j}(1-o_{j})&{\text{if }}j{\text{ is an output neuron,}}\\(\sum _{\ell \in L}\delta _{\ell }w_{j\ell })o_{j}(1-o_{j})&{\text{if }}j{\text{ is an inner neuron.}}\end{cases}}}
+  
+To update the weight 
+  
+    
+      
+        
+          w
+          
+            i
+            j
+          
+        
+      
+    
+    {\displaystyle w_{ij}}
+   using gradient descent, one must choose a learning rate, 
+  
+    
+      
+        η
+      
+    
+    {\displaystyle \eta }
+  . The change in weight, which is added to the old weight, is equal to the product of the learning rate and the gradient, multiplied by 
+  
+    
+      
+        −
+        1
+      
+    
+    {\displaystyle -1}
+  :
+
+  
+    
+      
+        Δ
+        
+          w
+          
+            i
+            j
+          
+        
+        =
+        −
+        η
+        
+          
+            
+              ∂
+              E
+            
+            
+              ∂
+              
+                w
+                
+                  i
+                  j
+                
+              
+            
+          
+        
+        =
+        −
+        η
+        
+          o
+          
+            i
+          
+        
+        
+          δ
+          
+            j
+          
+        
+      
+    
+    {\displaystyle \Delta w_{ij}=-\eta {\frac {\partial E}{\partial w_{ij}}}=-\eta o_{i}\delta _{j}}
+  
+The 
+  
+    
+      
+        
+          −
+          1
+        
+      
+    
+    {\displaystyle \textstyle -1}
+   is required in order to update in the direction of a minimum, not a maximum, of the error function.
+For a single-layer network, this expression becomes the Delta Rule.
+
+
+== Extension ==
+The choice of learning rate 
+  
+    
+      
+        η
+      
+    
+    {\textstyle \eta }
+   is important, since a high value can cause too strong a change, causing the minimum to be missed, while a too low learning rate slows the training unnecessarily.
+Optimizations such as Quickprop are primarily aimed at speeding up error minimization; other improvements mainly try to increase reliability.
+
+
+=== Adaptive learning rate ===
+In order to avoid oscillation inside the network such as alternating connection weights, and to improve the rate of convergence, refinements of this algorithm use an adaptive learning rate.
+
+
+=== Inertia ===
+By using a variable inertia term (Momentum) 
+  
+    
+      
+        α
+      
+    
+    {\textstyle \alpha }
+   the gradient and the last change can be weighted such that the weight adjustment additionally depends on the previous change. If the Momentum 
+  
+    
+      
+        α
+      
+    
+    {\textstyle \alpha }
+   is equal to 0, the change depends solely on the gradient, while a value of 1 will only depend on the last change.
+Similar to a ball rolling down a mountain, whose current speed is determined not only by the current slope of the mountain but also by its own inertia, inertia can be added:where:
+
+  
+    
+      
+        Δ
+        
+          w
+          
+            i
+            j
+          
+        
+        (
+        t
+        +
+        1
+        )
+      
+    
+    {\textstyle \Delta w_{ij}(t+1)}
+   is the change in weight 
+  
+    
+      
+        
+          w
+          
+            i
+            j
+          
+        
+        (
+        t
+        +
+        1
+        )
+      
+    
+    {\textstyle w_{ij}(t+1)}
+   in the connection of neuron 
+  
+    
+      
+        i
+      
+    
+    {\textstyle i}
+   to neuron 
+  
+    
+      
+        j
+      
+    
+    {\textstyle j}
+   at time 
+  
+    
+      
+        (
+        t
+        +
+        1
+        )
+        ,
+      
+    
+    {\textstyle (t+1),}
+  
+
+  
+    
+      
+        η
+      
+    
+    {\textstyle \eta }
+   a learning rate (
+  
+    
+      
+        η
+        <
+        0
+        )
+        ,
+      
+    
+    {\textstyle \eta <0),}
+  
+
+  
+    
+      
+        
+          δ
+          
+            j
+          
+        
+      
+    
+    {\textstyle \delta _{j}}
+   the error signal of neuron 
+  
+    
+      
+        j
+      
+    
+    {\textstyle j}
+   and
+
+  
+    
+      
+        
+          o
+          
+            i
+          
+        
+      
+    
+    {\textstyle o_{i}}
+   the output of neuron 
+  
+    
+      
+        i
+      
+    
+    {\textstyle i}
+  , which is also an input of the current neuron (neuron 
+  
+    
+      
+        j
+        ,
+      
+    
+    {\textstyle j,}
+  )
+
+  
+    
+      
+        α
+      
+    
+    {\textstyle \alpha }
+   the influence of the inertial term 
+  
+    
+      
+        Δ
+        
+          w
+          
+            i
+            j
+          
+        
+        (
+        t
+        )
+      
+    
+    {\textstyle \Delta w_{ij}(t)}
+   (in 
+  
+    
+      
+        [
+        0
+        ,
+        1
+        ]
+      
+    
+    {\textstyle [0,1]}
+  ). This corresponds to the weight change at the previous point in time.
+Inertia depends on the current weight change 
+  
+    
+      
+        (
+        t
+        +
+        1
+        )
+      
+    
+    {\textstyle (t+1)}
+   both from the current gradient of the error function (slope of the mountain, 1st summand), as well as from the weight change from the previous point in time (inertia, 2nd summand).
+With inertia, the problems of getting stuck (in steep ravines and flat plateaus) are avoided. Since, for example, the gradient of the error function becomes very small in flat plateaus, inertia would immediately lead to a "deceleration" of the gradient descent. This deceleration is delayed by the addition of the inertia term so that a flat plateau can be escaped more quickly.
+
+
+== Modes of learning ==
+Two modes of learning are available: stochastic and batch. In stochastic learning, each input creates a weight adjustment. In batch learning weights are adjusted based on a batch of inputs, accumulating errors over the batch. Stochastic learning introduces "noise" into the gradient descent process, using the local gradient calculated from one data point; this reduces the chance of the network getting stuck in a local minima. However, batch learning typically yields a faster, more stable descent to a local minima, since each update is performed in the direction of the average error of the batch. A common compromise choice is to use "mini-batches", meaning small batches and with samples in each batch selected stochastically from the entire data set.
+
+
+== Limitations ==
+
+Gradient descent with backpropagation is not guaranteed to find the global minimum of the error function, but only a local minimum; also, it has trouble crossing plateaux in the error function landscape. This issue, caused by the non-convexity of error functions in neural networks, was long thought to be a major drawback, but Yann LeCun et al. argue that in many practical problems, it is not.
+Backpropagation learning does not require normalization of input vectors; however, normalization could improve performance.
+
+
+== History ==
+
+According to various sources, the basics of continuous backpropagation were derived in the context of control theory by Henry J. Kelley in 1960 and by Arthur E. Bryson in 1961. They used principles of dynamic programming. In 1962, Stuart Dreyfus published a simpler derivation based only on the chain rule. Bryson and Ho described it as a multi-stage dynamic system optimization method in 1969.
+In 1970 Linnainmaa published the general method for automatic differentiation (AD) of discrete connected networks of nested differentiable functions. This corresponds to backpropagation, which is efficient even for sparse networks.
+In 1973 Dreyfus used backpropagation to adapt parameters of controllers in proportion to error gradients. In 1974 Werbos mentioned the possibility of applying this principle to artificial neural networks, and in 1982 he applied Linnainmaa's AD method to neural networks in the way that is used today.
+In 1986 Rumelhart, Hinton and Williams showed experimentally that this method can generate useful internal representations of incoming data in hidden layers of neural networks. In 1993, Wan was the first to win an international pattern recognition contest through backpropagation.
+During the 2000s it fell out of favour, but returned in the 2010s, benefitting from cheap, powerful GPU-based computing systems.
+In 2014, backpropagation was used to train a deep neural network for speech recognition.
+
+
+== See also ==
+
+Artificial neural network
+Biological neural network
+Catastrophic interference
+Ensemble learning
+AdaBoost
+Overfitting
+Neural backpropagation
+Backpropagation through time
+
+
+== Notes ==
+
+
+== References ==
+
+
+== External links ==
+A Gentle Introduction to Backpropagation - An intuitive tutorial by Shashi Sathyanarayana The article contains pseudocode ("Training Wheels for Training Neural Networks") for implementing the algorithm.
+Neural Network Back-Propagation for Programmers (a tutorial)
+Backpropagation for mathematicians
+Chapter 7 The backpropagation algorithm of Neural Networks - A Systematic Introduction by Raúl Rojas (ISBN 978-3540605058)
+Quick explanation of the backpropagation algorithm
+Graphical explanation of the backpropagation algorithm
+Concise explanation of the backpropagation algorithm using math notation by Anand Venkataraman
+Visualization of a learning process using backpropagation algorithm
+Backpropagation neural network tutorial at the Wikiversity

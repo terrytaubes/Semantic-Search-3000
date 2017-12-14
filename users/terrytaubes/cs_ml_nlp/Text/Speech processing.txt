@@ -1,0 +1,8 @@
+Speech processing is the study of speech signals and the processing methods of these signals. The signals are usually processed in a digital representation, so speech processing can be regarded as a special case of digital signal processing, applied to speech signal. Aspects of speech processing includes the acquisition, manipulation, storage, transfer and output of speech signals. The input is called speech recognition and the output is called speech synthesis.
+
+
+== See also ==
+Speech coding
+Speech recognition
+Speech synthesis
+Speech technology

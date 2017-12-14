@@ -1,0 +1,31 @@
+Google APIs is a set of application programming interfaces (APIs) developed by Google which allow communication with Google Services and their integration to other services. Examples of these include Search, Gmail, Translate or Google Maps. Third-party apps can use these APIs to take advantage of or extend the functionality of the existing services.
+The APIs provide functionality like analytics, machine learning as a service (the Prediction API) or access to user data (when permission to read the data is given). Another important example is an embedded Google map on a website, which can be achieved using the Static maps API, Places API or Google Earth API.
+
+
+== Authentication and authorization ==
+Usage of some of the APIs requires authentication and authorization using the OAuth 2.0 protocol. OAuth 2.0 is a simple protocol. To start, it is necessary to obtain credentials from the Developers Console. Then the client app can request an access token from the Google Authorization Server, and uses that token for authorization when accessing a Google API service.
+
+
+== Client libraries ==
+There are client libraries in various languages which allow developers to use Google APIs from within their code, including Java, JavaScript, .NET, Objective-C, PHP and Python. 
+The Google Loader is a JavaScript library which allows web developers to easily load other JavaScript APIs provided by Google and other developers of popular libraries. Google Loader provides a JavaScript method for loading a specific API (also called module), in which additional settings can be specified such as API version, language, location, selected packages, load callback and other parameters specific to a particular API. Dynamic loading or auto-loading is also supported to enhance the performance of the application using the loaded APIs.
+
+
+== Google Apps Script ==
+Google Apps Script is a cloud-based JavaScript platform which allows developers to write scripts that can manipulate APIs of services such as Calendar, Docs, Drive, Gmail, and Sheets and easily create Add-Ons for these services with chromium based applications. 
+
+
+== Common use cases ==
+User registration is commonly done via Google+ sign in, which allows users to securely log into 3rd party services with their Google+ account using the Google+ API. This is currently available from within Android, iOS or JavaScript. It is popular to include a “Sign in with Google” button in Android apps, as typing login credentials manually is time-consuming due to limited screen size. As the user is usually signed into their Google account on their mobile device, signing-in/signing-up for a new service with a Google is usually a matter of a few button clicks.
+Drive apps are various web applications (often third party) which work within Google Drive using the Drive API. Users can integrate these apps into their Drive from the Chrome Web Store which allows them to do work entirely in the cloud. There are many apps available for collaborative document editing (Google Docs, Sheets), picture/video editing, work management or for sketching diagrams and workflows.
+Custom Search allows web developers to provide a search of their own website by embedding a custom search box and using the Custom Search API. They can customize the search results and make money off the ads shown using AdSense for Search.
+App Engine apps are web apps that run on the Google App Engine, a platform-as-a-service (PaaS) cloud computing platform which allows web developers to run their websites in Google datacenters. These web apps often take advantage of APIs to manipulate services such as TaskQueue (a distributed queue), BigQuery (a scalable database based on Dremel) or DataStore.
+Gadgets are mini-applications built in HTML, JavaScript, Flash and Silverlight that can be embedded in webpages and other apps. They can run on multiple sites and products (even writing them once allow users to run them in multiple places).
+
+
+== References ==
+
+
+== External links ==
+Google APIs Explorer
+Google Loader Developer's Guide

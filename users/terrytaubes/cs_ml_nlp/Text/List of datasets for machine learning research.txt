@@ -1,0 +1,140 @@
+These datasets are used for machine-learning research and have been cited in peer-reviewed academic journals and other publications. Datasets are an integral part of the field of machine learning. Major advances in this field can result from advances in learning algorithms (such as deep learning), computer hardware, and, less-intuitively, the availability of high-quality training datasets. High-quality labeled training datasets for supervised and semi-supervised machine learning algorithms are usually difficult and expensive to produce because of the large amount of time needed to label the data. Although they do not need to be labeled, high-quality datasets for unsupervised learning can also be difficult and costly to produce. This list aggregates high-quality datasets that have been shown to be of value to the machine learning research community from multiple different data repositories to provide greater coverage of the topic than is otherwise available.
+
+
+== Image data ==
+Datasets consisting primarily of images or videos for tasks such as object detection, facial recognition, and multi-label classification.
+
+
+=== Facial recognition ===
+In computer vision, face images have been used extensively to develop facial recognition systems, face detection, and many other projects that use images of faces.
+
+
+=== Action recognition ===
+
+
+=== Object detection and recognition ===
+
+
+=== Handwriting and character recognition ===
+
+
+=== Aerial images ===
+
+
+=== Other images ===
+
+
+== Text data ==
+Datasets consisting primarily of text for tasks such as natural language processing, sentiment analysis, translation, and cluster analysis.
+
+
+=== Reviews ===
+
+
+=== News articles ===
+
+
+=== Messages ===
+
+
+=== Twitter and tweets ===
+
+
+=== Other text ===
+
+
+== Sound data ==
+Datasets of sounds and sound features.
+
+
+=== Music ===
+
+
+=== Other sounds ===
+
+
+== Signal data ==
+Datasets containing electric signal information requiring some sort of Signal processing for further analysis.
+
+
+=== Electrical ===
+
+
+=== Motion-tracking ===
+
+
+=== Other signals ===
+
+
+== Physical data ==
+Datasets from physical systems
+
+
+=== High-energy physics ===
+
+
+=== Systems ===
+
+
+=== Astronomy ===
+
+
+=== Earth science ===
+
+
+=== Other physical ===
+
+
+== Biological data ==
+Datasets from biological systems.
+
+
+=== Human ===
+
+
+=== Animal ===
+
+
+=== Plant ===
+}
+
+
+=== Microbe ===
+
+
+=== Drug Discovery ===
+
+
+== Anomaly data ==
+
+
+== Multivariate data ==
+Datasets consisting of rows of observations and columns of attributes characterizing those observations. Typically used for regression analysis or classification but other types of algorithms can also be used. This section includes datasets that do not fit in the above categories.
+
+
+=== Financial ===
+
+
+=== Weather ===
+
+
+=== Census ===
+
+
+=== Transit ===
+
+
+=== Internet ===
+
+
+=== Games ===
+
+
+=== Other multivariate ===
+
+
+== See also ==
+Comparison of deep learning software
+
+
+== References ==

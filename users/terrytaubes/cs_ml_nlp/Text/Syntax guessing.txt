@@ -1,0 +1,16 @@
+Syntax guessing, also known as guess-the-verb, guess-the-noun and the syntax quest, is a problem sometimes encountered in text-based video games, such as interactive fiction games and MUDs. For various reasons - including a limited vocabulary, or a simple VERB-NOUN parser - the command syntax necessary to carry out an action may be obscure, such as with a button where the player must type POKE BUTTON, while PUSH BUTTON does not work (a "guess-the-verb" problem), an item described as a pillow that can only be obtained by typing GET CUSHION rather than GET PILLOW (a "guess-the-noun" problem), or a situation where the command TURN THE DIAL works but TURN DIAL does not (a generalized syntax guessing problem). If syntax guessing is necessary at a critical step, the game may appear unwinnable, with the player stuck until the right phrasing is guessed or is supplied by a walkthrough. A quest that requires syntax guessing to complete is a "syntax quest", especially if it consists of little to no content other than syntax guessing.
+People whose native language is not English are particularly affected by syntax guessing. TADS games supply a fair list of verbs commonly used in their documentation; if the game designer uses new actions not covered in this list, and which cannot easily be inferred by the purpose and context of the object, the player will probably encounter this problem.
+A similar problem can occur when attempting to accomplish a game goal using a certain combination of actions, locations and objects, which may appear rational and legitimate to the player, and are accepted by the game, only to be incorrectly handled and resulting in a gameplay error or game crash.
+
+
+== Examples ==
+An example of syntax guessing was the ending of Leisure Suit Larry 2, where Larry had to put a bag into a bottle to make an improvised bomb. The parser had no problem with minimal phrases and understood LOOK WOMAN equally well as the proper LOOK AT THE WOMAN (and players would usually type simple phrases for convenience). In the ending, however, simple phrases like PUT BAG IN BOTTLE, the first ideas of many players, failed because the parser interpreted BAG as a verb. The only way the parser understood the phrase was by putting THE before BAG, or by referencing an alias such as AIRSICK BAG. Frustrated players tried other verbs, synonyms and conjunctions like INTO, INSIDE, etc. without knowing that only THE was needed.
+Another example is in Infocom's Enchanter, where in order to reach into a hole, a player has to type REACH INTO HOLE, while more common and expected phrases such as LOOK IN HOLE or FEEL INSIDE HOLE do not even recognize that there is a hole in the room. Scott Adams' first adventure, the 1978 title Adventureland, required the player to enter the unintuitive UNLIGHT LAMP in order to prevent a lamp from using up its fuel, and would not recognise the verb EXTINGUISH.
+The Atari 8-bit text adventure game Cloak Of Death boasted of understanding "32 verbs" in the cassette sleeve. However, the uncommon verbs KICK, MAKE and EXORCISE are each required to complete the game. Each is valid only in a single place and there was no clue in the cassette or game text that these actions were possible.
+
+
+== See also ==
+Natural language understanding
+
+
+== References ==

@@ -1,0 +1,69 @@
+Named-entity recognition (NER) (also known as entity identification, entity chunking and entity extraction) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.
+Most research on NER systems has been structured as taking an unannotated block of text, such as this one:
+
+Jim bought 300 shares of Acme Corp. in 2006.
+
+And producing an annotated block of text that highlights the names of entities:
+
+[Jim]Person bought 300 shares of [Acme Corp.]Organization in [2006]Time.
+
+In this example, a person name consisting of one token, a two-token company name and a temporal expression have been detected and classified.
+State-of-the-art NER systems for English produce near-human performance. For example, the best system entering MUC-7 scored 93.39% of F-measure while human annotators scored 97.60% and 96.95%.
+
+
+== Problem definition ==
+In the expression named entity, the word named restricts the task to those entities for which one or many strings, such as words or phrases, stands (fairly) consistently for some referent. This is closely related to rigid designators, as defined by Kripke (for example ; see also ), although in practice NER deals with many names and referents that are not philosophically "rigid". For instance, the automotive company created by Henry Ford in 1903 can be referred to as Ford or Ford Motor Company, although "Ford" can refer to many other entities as well (see Ford_(disambiguation)). Rigid designators include proper names as well as terms for certain biological species and substances, but exclude pronouns (such as "it"; see coreference resolution), descriptions that pick out a referent by its properties (see also De dicto and de re), and names for kinds of things as opposed to individuals (for example "Bank").
+Full named-entity recognition is often broken down, conceptually and possibly also in implementations, as two distinct problems: detection of names, and classification of the names by the type of entity they refer to (e.g. person, organization, location and other). The first phase is typically simplified to a segmentation problem: names are defined to be contiguous spans of tokens, with no nesting, so that "Bank of America" is a single name, disregarding the fact that inside this name, the substring "America" is itself a name. This segmentation problem is formally similar to chunking. The second phase requires choosing an ontology by which to organize categories of things.
+Temporal expressions and some numerical expressions (i.e., money, percentages, etc.) may also be considered as named entities in the context of the NER task. While some instances of these types are good examples of rigid designators (e.g., the year 2001) there are also many invalid ones (e.g., I take my vacations in “June”). In the first case, the year 2001 refers to the 2001st year of the Gregorian calendar. In the second case, the month June may refer to the month of an undefined year (past June, next June, June 2020, etc.). It is arguable that the named entity definition is loosened in such cases for practical reasons. The definition of the term named entity is therefore not strict and often has to be explained in the context in which it is used.
+Certain hierarchies of named entity types have been proposed in the literature. BBN categories, proposed in 2002, is used for Question Answering and consists of 29 types and 64 subtypes. Sekine's extended hierarchy, proposed in 2002, is made of 200 subtypes. More recently, in 2011 Ritter used a hierarchy based on common Freebase entity types in ground-breaking experiments on NER over social media text.
+
+
+=== Formal evaluation ===
+To evaluate the quality of a NER system's output, several measures have been defined. While accuracy on the token level is one possibility, it suffers from two problems: the vast majority of tokens in real-world text are not part of entity names as usually defined, so the baseline accuracy (always predict "not an entity") is extravagantly high, typically >90%; and mispredicting the full span of an entity name is not properly penalized (finding only a person's first name when their last name follows is scored as ½ accuracy).
+In academic conferences such as CoNLL, a variant of the F1 score has been defined as follows:
+Precision is the number of predicted entity name spans that line up exactly with spans in the gold standard evaluation data. I.e. when [Person Hans] [Person Blick] is predicted but [Person Hans Blick] was required, precision for the predicted name is zero. Precision is then averaged over all predicted entity names.
+Recall is similarly the number of names in the gold standard that appear at exactly the same location in the predictions.
+F1 score is the harmonic mean of these two.
+It follows from the above definition that any prediction that misses a single token, includes a spurious token, or has the wrong class, is a hard error and does not contribute to either precision or recall.
+Evaluation models based on a token-by-token matching have been proposed. Such models are able to handle also partially overlapping matches, yet fully rewarding only exact matches. They allow a finer grained evaluation and comparison of extraction systems, taking into account also the degree of mismatch in non-exact predictions.
+
+
+== Approaches ==
+NER systems have been created that use linguistic grammar-based techniques as well as statistical models such as machine learning. Hand-crafted grammar-based systems typically obtain better precision, but at the cost of lower recall and months of work by experienced computational linguists. Statistical NER systems typically require a large amount of manually annotated training data. Semisupervised approaches have been suggested to avoid part of the annotation effort.
+Many different classifier types have been used to perform machine-learned NER, with conditional random fields being a typical choice.
+
+
+== Problem domains ==
+Research indicates that even state-of-the-art NER systems are brittle, meaning that NER systems developed for one domain do not typically perform well on other domains. Considerable effort is involved in tuning NER systems to perform well in a new domain; this is true for both rule-based and trainable statistical systems.
+Early work in NER systems in the 1990s was aimed primarily at extraction from journalistic articles. Attention then turned to processing of military dispatches and reports. Later stages of the automatic content extraction (ACE) evaluation also included several types of informal text styles, such as weblogs and text transcripts from conversational telephone speech conversations. Since about 1998, there has been a great deal of interest in entity identification in the molecular biology, bioinformatics, and medical natural language processing communities. The most common entity of interest in that domain has been names of genes and gene products. There has been also considerable interest in the recognition of chemical entities and drugs in the context of the CHEMDNER competition, with 27 teams participating in this task.
+In the medical domain the text is usually written in the native language, and to recognize entities from English vocabularies a common approach is to translate the vocabularies before applying NER. However, using the original version of the vocabulary and a automatic translation of the text was also shown to be feasible.
+
+
+== Current challenges and research ==
+Despite the high F1 numbers reported on the MUC-7 dataset, the problem of Named Entity Recognition is far from being solved. The main efforts are directed to reducing the annotation labor by employing semi-supervised learning, robust performance across domains and scaling up to fine-grained entity types. In recent years, many projects have turned to crowdsourcing, which is a promising solution to obtain high-quality aggregate human judgments for supervised and semi-supervised machine learning approaches to NER. Another challenging task is devising models to deal with linguistically complex contexts such as Twitter and search queries.
+There are some researchers who did some comparisons about the NER performances from different statistical models such as HMM (Hidden Markov Model), ME (Maximum Entropy), and CRF (Conditional Random Fields) and feature sets. And some researchers recently proposed Graph-based semi-supervised learning model for language specific NER tasks.
+A recently emerging task of identifying "important expressions" in text and cross-linking them to Wikipedia can be seen as an instance of extremely fine-grained named entity recognition, where the types are the actual Wikipedia pages describing the (potentially ambiguous) concepts. Below is an example output of a Wikification system:
+
+Another field that has seen progress but remains challenging is the application of NER to Twitter and other microblogs.
+SpaCy features fast statistical NER as well as an open-source named entity visualizer.
+GATE supports NER across many languages and domains out of the box, usable via graphical interface and also Java API
+OpenNLP includes rule-based and statistical named-entity recognition
+Stanford University also has the Stanford Named Entity Recognizer [3]
+Baleen a framework for rule-based and statistical named-entity and relationship extraction.
+Cogcomp-NER a state of the art NER tagger that tags plain text with18-label type set (based on the OntoNotes corpus). It uses gazetteers extracted from Wikipedia, word class models derived from unlabeled text, and expressive non-local features.
+MER a Minimal Named-Entity Recognizer that only requires a Lexicon (text file), and Bash_(Unix_shell) with Grep and Awk tools.
+ParallelDots is a deep learning powered named entity extraction API.
+
+
+== See also ==
+Coreference resolution
+Entity linking (aka named entity normalization, entity disambiguation)
+Information extraction
+Knowledge extraction
+Controlled vocabulary
+Onomastics
+Record linkage
+Smart tag (Microsoft)
+
+
+== References ==

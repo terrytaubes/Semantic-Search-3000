@@ -1,0 +1,329 @@
+In statistics and machine learning, ensemble methods use multiple learning algorithms to obtain better predictive performance than could be obtained from any of the constituent learning algorithms alone. Unlike a statistical ensemble in statistical mechanics, which is usually infinite, a machine learning ensemble consists of only a concrete finite set of alternative models, but typically allows for much more flexible structure to exist among those alternatives.
+
+
+== Overview ==
+Supervised learning algorithms are most commonly described as performing the task of searching through a hypothesis space to find a suitable hypothesis that will make good predictions with a particular problem. Even if the hypothesis space contains hypotheses that are very well-suited for a particular problem, it may be very difficult to find a good one. Ensembles combine multiple hypotheses to form a (hopefully) better hypothesis. The term ensemble is usually reserved for methods that generate multiple hypotheses using the same base learner. The broader term of multiple classifier systems also covers hybridization of hypotheses that are not induced by the same base learner.
+Evaluating the prediction of an ensemble typically requires more computation than evaluating the prediction of a single model, so ensembles may be thought of as a way to compensate for poor learning algorithms by performing a lot of extra computation. Fast algorithms such as decision trees are commonly used in ensemble methods (for example Random Forest), although slower algorithms can benefit from ensemble techniques as well.
+By analogy, ensemble techniques have been used also in unsupervised learning scenarios, for example in consensus clustering or in anomaly detection.
+
+
+== Ensemble theory ==
+An ensemble is itself a supervised learning algorithm, because it can be trained and then used to make predictions. The trained ensemble, therefore, represents a single hypothesis. This hypothesis, however, is not necessarily contained within the hypothesis space of the models from which it is built. Thus, ensembles can be shown to have more flexibility in the functions they can represent. This flexibility can, in theory, enable them to over-fit the training data more than a single model would, but in practice, some ensemble techniques (especially bagging) tend to reduce problems related to over-fitting of the training data.
+Empirically, ensembles tend to yield better results when there is a significant diversity among the models. Many ensemble methods, therefore, seek to promote diversity among the models they combine. Although perhaps non-intuitive, more random algorithms (like random decision trees) can be used to produce a stronger ensemble than very deliberate algorithms (like entropy-reducing decision trees). Using a variety of strong learning algorithms, however, has been shown to be more effective than using techniques that attempt to dumb-down the models in order to promote diversity.
+
+
+== Ensemble Size ==
+While the number of component classifiers of an ensemble has a great impact on the accuracy of prediction, there is a limited number of studies addressing this problem. A priori determining of ensemble size and the volume and velocity of big data streams make this even more crucial for online ensemble classifiers. Mostly statistical tests were used for determining the proper number of components. More recently, a theoretical framework suggested that there is an ideal number of component classifiers for an ensemble which having more or less than this number of classifiers would deteriorate the accuracy. It is called "the law of diminishing returns in ensemble construction." Their theoretical framework shows that using the same number of independent component classifiers as class labels gives the highest accuracy. 
+
+
+== Common types of ensembles ==
+
+
+=== Bayes optimal classifier ===
+The Bayes Optimal Classifier is a classification technique. It is an ensemble of all the hypotheses in the hypothesis space. On average, no other ensemble can outperform it. Each hypothesis is given a vote proportional to the likelihood that the training dataset would be sampled from a system if that hypothesis were true. To facilitate training data of finite size, the vote of each hypothesis is also multiplied by the prior probability of that hypothesis. The Bayes Optimal Classifier can be expressed with the following equation:
+
+  
+    
+      
+        y
+        =
+        
+          
+            
+              a
+              r
+              g
+              m
+              a
+              x
+            
+            
+              
+                c
+                
+                  j
+                
+              
+              ∈
+              C
+            
+          
+        
+        
+          ∑
+          
+            
+              h
+              
+                i
+              
+            
+            ∈
+            H
+          
+        
+        
+          P
+          (
+          
+            c
+            
+              j
+            
+          
+          
+            |
+          
+          
+            h
+            
+              i
+            
+          
+          )
+          P
+          (
+          T
+          
+            |
+          
+          
+            h
+            
+              i
+            
+          
+          )
+          P
+          (
+          
+            h
+            
+              i
+            
+          
+          )
+        
+      
+    
+    {\displaystyle y={\underset {c_{j}\in C}{\mathrm {argmax} }}\sum _{h_{i}\in H}{P(c_{j}|h_{i})P(T|h_{i})P(h_{i})}}
+  
+where 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   is the predicted class, 
+  
+    
+      
+        C
+      
+    
+    {\displaystyle C}
+   is the set of all possible classes, 
+  
+    
+      
+        H
+      
+    
+    {\displaystyle H}
+   is the hypothesis space, 
+  
+    
+      
+        P
+      
+    
+    {\displaystyle P}
+   refers to a probability, and 
+  
+    
+      
+        T
+      
+    
+    {\displaystyle T}
+   is the training data. As an ensemble, the Bayes Optimal Classifier represents a hypothesis that is not necessarily in 
+  
+    
+      
+        H
+      
+    
+    {\displaystyle H}
+  . The hypothesis represented by the Bayes Optimal Classifier, however, is the optimal hypothesis in ensemble space (the space of all possible ensembles consisting only of hypotheses in 
+  
+    
+      
+        H
+      
+    
+    {\displaystyle H}
+  ).
+Unfortunately, the Bayes Optimal Classifier cannot be practically implemented for any but the most simple of problems. There are several reasons why the Bayes Optimal Classifier cannot be practically implemented:
+Most interesting hypothesis spaces are too large to iterate over, as required by the 
+  
+    
+      
+        
+          a
+          r
+          g
+          m
+          a
+          x
+        
+      
+    
+    {\displaystyle \mathrm {argmax} }
+  .
+Many hypotheses yield only a predicted class, rather than a probability for each class as required by the term 
+  
+    
+      
+        P
+        (
+        
+          c
+          
+            j
+          
+        
+        
+          |
+        
+        
+          h
+          
+            i
+          
+        
+        )
+      
+    
+    {\displaystyle P(c_{j}|h_{i})}
+  .
+Computing an unbiased estimate of the probability of the training set given a hypothesis (
+  
+    
+      
+        P
+        (
+        T
+        
+          |
+        
+        
+          h
+          
+            i
+          
+        
+        )
+      
+    
+    {\displaystyle P(T|h_{i})}
+  ) is non-trivial.
+Estimating the prior probability for each hypothesis (
+  
+    
+      
+        P
+        (
+        
+          h
+          
+            i
+          
+        
+        )
+      
+    
+    {\displaystyle P(h_{i})}
+  ) is rarely feasible.
+
+
+=== Bootstrap aggregating (bagging) ===
+
+Bootstrap aggregating, often abbreviated as bagging, involves having each model in the ensemble vote with equal weight. In order to promote model variance, bagging trains each model in the ensemble using a randomly drawn subset of the training set. As an example, the random forest algorithm combines random decision trees with bagging to achieve very high classification accuracy.
+
+
+=== Boosting ===
+
+Boosting involves incrementally building an ensemble by training each new model instance to emphasize the training instances that previous models mis-classified. In some cases, boosting has been shown to yield better accuracy than bagging, but it also tends to be more likely to over-fit the training data. By far, the most common implementation of Boosting is Adaboost, although some newer algorithms are reported to achieve better results.
+
+
+=== Bayesian parameter averaging ===
+Bayesian parameter averaging (BPA) is an ensemble technique that seeks to approximate the Bayes Optimal Classifier by sampling hypotheses from the hypothesis space, and combining them using Bayes' law. Unlike the Bayes optimal classifier, Bayesian model averaging (BMA) can be practically implemented. Hypotheses are typically sampled using a Monte Carlo sampling technique such as MCMC. For example, Gibbs sampling may be used to draw hypotheses that are representative of the distribution 
+  
+    
+      
+        P
+        (
+        T
+        
+          |
+        
+        H
+        )
+      
+    
+    {\displaystyle P(T|H)}
+  . It has been shown that under certain circumstances, when hypotheses are drawn in this manner and averaged according to Bayes' law, this technique has an expected error that is bounded to be at most twice the expected error of the Bayes optimal classifier. Despite the theoretical correctness of this technique, early work showed experimental results suggesting that the method promoted over-fitting and performed worse compared to simpler ensemble techniques such as bagging; however, these conclusions appear to be based on a misunderstanding of the purpose of Bayesian model averaging vs. model combination. Additionally, there have been considerable advances in theory and practice of BMA. Recent rigorous proofs demonstrate the accuracy of BMA in variable selection and estimation in high-dimensional settings, and provide empirical evidence highlighting the role of sparsity-enforcing priors within the BMA in alleviating overfitting.
+
+
+=== Bayesian model combination ===
+Bayesian model combination (BMC) is an algorithmic correction to Bayesian model averaging (BMA). Instead of sampling each model in the ensemble individually, it samples from the space of possible ensembles (with model weightings drawn randomly from a Dirichlet distribution having uniform parameters). This modification overcomes the tendency of BMA to converge toward giving all of the weight to a single model. Although BMC is somewhat more computationally expensive than BMA, it tends to yield dramatically better results. The results from BMC have been shown to be better on average (with statistical significance) than BMA, and bagging.
+The use of Bayes' law to compute model weights necessitates computing the probability of the data given each model. Typically, none of the models in the ensemble are exactly the distribution from which the training data were generated, so all of them correctly receive a value close to zero for this term. This would work well if the ensemble were big enough to sample the entire model-space, but such is rarely possible. Consequently, each pattern in the training data will cause the ensemble weight to shift toward the model in the ensemble that is closest to the distribution of the training data. It essentially reduces to an unnecessarily complex method for doing model selection.
+The possible weightings for an ensemble can be visualized as lying on a simplex. At each vertex of the simplex, all of the weight is given to a single model in the ensemble. BMA converges toward the vertex that is closest to the distribution of the training data. By contrast, BMC converges toward the point where this distribution projects onto the simplex. In other words, instead of selecting the one model that is closest to the generating distribution, it seeks the combination of models that is closest to the generating distribution.
+The results from BMA can often be approximated by using cross-validation to select the best model from a bucket of models. Likewise, the results from BMC may be approximated by using cross-validation to select the best ensemble combination from a random sampling of possible weightings.
+
+
+=== Bucket of models ===
+A "bucket of models" is an ensemble technique in which a model selection algorithm is used to choose the best model for each problem. When tested with only one problem, a bucket of models can produce no better results than the best model in the set, but when evaluated across many problems, it will typically produce much better results, on average, than any model in the set.
+The most common approach used for model-selection is cross-validation selection (sometimes called a "bake-off contest"). It is described with the following pseudo-code:
+
+For each model m in the bucket:
+  Do c times: (where 'c' is some constant)
+    Randomly divide the training dataset into two datasets: A, and B.
+    Train m with A
+    Test m with B
+Select the model that obtains the highest average score
+
+Cross-Validation Selection can be summed up as: "try them all with the training set, and pick the one that works best".
+Gating is a generalization of Cross-Validation Selection. It involves training another learning model to decide which of the models in the bucket is best-suited to solve the problem. Often, a perceptron is used for the gating model. It can be used to pick the "best" model, or it can be used to give a linear weight to the predictions from each model in the bucket.
+When a bucket of models is used with a large set of problems, it may be desirable to avoid training some of the models that take a long time to train. Landmark learning is a meta-learning approach that seeks to solve this problem. It involves training only the fast (but imprecise) algorithms in the bucket, and then using the performance of these algorithms to help determine which slow (but accurate) algorithm is most likely to do best.
+
+
+=== Stacking ===
+Stacking (sometimes called stacked generalization) involves training a learning algorithm to combine the predictions of several other learning algorithms. First, all of the other algorithms are trained using the available data, then a combiner algorithm is trained to make a final prediction using all the predictions of the other algorithms as additional inputs. If an arbitrary combiner algorithm is used, then stacking can theoretically represent any of the ensemble techniques described in this article, although in practice, a single-layer logistic regression model is often used as the combiner.
+Stacking typically yields performance better than any single one of the trained models. It has been successfully used on both supervised learning tasks (regression, classification and distance learning ) and unsupervised learning (density estimation). It has also been used to estimate bagging's error rate. It has been reported to out-perform Bayesian model-averaging. The two top-performers in the Netflix competition utilized blending, which may be considered to be a form of stacking.
+
+
+== Implementations in statistics packages ==
+R: at least three packages offer Bayesian model averaging tools, including the BMS (an acronym for Bayesian Model Selection) package, the BAS (an acronym for Bayesian Adaptive Sampling) package, and the BMA package.
+Python : Scikit-learn,a package for Machine Learning in python offers packages for ensemble learning including packages for bagging and averaging methods.
+MATLAB: classification ensembles are implemented in Statistics and Machine Learning Toolbox.
+
+
+== See also ==
+Ensemble averaging (machine learning)
+Bayesian structural time series (BSTS)
+
+
+== References ==
+
+
+== Further reading ==
+Zhou Zhihua (2012). Ensemble Methods: Foundations and Algorithms. Chapman and Hall/CRC. ISBN 978-1-439-83003-1. 
+Robert Schapire; Yoav Freund (2012). Boosting: Foundations and Algorithms. MIT. ISBN 978-0-262-01718-3. 
+
+
+== External links ==
+Robi Polikar (ed.). "Ensemble learning". Scholarpedia. 
+The Waffles (machine learning) toolkit contains implementations of Bagging, Boosting, Bayesian Model Averaging, Bayesian Model Combination, Bucket-of-models, and other ensemble techniques

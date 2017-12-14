@@ -1,0 +1,74 @@
+Application security encompasses measures taken to improve the security of an application often by finding, fixing and preventing security vulnerabilities.
+Different techniques are used to surface such security vulnerabilities at different stages of an applications lifecycle such design, development, deployment, upgrade, or maintenance.
+An always evolving but largely consistent set of common security flaws are seen across different applications, see common flaws
+
+
+== Terms ==
+Asset. A resource of value such as the data in a database, money in an account, file on the filesystem or any system resource.
+Vulnerability. A weakness or gap in security program that can be exploited by threats to gain unauthorized access to an asset.
+Attack (or exploit). An action taken to harm an asset.
+Threat. Anything that can exploit a vulnerability and obtain, damage, or destroy an asset.
+
+
+== Techniques ==
+Different techniques will find different subsets of the security vulnerabilities lurking in an application and are most effective at different times in the software lifecycle. They each represent different tradeoffs of time, effort, cost and vulnerabilities found.
+Whitebox security review, or code review. This is a security engineer deeply understanding the application through manually reviewing the source code and noticing security flaws. Through comprehension of the application vulnerabilities unique to the application can be found.
+Blackbox security audit. This is only through use of an application testing it for security vulnerabilities, no source code required.
+Design review. Before code is written working through a threat model of the application. Sometimes alongside a spec or design document.
+Tooling. There exist many automated tools that test for security flaws, often with a higher false positive rate than having a human involved.
+Utilizing these techniques appropriately throughout the software development life cycle (SDLC) to maximize security is the role of an application security team.
+
+
+== Application threats / attacks ==
+According to the patterns & practices Improving Web Application Security book, the following are classes of common application security threats / attacks:
+
+
+== Mobile application security ==
+
+The proportion of mobile devices providing open platform functionality is expected to continue to increase in future. The openness of these platforms offers significant opportunities to all parts of the mobile eco-system by delivering the ability for flexible program and service delivery= options that may be installed, removed or refreshed multiple times in line with the user’s needs and requirements. However, with openness comes responsibility and unrestricted access to mobile resources and APIs by applications of unknown or untrusted origin could result in damage to the user, the device, the network or all of these, if not managed by suitable security architectures and network precautions. Application security is provided in some form on most open OS mobile devices (Symbian OS, Microsoft, BREW, etc.). Industry groups have also created recommendations including the GSM Association and Open Mobile Terminal Platform (OMTP).
+There are several strategies to enhance mobile application security including
+Application white listing
+Ensuring transport layer security
+Strong authentication and authorization
+Encryption of data when written to memory
+Sandboxing of applications
+Granting application access on a per-API level
+Processes tied to a user ID
+Predefined interactions between the mobile application and the OS
+Requiring user input for privileged/elevated access
+Proper session handling
+
+
+== Security testing for applications ==
+Security testing techniques scour for vulnerabilities or security holes in applications. These vulnerabilities leave applications open to exploitation. Ideally, security testing is implemented throughout the entire software development life cycle (SDLC) so that vulnerabilities may be addressed in a timely and thorough manner. Unfortunately, testing is often conducted as an afterthought at the end of the development cycle.
+Vulnerability scanners, and more specifically web application scanners, otherwise known as penetration testing tools (i.e. ethical hacking tools) have been historically used by security organizations within corporations and security consultants to automate the security testing of http request/responses; however, this is not a substitute for the need for actual source code review. Physical code reviews of an application's source code can be accomplished manually or in an automated fashion. Given the common size of individual programs (often 500,000 lines of code or more), the human brain can not execute a comprehensive data flow analysis needed in order to completely check all circuitous paths of an application program to find vulnerability points. The human brain is suited more for filtering, interrupting and reporting the outputs of automated source code analysis tools available commercially versus trying to trace every possible path through a compiled code base to find the root cause level vulnerabilities.
+The two types of automated tools associated with application vulnerability detection (application vulnerability scanners) are Penetration Testing Tools (often categorized as Black Box Testing Tools) and static code analysis tools (often categorized as White Box Testing Tools).
+According to Gartner Research, "...next-generation modern Web and mobile applications requires a combination of SAST and DAST techniques, and new interactive application security testing (IAST) approaches have emerged that combine static and dynamic techniques to improve testing...". Because IAST combines SAST and DAST techniques, the results are highly actionable, can be linked to the specific line of code, and can be recorded for replay later for developers.
+Banking and large E-Commerce corporations have been the very early adopter customer profile for these types of tools. It is commonly held within these firms that both Black Box testing and White Box testing tools are needed in the pursuit of application security. Typically sited, Black Box testing (meaning Penetration Testing tools) are ethical hacking tools used to attack the application surface to expose vulnerabilities suspended within the source code hierarchy. Penetration testing tools are executed on the already deployed application. White Box testing (meaning Source Code Analysis tools) are used by either the application security groups or application development groups. Typically introduced into a company through the application security organization, the White Box tools complement the Black Box testing tools in that they give specific visibility into the specific root vulnerabilities within the source code in advance of the source code being deployed. Vulnerabilities identified with White Box testing and Black Box testing are typically in accordance with the OWASP taxonomy for software coding errors. White Box testing vendors have recently introduced dynamic versions of their source code analysis methods; which operates on deployed applications. Given that the White Box testing tools have dynamic versions similar to the Black Box testing tools, both tools can be correlated in the same software error detection paradigm ensuring full application protection to the client company.
+The advances in professional Malware targeted at the Internet customers of online organizations has seen a change in Web application design requirements since 2007. It is generally assumed that a sizable percentage of Internet users will be compromised through malware and that any data coming from their infected host may be tainted. Therefore, application security has begun to manifest more advanced anti-fraud and heuristic detection systems in the back-office, rather than within the client-side or Web server code.
+
+
+== Security standards and regulations ==
+Sarbanes-Oxley Act (SOX)
+Health Insurance Portability and Accountability Act (HIPAA)
+ISO/IEC 27034-1:2011 Information technology — Security techniques — Application security -- Part 1: Overview and concepts
+ISO/IEC TR 24772:2013 Information technology — Programming languages — Guidance to avoiding vulnerabilities in programming languages through language selection and use
+Gramm-Leach-Bliley Act
+PCI Data Security Standarded (PCI DSS)
+
+
+== See also ==
+Countermeasure
+Data security
+Database security
+HERAS-AF
+Information security
+Trustworthy Computing Security Development Lifecycle
+Web application
+Web application framework
+
+
+== References ==
+
+
+== External links ==

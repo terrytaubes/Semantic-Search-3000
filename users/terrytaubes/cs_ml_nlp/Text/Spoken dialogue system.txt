@@ -1,0 +1,33 @@
+A spoken dialog system is a computer system able to converse with a human with voice. It has two essential components that do not exist in a written text dialog system: a speech recognizer and a text-to-speech module (written text dialog systems usually use other input systems provided by an OS). In can be further distinguished from command and control speech systems that can respond to requests but do not attempt to maintain continuity over time.
+
+
+== Components ==
+An automatic Speech recognizer (ASR) decodes speech into text. Domain-specific recognizers can be configured for language designed for a given application. A "cloud" recognizer will be suitable for domains that do not depend on very specific vocabularies.
+Natural language understanding transforms a recognition into a concept structure that can drive system behavior. Some approaches will combine recognition and understanding processing but are thought to be less flexible since interpretation has to be coded into the grammar.
+The dialog manager controls turn-by-turn behavior. A simple dialog system may ask the user questions then act on the response. Such directed dialog systems use a tree-like structure for control; frame- (or form-) based systems allow for some user initiative and accommodate different styles of interaction. More sophisticated dialog managers incorporate mechanisms for dealing with misunderstandings and clarification.
+The domain reasoner, or more simply the back-end, makes use of a knowledge base to retrieve information and helps formulate system responses. In simple systems, this may be a database which is queried using information collected through the dialog. The domain reasoner, together with the dialog manager, maintain the context of interaction and allows the system to reflect some human conversational abilities (for example using anaphora).
+Response generation is similar to text-based natural language generation, but takes into account the needs of spoken communication. This might include the use of simpler grammatical constructions, managing the amount of information in any one output utterance and introducing prosodic markers to help the human participant absorb information more easily. A complete system design will also introduce elements of lexical entrainment, to encourage the human user to favor certain ways of speaking, which in turn can improve recognition performance.
+Text-to-speech synthesis (TTS) realizes an intended utterance as speech. Depending on the application, TTS may be based on concatenation of pre-recorded material produced by voice professionals. In more complex applications TTS will use more flexible techniques that accommodate large vocabularies and that allow the developer control over the character ("personality") of the system.
+
+
+== Varieties of systems ==
+Spoken dialog systems vary in their complexity. Directed dialog systems are very simple and require that the developer create a graph (typically a tree) that manages the task but may not correspond to the needs of the user. Information access systems, typically based on forms, allow users some flexibility (for example in the order in which retrieval constraints are specified, or in the use of optional constraints) but are limited in their capabilities. Problem-solving dialog systems may allow human users to engage in a number of different activities that may include information access, plan construction and possible execution of the latter.
+Some examples of systems include:
+Information access: Weather, trains schedules, stock quotes, directory assistance.
+Transactional: credit card and bank enquiries; ticket purchases.
+Maintenance: Technical support including documentation access and diagnostic testing.
+Tutoring: For education, such as physics or math, and language learning.
+Entertainment and chatting
+
+
+== History ==
+Pionieers in dialogue systems are companies like AT&T (with its speech recognizer system in the Seventies) and CSELT laboratories, that led some European research projects during the Eighties (e.g. SUNDIAL) after the end of the DARPA project in the US.
+
+
+== References ==
+The field of spoken dialog systems is quite large and includes research (featured at scientific conferences such as SIGdial and Interspeech) and a large industrial sector (with its own meetings such as SpeechTek and AVIOS).
+
+The following might provide good technical introductions:
+Michael F. McTear, Spoken Dialogue Technology
+ Gabriel Skantze, Error Handling in Spoken Dialogue Systems, 2007: chapter 2, Spoken dialogue systems.
+Pirani, Giancarlo, ed. Advanced algorithms and architectures for speech understanding. Vol. 1. Springer Science & Business Media, 2013. ISBN 978-3-540-53402-0

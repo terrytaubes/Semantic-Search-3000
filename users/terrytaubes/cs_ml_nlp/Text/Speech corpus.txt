@@ -1,0 +1,49 @@
+A speech corpus (or spoken corpus) is a database of speech audio files and text transcriptions. In Speech technology, speech corpora are used, among other things, to create acoustic models (which can then be used with a speech recognition engine). In Linguistics, spoken corpora are used to do research into phonetic, conversation analysis, dialectology and other fields.
+A corpus is one such database. Corpora is the plural of corpus (i.e. it is many such databases).
+There are two types of Speech Corpora:
+Read Speech - which includes:
+Book excerpts
+Broadcast news
+Lists of words
+Sequences of numbers
+
+Spontaneous Speech - which includes:
+Dialogs - between two or more people (includes meetings);
+Narratives - a person telling a story (one such corpus is the Buckeye Corpus);
+Map-tasks - one person explains a route on a map to another;
+Appointment-tasks - two people try to find a common meeting time based on individual schedules.
+
+A special kind of speech corpora are non-native speech databases that contain speech with foreign accent.
+
+
+== See also ==
+Transcription (linguistics)
+EXMARaLDA
+Praat
+Transcriber
+TIMIT
+Spoken English Corpus
+The BABEL Speech Corpus
+List of children's speech corpora
+Non-native speech database
+Arabic Speech Corpus
+
+
+== References ==
+Edwards, Jane / Lampert, Martin (eds.) (1992): Talking Data – Transcription and Coding in Discourse Research. Hillsdale: Erlbaum.
+Leech, Geoffrey / Myers, Greg / Thomas, Jenny (eds.) (1995): Spoken English on Computer: Transcription, Markup and Application. Harlow: Longman.
+
+
+== External links ==
+Santa Barbara Corpus of Spoken American English
+Buckeye Corpus The Buckeye Corpus of Conversational Speech
+Spoken Language Corpora at the Research Center on Multilingualism
+The Spoken Turkish Corpus at METU Ankara
+Spoken Corpus Klient with the Corp-Oral Corpus at ILTEC Lisbon
+VoxForge - open source speech corpora
+OLAC: Open Language Archives Community
+BAS Bavarian Archive for Speech Signals
+Simmortel Speech Recognition Corpus for Indian English and Hindi
+ELRA: the European Language Resources Association
+The PELCRA Conversational Corpus of Polish
+The Arabic Speech Corpus

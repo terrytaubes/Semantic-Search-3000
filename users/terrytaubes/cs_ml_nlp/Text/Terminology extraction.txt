@@ -1,0 +1,44 @@
+Terminology extraction (also known as term extraction, glossary extraction, term recognition, or terminology mining) is a subtask of information extraction. The goal of terminology extraction is to automatically extract relevant terms from a given corpus.
+In the semantic web era, a growing number of communities and networked enterprises started to access and interoperate through the internet. Modeling these communities and their information needs is important for several web applications, like topic-driven web crawlers, web services, recommender systems, etc. The development of terminology extraction is essential to the language industry.
+One of the first steps to model the knowledge domain of a virtual community is to collect a vocabulary of domain-relevant terms, constituting the linguistic surface manifestation of domain concepts. Several methods to automatically extract technical terms from domain-specific document warehouses have been described in the literature.
+Typically, approaches to automatic term extraction make use of linguistic processors (part of speech tagging, phrase chunking) to extract terminological candidates, i.e. syntactically plausible terminological noun phrases, NPs (e.g. compounds "credit card", adjective-NPs "local tourist information office", and prepositional-NPs "board of directors" - in English, the first two constructs are the most frequent). Terminological entries are then filtered from the candidate list using statistical and machine learning methods. Once filtered, because of their low ambiguity and high specificity, these terms are particularly useful for conceptualizing a knowledge domain or for supporting the creation of a domain ontology or a terminology base. Furthermore, terminology extraction is a very useful starting point for semantic similarity, knowledge management, human translation and machine translation, etc.
+
+
+== Bilingual terminology extraction ==
+The methods for terminology extraction can be applied to parallel corpora. Combined with e.g. co-occurrence statistics, candidates for term translations can be obtained. Bilingual terminology can be extracted also from comparable corpora (corpora containing texts within the same text type, domain but not translations of documents between each other).
+
+
+== See also ==
+Computational linguistics
+Glossary
+Natural language processing
+Domain ontology
+Subject indexing
+Taxonomy (general)
+Terminology
+Text mining
+Text simplification
+
+
+== References ==
+
+
+== External links ==
+BioTex, extracts biomedical terms from free text. The terminology is ranked using new measures. It is implemented for extracting English, French, and Spanish biomedical terms.
+Dandelion API is a web-based multi-lingual named entity extraction API / text similarity API / text classifier API on custom/IPTC categories
+EntityClassifier.eu, an English/German/Dutch entity extraction web application and SaaS API built on top of Linked Hypernyms Dataset
+Five Filters Term Extraction, a free software term extraction service web application
+Gabor Melli's info page on terminology extraction
+Heartsome Araya Bilingual Terminology Extractor for TMX files, by Heartsome Europe
+Introduction to terminology management, by IBM
+TermFinder, free online terminology extractor web application
+TBXTools, a free tool for automatic terminology extraction
+Lexterm, a free/open-source Lexical Extractor for Terminology and Translation (mono- and bilingual extraction).
+Anchovy Anchovy is a free multilingual cross-platform glossary editor and term extraction tool based on the open Glossary Markup Language (GlossML) format.
+TerMine, a term management system by the UK's National Centre for Text Mining. web application
+Ngram Statistics Package, open source package for identifying collocations
+Semantria, a web-based multi-lingual keyword, entity, and theme extraction SaaS API web application
+Sketch Engine, (bilingual) terminology extraction in a corpus manager tool
+TexLexAn - An open-source text summarizer and keyword extractor.
+textCavate is a free multilingual API dedicated to keyword extraction.
+Ultimate Research Assistant, A free online literacy tool with strong multi-lingual terminology extraction capabilities and visualizations including bar charts, mind maps, and taxonomies. Includes XML web services for term extraction, text summarization, and taxonomy generation / clustering.

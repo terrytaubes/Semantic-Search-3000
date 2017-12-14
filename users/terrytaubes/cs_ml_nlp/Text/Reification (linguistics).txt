@@ -1,0 +1,19 @@
+Reification in natural language processing refers to where a natural language statement is transformed so actions and events in it become quantifiable variables. For example "John chased the duck furiously" can be transformed into something like
+(Exists e)(chasing(e) & past_tense(e) & actor(e,John) & furiously(e) & patient(e,duck)).
+Another example would be "Sally said John is mean", which could be expressed as something like
+(Exists u,v)(saying(u) & past_tense(u) & actor(u,Sally) & that(u,v) & is(v) & actor(v,John) & mean(v)).
+Such representations allow one to use the tools of classical first-order predicate calculus even for statements which, due to their use of tense, modality, adverbial constructions, propositional arguments (e.g. "Sally said that X"), etc., would have seemed intractable. This is an advantage because predicate calculus is better understood and simpler than the more complex alternatives (higher-order logics, modal logics, temporal logics, etc.), and there exist better automated tools (e.g. automated theorem provers and model checkers) for manipulating it.
+Reified forms can be used for other purposes besides the application of first-order logic; one example is the automatic discovery of synonymous phrases.
+The reified forms are sometimes called quasi-logical forms, and the existential variables are sometimes treated as Skolem constants.
+Not all natural language constructs admit a uniform translation to first order logic. See donkey sentence for examples and a discussion.
+
+
+== See also ==
+Drinker paradox
+Nonfirstorderizability
+Reification (computer science)
+Reification (fallacy)
+Reification (knowledge representation)
+
+
+== References ==

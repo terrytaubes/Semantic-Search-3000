@@ -1,0 +1,276 @@
+The Turing test, developed by Alan Turing in 1950, is a test of a machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human. Turing proposed that a human evaluator would judge natural language conversations between a human and a machine designed to generate human-like responses. The evaluator would be aware that one of the two partners in conversation is a machine, and all participants would be separated from one another. The conversation would be limited to a text-only channel such as a computer keyboard and screen so the result would not depend on the machine's ability to render words as speech. If the evaluator cannot reliably tell the machine from the human, the machine is said to have passed the test. The test does not check the ability to give correct answers to questions, only how closely answers resemble those a human would give.
+The test was introduced by Turing in his paper, "Computing Machinery and Intelligence", while working at the University of Manchester (Turing, 1950; p. 460). It opens with the words: "I propose to consider the question, 'Can machines think?'" Because "thinking" is difficult to define, Turing chooses to "replace the question by another, which is closely related to it and is expressed in relatively unambiguous words." Turing's new question is: "Are there imaginable digital computers which would do well in the imitation game?" This question, Turing believed, is one that can actually be answered. In the remainder of the paper, he argued against all the major objections to the proposition that "machines can think".
+Since Turing first introduced his test, it has proven to be both highly influential and widely criticised, and it has become an important concept in the philosophy of artificial intelligence.
+
+
+== History ==
+
+
+=== Philosophical background ===
+The question of whether it is possible for machines to think has a long history, which is firmly entrenched in the distinction between dualist and materialist views of the mind. René Descartes prefigures aspects of the Turing Test in his 1637 Discourse on the Method when he writes:
+
+Here Descartes notes that automata are capable of responding to human interactions but argues that such automata cannot respond appropriately to things said in their presence in the way that any human can. Descartes therefore prefigures the Turing Test by defining the insufficiency of appropriate linguistic response as that which separates the human from the automaton. Descartes fails to consider the possibility that future automata might be able to overcome such insufficiency, and so does not propose the Turing Test as such, even if he prefigures its conceptual framework and criterion.
+Denis Diderot formulates in his Pensées philosophiques a Turing-test criterion:
+"If they find a parrot who could answer to everything, I would claim it to be an intelligent being without hesitation."
+This does not mean he agrees with this, but that it was already a common argument of materialists at that time.
+According to dualism, the mind is non-physical (or, at the very least, has non-physical properties) and, therefore, cannot be explained in purely physical terms. According to materialism, the mind can be explained physically, which leaves open the possibility of minds that are produced artificially.
+In 1936, philosopher Alfred Ayer considered the standard philosophical question of other minds: how do we know that other people have the same conscious experiences that we do? In his book, Language, Truth and Logic, Ayer suggested a protocol to distinguish between a conscious man and an unconscious machine: "The only ground I can have for asserting that an object which appears to be conscious is not really a conscious being, but only a dummy or a machine, is that it fails to satisfy one of the empirical tests by which the presence or absence of consciousness is determined." (This suggestion is very similar to the Turing test, but is concerned with consciousness rather than intelligence. Moreover, it is not certain that Ayer's popular philosophical classic was familiar to Turing.) In other words, a thing is not conscious if it fails the consciousness test.
+
+
+=== Alan Turing ===
+Researchers in the United Kingdom had been exploring "machine intelligence" for up to ten years prior to the founding of the field of artificial intelligence (AI) research in 1956. It was a common topic among the members of the Ratio Club, who were an informal group of British cybernetics and electronics researchers that included Alan Turing, after whom the test is named.
+Turing, in particular, had been tackling the notion of machine intelligence since at least 1941 and one of the earliest-known mentions of "computer intelligence" was made by him in 1947. In Turing's report, "Intelligent Machinery", he investigated "the question of whether or not it is possible for machinery to show intelligent behaviour" and, as part of that investigation, proposed what may be considered the forerunner to his later tests:
+
+It is not difficult to devise a paper machine which will play a not very bad game of chess. Now get three men as subjects for the experiment. A, B and C. A and C are to be rather poor chess players, B is the operator who works the paper machine. ... Two rooms are used with some arrangement for communicating moves, and a game is played between C and either A or the paper machine. C may find it quite difficult to tell which he is playing.
+
+"Computing Machinery and Intelligence" (1950) was the first published paper by Turing to focus exclusively on machine intelligence. Turing begins the 1950 paper with the claim, "I propose to consider the question 'Can machines think?'" As he highlights, the traditional approach to such a question is to start with definitions, defining both the terms "machine" and "intelligence". Turing chooses not to do so; instead he replaces the question with a new one, "which is closely related to it and is expressed in relatively unambiguous words." In essence he proposes to change the question from "Can machines think?" to "Can machines do what we (as thinking entities) can do?" The advantage of the new question, Turing argues, is that it draws "a fairly sharp line between the physical and intellectual capacities of a man."
+To demonstrate this approach Turing proposes a test inspired by a party game, known as the "Imitation Game," in which a man and a woman go into separate rooms and guests try to tell them apart by writing a series of questions and reading the typewritten answers sent back. In this game both the man and the woman aim to convince the guests that they are the other. (Huma Shah argues that this two-human version of the game was presented by Turing only to introduce the reader to the machine-human question-answer test.) Turing described his new version of the game as follows:
+
+We now ask the question, "What will happen when a machine takes the part of A in this game?" Will the interrogator decide wrongly as often when the game is played like this as he does when the game is played between a man and a woman? These questions replace our original, "Can machines think?"
+
+Later in the paper Turing suggests an "equivalent" alternative formulation involving a judge conversing only with a computer and a man. While neither of these formulations precisely matches the version of the Turing Test that is more generally known today, he proposed a third in 1952. In this version, which Turing discussed in a BBC radio broadcast, a jury asks questions of a computer and the role of the computer is to make a significant proportion of the jury believe that it is really a man.
+Turing's paper considered nine putative objections, which include all the major arguments against artificial intelligence that have been raised in the years since the paper was published (see "Computing Machinery and Intelligence").
+
+
+=== ELIZA and PARRY ===
+In 1966, Joseph Weizenbaum created a program which appeared to pass the Turing test. The program, known as ELIZA, worked by examining a user's typed comments for keywords. If a keyword is found, a rule that transforms the user's comments is applied, and the resulting sentence is returned. If a keyword is not found, ELIZA responds either with a generic riposte or by repeating one of the earlier comments. In addition, Weizenbaum developed ELIZA to replicate the behaviour of a Rogerian psychotherapist, allowing ELIZA to be "free to assume the pose of knowing almost nothing of the real world." With these techniques, Weizenbaum's program was able to fool some people into believing that they were talking to a real person, with some subjects being "very hard to convince that ELIZA [...] is not human." Thus, ELIZA is claimed by some to be one of the programs (perhaps the first) able to pass the Turing Test, even though this view is highly contentious (see below).
+Kenneth Colby created PARRY in 1972, a program described as "ELIZA with attitude". It attempted to model the behaviour of a paranoid schizophrenic, using a similar (if more advanced) approach to that employed by Weizenbaum. To validate the work, PARRY was tested in the early 1970s using a variation of the Turing Test. A group of experienced psychiatrists analysed a combination of real patients and computers running PARRY through teleprinters. Another group of 33 psychiatrists were shown transcripts of the conversations. The two groups were then asked to identify which of the "patients" were human and which were computer programs. The psychiatrists were able to make the correct identification only 48 percent of the time – a figure consistent with random guessing.
+In the 21st century, versions of these programs (now known as "chatterbots") continue to fool people. "CyberLover", a malware program, preys on Internet users by convincing them to "reveal information about their identities or to lead them to visit a web site that will deliver malicious content to their computers". The program has emerged as a "Valentine-risk" flirting with people "seeking relationships online in order to collect their personal data".
+
+
+=== The Chinese room ===
+
+John Searle's 1980 paper Minds, Brains, and Programs proposed the "Chinese room" thought experiment and argued that the Turing test could not be used to determine if a machine can think. Searle noted that software (such as ELIZA) could pass the Turing Test simply by manipulating symbols of which they had no understanding. Without understanding, they could not be described as "thinking" in the same sense people do. Therefore, Searle concludes, the Turing Test cannot prove that a machine can think. Much like the Turing test itself, Searle's argument has been both widely criticised and highly endorsed.
+Arguments such as Searle's and others working on the philosophy of mind sparked off a more intense debate about the nature of intelligence, the possibility of intelligent machines and the value of the Turing test that continued through the 1980s and 1990s.
+
+
+=== Loebner Prize ===
+
+The Loebner Prize provides an annual platform for practical Turing Tests with the first competition held in November 1991. It is underwritten by Hugh Loebner. The Cambridge Center for Behavioral Studies in Massachusetts, United States, organised the prizes up to and including the 2003 contest. As Loebner described it, one reason the competition was created is to advance the state of AI research, at least in part, because no one had taken steps to implement the Turing Test despite 40 years of discussing it.
+The first Loebner Prize competition in 1991 led to a renewed discussion of the viability of the Turing Test and the value of pursuing it, in both the popular press and academia. The first contest was won by a mindless program with no identifiable intelligence that managed to fool naïve interrogators into making the wrong identification. This highlighted several of the shortcomings of the Turing Test (discussed below): The winner won, at least in part, because it was able to "imitate human typing errors"; the unsophisticated interrogators were easily fooled; and some researchers in AI have been led to feel that the test is merely a distraction from more fruitful research.
+The silver (text only) and gold (audio and visual) prizes have never been won. However, the competition has awarded the bronze medal every year for the computer system that, in the judges' opinions, demonstrates the "most human" conversational behaviour among that year's entries. Artificial Linguistic Internet Computer Entity (A.L.I.C.E.) has won the bronze award on three occasions in recent times (2000, 2001, 2004). Learning AI Jabberwacky won in 2005 and 2006.
+The Loebner Prize tests conversational intelligence; winners are typically chatterbot programs, or Artificial Conversational Entities (ACE)s. Early Loebner Prize rules restricted conversations: Each entry and hidden-human conversed on a single topic, thus the interrogators were restricted to one line of questioning per entity interaction. The restricted conversation rule was lifted for the 1995 Loebner Prize. Interaction duration between judge and entity has varied in Loebner Prizes. In Loebner 2003, at the University of Surrey, each interrogator was allowed five minutes to interact with an entity, machine or hidden-human. Between 2004 and 2007, the interaction time allowed in Loebner Prizes was more than twenty minutes. In 2008, the interrogation duration allowed was five minutes per pair, because the organiser, Kevin Warwick, and coordinator, Huma Shah, consider this to be the duration for any test, as Turing stated in his 1950 paper: " ... making the right identification after five minutes of questioning". They felt Loebner's longer test, implemented in Loebner Prizes 2006 and 2007, was inappropriate for the state of artificial conversation technology. It is ironic that the 2008 winning entry, Elbot from Artificial Solutions, does not mimic a human; its personality is that of a robot, yet Elbot deceived three human judges that it was the human during human-parallel comparisons.
+During the 2009 competition, held in Brighton, UK, the communication program restricted judges to 10 minutes for each round, 5 minutes to converse with the human, 5 minutes to converse with the program. This was to test the alternative reading of Turing's prediction that the 5-minute interaction was to be with the computer. For the 2010 competition, the Sponsor again increased the interaction time, between interrogator and system, to 25 minutes, well above the figure given by Turing.
+
+
+=== 2014 University of Reading competition ===
+On 7 June 2014 a Turing test competition, organised by Huma Shah and Kevin Warwick to mark the 60th anniversary of Turing's death, was held at the Royal Society London and was won by the Russian chatter bot Eugene Goostman. The bot, during a series of five-minute-long text conversations, convinced 33% of the contest's judges that it was human. Judges included John Sharkey, a sponsor of the bill granting a government pardon to Turing, AI Professor Aaron Sloman and Red Dwarf actor Robert Llewellyn.
+The competition's organisers believed that the Turing test had been "passed for the first time" at the event, saying that "The event involved more simultaneous comparison tests than ever before, was independently verified and, crucially, the conversations were unrestricted. A true Turing Test does not set the questions or topics prior to the conversations."
+
+
+== Versions ==
+
+Saul Traiger argues that there are at least three primary versions of the Turing test, two of which are offered in "Computing Machinery and Intelligence" and one that he describes as the "Standard Interpretation." While there is some debate regarding whether the "Standard Interpretation" is that described by Turing or, instead, based on a misreading of his paper, these three versions are not regarded as equivalent, and their strengths and weaknesses are distinct.
+Huma Shah points out that Turing himself was concerned with whether a machine could think and was providing a simple method to examine this: through human-machine question-answer sessions. Shah argues there is one imitation game which Turing described could be practicalised in two different ways: a) one-to-one interrogator-machine test, and b) simultaneous comparison of a machine with a human, both questioned in parallel by an interrogator. Since the Turing test is a test of indistinguishability in performance capacity, the verbal version generalises naturally to all of human performance capacity, verbal as well as nonverbal (robotic).
+
+
+=== Imitation Game ===
+Turing's original article describes a simple party game involving three players. Player A is a man, player B is a woman and player C (who plays the role of the interrogator) is of either sex. In the Imitation Game, player C is unable to see either player A or player B, and can communicate with them only through written notes. By asking questions of player A and player B, player C tries to determine which of the two is the man and which is the woman. Player A's role is to trick the interrogator into making the wrong decision, while player B attempts to assist the interrogator in making the right one.
+Turing then asks:
+
+What will happen when a machine takes the part of A in this game? Will the interrogator decide wrongly as often when the game is played like this as he does when the game is played between a man and a woman? These questions replace our original, "Can machines think?"
+
+The second version appeared later in Turing's 1950 paper. Similar to the Original Imitation Game Test, the role of player A is performed by a computer. However, the role of player B is performed by a man rather than a woman.
+
+"Let us fix our attention on one particular digital computer C. Is it true that by modifying this computer to have an adequate storage, suitably increasing its speed of action, and providing it with an appropriate programme, C can be made to play satisfactorily the part of A in the imitation game, the part of B being taken by a man?"
+
+In this version, both player A (the computer) and player B are trying to trick the interrogator into making an incorrect decision.
+
+
+=== Standard interpretation ===
+Common understanding has it that the purpose of the Turing Test is not specifically to determine whether a computer is able to fool an interrogator into believing that it is a human, but rather whether a computer could imitate a human. While there is some dispute whether this interpretation was intended by Turing, Sterrett believes that it was and thus conflates the second version with this one, while others, such as Traiger, do not – this has nevertheless led to what can be viewed as the "standard interpretation." In this version, player A is a computer and player B a person of either sex. The role of the interrogator is not to determine which is male and which is female, but which is a computer and which is a human. The fundamental issue with the standard interpretation is that the interrogator cannot differentiate which responder is human, and which is machine. There are issues about duration, but the standard interpretation generally considers this limitation as something that should be reasonable.
+
+
+=== Imitation Game vs. Standard Turing test ===
+Controversy has arisen over which of the alternative formulations of the test Turing intended. Sterrett argues that two distinct tests can be extracted from his 1950 paper and that, pace Turing's remark, they are not equivalent. The test that employs the party game and compares frequencies of success is referred to as the "Original Imitation Game Test," whereas the test consisting of a human judge conversing with a human and a machine is referred to as the "Standard Turing Test," noting that Sterrett equates this with the "standard interpretation" rather than the second version of the imitation game. Sterrett agrees that the Standard Turing Test (STT) has the problems that its critics cite but feels that, in contrast, the Original Imitation Game Test (OIG Test) so defined is immune to many of them, due to a crucial difference: Unlike the STT, it does not make similarity to human performance the criterion, even though it employs human performance in setting a criterion for machine intelligence. A man can fail the OIG Test, but it is argued that it is a virtue of a test of intelligence that failure indicates a lack of resourcefulness: The OIG Test requires the resourcefulness associated with intelligence and not merely "simulation of human conversational behaviour." The general structure of the OIG Test could even be used with non-verbal versions of imitation games.
+Still other writers have interpreted Turing as proposing that the imitation game itself is the test, without specifying how to take into account Turing's statement that the test that he proposed using the party version of the imitation game is based upon a criterion of comparative frequency of success in that imitation game, rather than a capacity to succeed at one round of the game.
+Saygin has suggested that maybe the original game is a way of proposing a less biased experimental design as it hides the participation of the computer. The imitation game also includes a "social hack" not found in the standard interpretation, as in the game both computer and male human are required to play as pretending to be someone they are not.
+
+
+=== Should the interrogator know about the computer? ===
+A crucial piece of any laboratory test is that there should be a control. Turing never makes clear whether the interrogator in his tests is aware that one of the participants is a computer. However, if there were a machine that did have the potential to pass a Turing test, it would be safe to assume a double blind control would be necessary.
+To return to the Original Imitation Game, he states only that player A is to be replaced with a machine, not that player C is to be made aware of this replacement. When Colby, FD Hilf, S Weber and AD Kramer tested PARRY, they did so by assuming that the interrogators did not need to know that one or more of those being interviewed was a computer during the interrogation. As Ayse Saygin, Peter Swirski, and others have highlighted, this makes a big difference to the implementation and outcome of the test. An experimental study looking at Gricean maxim violations using transcripts of Loebner's one-to-one (interrogator-hidden interlocutor) Prize for AI contests between 1994–1999, Ayse Saygin found significant differences between the responses of participants who knew and did not know about computers being involved.
+Huma Shah and Kevin Warwick, who organised the 2008 Loebner Prize at Reading University which staged simultaneous comparison tests (one judge-two hidden interlocutors), showed that knowing/not knowing did not make a significant difference in some judges' determination. Judges were not explicitly told about the nature of the pairs of hidden interlocutors they would interrogate. Judges were able to distinguish human from machine, including when they were faced with control pairs of two humans and two machines embedded among the machine-human set-ups. Spelling errors gave away the hidden humans; machines were identified by 'speed of response' and lengthier utterances.
+
+
+== Strengths ==
+
+
+=== Tractability and simplicity ===
+The power and appeal of the Turing test derives from its simplicity. The philosophy of mind, psychology, and modern neuroscience have been unable to provide definitions of "intelligence" and "thinking" that are sufficiently precise and general to be applied to machines. Without such definitions, the central questions of the philosophy of artificial intelligence cannot be answered. The Turing test, even if imperfect, at least provides something that can actually be measured. As such, it is a pragmatic attempt to answer a difficult philosophical question.
+
+
+=== Breadth of subject matter ===
+The format of the test allows the interrogator to give the machine a wide variety of intellectual tasks. Turing wrote that "the question and answer method seems to be suitable for introducing almost any one of the fields of human endeavour that we wish to include." John Haugeland adds that "understanding the words is not enough; you have to understand the topic as well."
+To pass a well-designed Turing test, the machine must use natural language, reason, have knowledge and learn. The test can be extended to include video input, as well as a "hatch" through which objects can be passed: this would force the machine to demonstrate the skill of vision and robotics as well. Together, these represent almost all of the major problems that artificial intelligence research would like to solve.
+The Feigenbaum test is designed to take advantage of the broad range of topics available to a Turing test. It is a limited form of Turing's question-answer game which compares the machine against the abilities of experts in specific fields such as literature or chemistry. IBM's Watson machine achieved success in a man versus machine television quiz show of human knowledge, Jeopardy!
+
+
+=== Emphasis on emotional and aesthetic intelligence ===
+As a Cambridge honours graduate in mathematics, Turing might have been expected to propose a test of computer intelligence requiring expert knowledge in some highly technical field, and thus anticipating a more recent approach to the subject. Instead, as already noted, the test which he described in his seminal 1950 paper requires the computer to be able to compete successfully in a common party game, and this by performing as well as the typical man in answering a series of questions so as to pretend convincingly to be the woman contestant.
+Given the status of human sexual dimorphism as one of the most ancient of subjects, it is thus implicit in the above scenario that the questions to be answered will involve neither specialised factual knowledge nor information processing technique. The challenge for the computer, rather, will be to demonstrate empathy for the role of the female, and to demonstrate as well a characteristic aesthetic sensibility—both of which qualities are on display in this snippet of dialogue which Turing has imagined:
+Interrogator: Will X please tell me the length of his or her hair?
+Contestant: My hair is shingled, and the longest strands are about nine inches long.
+When Turing does introduce some specialised knowledge into one of his imagined dialogues, the subject is not maths or electronics, but poetry:
+Interrogator: In the first line of your sonnet which reads, "Shall I compare thee to a summer's day," would not "a spring day" do as well or better?
+Witness: It wouldn't scan.
+Interrogator: How about "a winter's day." That would scan all right.
+Witness: Yes, but nobody wants to be compared to a winter's day.
+Turing thus once again demonstrates his interest in empathy and aesthetic sensitivity as components of an artificial intelligence; and in light of an increasing awareness of the threat from an AI run amuck, it has been suggested that this focus perhaps represents a critical intuition on Turing's part, i.e., that emotional and aesthetic intelligence will play a key role in the creation of a "friendly AI". It is further noted, however, that whatever inspiration Turing might be able to lend in this direction depends upon the preservation of his original vision, which is to say, further, that the promulgation of a "standard interpretation" of the Turing test—i.e., one which focuses on a discursive intelligence only—must be regarded with some caution.
+
+
+== Weaknesses ==
+Turing did not explicitly state that the Turing test could be used as a measure of intelligence, or any other human quality. He wanted to provide a clear and understandable alternative to the word "think", which he could then use to reply to criticisms of the possibility of "thinking machines" and to suggest ways that research might move forward.
+Nevertheless, the Turing test has been proposed as a measure of a machine's "ability to think" or its "intelligence". This proposal has received criticism from both philosophers and computer scientists. It assumes that an interrogator can determine if a machine is "thinking" by comparing its behaviour with human behaviour. Every element of this assumption has been questioned: the reliability of the interrogator's judgement, the value of comparing only behaviour and the value of comparing the machine with a human. Because of these and other considerations, some AI researchers have questioned the relevance of the test to their field.
+
+
+=== Human intelligence vs intelligence in general ===
+
+The Turing test does not directly test whether the computer behaves intelligently. It tests only whether the computer behaves like a human being. Since human behaviour and intelligent behaviour are not exactly the same thing, the test can fail to accurately measure intelligence in two ways:
+Some human behaviour is unintelligent
+The Turing test requires that the machine be able to execute all human behaviours, regardless of whether they are intelligent. It even tests for behaviours that we may not consider intelligent at all, such as the susceptibility to insults, the temptation to lie or, simply, a high frequency of typing mistakes. If a machine cannot imitate these unintelligent behaviours in detail it fails the test.
+This objection was raised by The Economist, in an article entitled "artificial stupidity" published shortly after the first Loebner Prize competition in 1992. The article noted that the first Loebner winner's victory was due, at least in part, to its ability to "imitate human typing errors." Turing himself had suggested that programs add errors into their output, so as to be better "players" of the game.
+Some intelligent behaviour is inhuman
+The Turing test does not test for highly intelligent behaviours, such as the ability to solve difficult problems or come up with original insights. In fact, it specifically requires deception on the part of the machine: if the machine is more intelligent than a human being it must deliberately avoid appearing too intelligent. If it were to solve a computational problem that is practically impossible for a human to solve, then the interrogator would know the program is not human, and the machine would fail the test.
+Because it cannot measure intelligence that is beyond the ability of humans, the test cannot be used to build or evaluate systems that are more intelligent than humans. Because of this, several test alternatives that would be able to evaluate super-intelligent systems have been proposed.
+
+
+=== Consciousness vs. the simulation of consciousness ===
+
+The Turing test is concerned strictly with how the subject acts – the external behaviour of the machine. In this regard, it takes a behaviourist or functionalist approach to the study of the mind. The example of ELIZA suggests that a machine passing the test may be able to simulate human conversational behaviour by following a simple (but large) list of mechanical rules, without thinking or having a mind at all.
+John Searle has argued that external behaviour cannot be used to determine if a machine is "actually" thinking or merely "simulating thinking." His Chinese room argument is intended to show that, even if the Turing test is a good operational definition of intelligence, it may not indicate that the machine has a mind, consciousness, or intentionality. (Intentionality is a philosophical term for the power of thoughts to be "about" something.)
+Turing anticipated this line of criticism in his original paper, writing:
+
+I do not wish to give the impression that I think there is no mystery about consciousness. There is, for instance, something of a paradox connected with any attempt to localise it. But I do not think these mysteries necessarily need to be solved before we can answer the question with which we are concerned in this paper.
+
+
+=== Naïveté of interrogators and the anthropomorphic fallacy ===
+In practice, the test's results can easily be dominated not by the computer's intelligence, but by the attitudes, skill, or naïveté of the questioner.
+Turing does not specify the precise skills and knowledge required by the interrogator in his description of the test, but he did use the term "average interrogator": "[the] average interrogator would not have more than 70 per cent chance of making the right identification after five minutes of questioning".
+Shah & Warwick (2009b) show that experts are fooled, and that interrogator strategy, "power" vs "solidarity" affects correct identification, the latter being more successful.
+Chatterbot programs such as ELIZA have repeatedly fooled unsuspecting people into believing that they are communicating with human beings. In these cases, the "interrogators" are not even aware of the possibility that they are interacting with computers. To successfully appear human, there is no need for the machine to have any intelligence whatsoever and only a superficial resemblance to human behaviour is required.
+Early Loebner Prize competitions used "unsophisticated" interrogators who were easily fooled by the machines. Since 2004, the Loebner Prize organisers have deployed philosophers, computer scientists, and journalists among the interrogators. Nonetheless, some of these experts have been deceived by the machines.
+Michael Shermer points out that human beings consistently choose to consider non-human objects as human whenever they are allowed the chance, a mistake called the anthropomorphic fallacy: They talk to their cars, ascribe desire and intentions to natural forces (e.g., "nature abhors a vacuum"), and worship the sun as a human-like being with intelligence. If the Turing test is applied to religious objects, Shermer argues, then, that inanimate statues, rocks, and places have consistently passed the test throughout history. This human tendency towards anthropomorphism effectively lowers the bar for the Turing test, unless interrogators are specifically trained to avoid it.
+
+
+=== Human misidentification ===
+One interesting feature of the Turing Test is the frequency of the confederate effect, when the confederate (tested) humans are misidentified by the interrogators as machines. It has been suggested that what interrogators expect as human responses is not necessarily typical of humans. As a result, some individuals can be categorised as machines. This can therefore work in favour of a competing machine. The humans are instructed to "act themselves", but sometimes their answers are more like what the interrogator expects a machine to say. This raises the question of how to ensure that the humans are motivated to "act human".
+
+
+=== Silence ===
+A critical aspect of the Turing test is that a machine must give itself away as being a machine by its utterances. An interrogator must then make the "right identification" by correctly identifying the machine as being just that. If however a machine remains silent during a conversation, i.e. takes the fifth, then it is not possible for an interrogator to accurately identify the machine other than by means of a calculated guess. Even taking into account a parallel/hidden human as part of the test may not help the situation as humans can often be misidentified as being a machine.
+
+
+=== Impracticality and irrelevance: the Turing test and AI research ===
+Mainstream AI researchers argue that trying to pass the Turing Test is merely a distraction from more fruitful research. Indeed, the Turing test is not an active focus of much academic or commercial effort—as Stuart Russell and Peter Norvig write: "AI researchers have devoted little attention to passing the Turing test." There are several reasons.
+First, there are easier ways to test their programs. Most current research in AI-related fields is aimed at modest and specific goals, such as automated scheduling, object recognition, or logistics. To test the intelligence of the programs that solve these problems, AI researchers simply give them the task directly. Russell and Norvig suggest an analogy with the history of flight: Planes are tested by how well they fly, not by comparing them to birds. "Aeronautical engineering texts," they write, "do not define the goal of their field as 'making machines that fly so exactly like pigeons that they can fool other pigeons.'"
+Second, creating lifelike simulations of human beings is a difficult problem on its own that does not need to be solved to achieve the basic goals of AI research. Believable human characters may be interesting in a work of art, a game, or a sophisticated user interface, but they are not part of the science of creating intelligent machines, that is, machines that solve problems using intelligence.
+Turing wanted to provide a clear and understandable example to aid in the discussion of the philosophy of artificial intelligence. John McCarthy observes that the philosophy of AI is "unlikely to have any more effect on the practice of AI research than philosophy of science generally has on the practice of science."
+
+
+=== Cognitive Science ===
+Robert French (1990)  makes the case that an interrogator can distinguish human and non-human interlocutors by posing questions that reveal the low-level (i.e., unconscious) processes of human cognition, as studied by cognitive science. Such questions reveal the precise details of the human embodiment of thought and can unmask a computer unless it experiences the world as humans do.
+
+
+== Variations ==
+Numerous other versions of the Turing test, including those expounded above, have been mooted through the years.
+
+
+=== Reverse Turing test and CAPTCHA ===
+
+A modification of the Turing test wherein the objective of one or more of the roles have been reversed between machines and humans is termed a reverse Turing test. An example is implied in the work of psychoanalyst Wilfred Bion, who was particularly fascinated by the "storm" that resulted from the encounter of one mind by another. In his 2000 book, among several other original points with regard to the Turing test, literary scholar Peter Swirski discussed in detail the idea of what he termed the Swirski test—essentially the reverse Turing test. He pointed out that it overcomes most if not all standard objections levelled at the standard version.
+Carrying this idea forward, R. D. Hinshelwood described the mind as a "mind recognizing apparatus." The challenge would be for the computer to be able to determine if it were interacting with a human or another computer. This is an extension of the original question that Turing attempted to answer but would, perhaps, offer a high enough standard to define a machine that could "think" in a way that we typically define as characteristically human.
+CAPTCHA is a form of reverse Turing test. Before being allowed to perform some action on a website, the user is presented with alphanumerical characters in a distorted graphic image and asked to type them out. This is intended to prevent automated systems from being used to abuse the site. The rationale is that software sufficiently sophisticated to read and reproduce the distorted image accurately does not exist (or is not available to the average user), so any system able to do so is likely to be a human.
+Software that could reverse CAPTCHA with some accuracy by analysing patterns in the generating engine started being developed soon after the creation of CAPTCHA. In 2013, researchers at Vicarious announced that they had developed a system to solve CAPTCHA challenges from Google, Yahoo!, and PayPal up to 90% of the time. In 2014, Google engineers demonstrated a system that could defeat CAPTCHA challenges with 99.8% accuracy. In 2015, Shuman Ghosemajumder, former click fraud czar of Google, stated that there were cybercriminal sites that would defeat CAPTCHA challenges for a fee, to enable various forms of fraud.
+
+
+=== Subject matter expert Turing test ===
+
+Another variation is described as the subject matter expert Turing test, where a machine's response cannot be distinguished from an expert in a given field. This is also known as a "Feigenbaum test" and was proposed by Edward Feigenbaum in a 2003 paper.
+
+
+=== Total Turing test ===
+The "Total Turing test" variation of the Turing test, proposed by cognitive scientist Stevan Harnad, adds two further requirements to the traditional Turing test. The interrogator can also test the perceptual abilities of the subject (requiring computer vision) and the subject's ability to manipulate objects (requiring robotics).
+
+
+=== Minimum Intelligent Signal Test ===
+
+The Minimum Intelligent Signal Test was proposed by Chris McKinstry as "the maximum abstraction of the Turing test", in which only binary responses (true/false or yes/no) are permitted, to focus only on the capacity for thought. It eliminates text chat problems like anthropomorphism bias, and does not require emulation of unintelligent human behaviour, allowing for systems that exceed human intelligence. The questions must each stand on their own, however, making it more like an IQ test than an interrogation. It is typically used to gather statistical data against which the performance of artificial intelligence programs may be measured.
+
+
+=== Hutter Prize ===
+The organisers of the Hutter Prize believe that compressing natural language text is a hard AI problem, equivalent to passing the Turing test.
+The data compression test has some advantages over most versions and variations of a Turing test, including:
+It gives a single number that can be directly used to compare which of two machines is "more intelligent."
+It does not require the computer to lie to the judge
+The main disadvantages of using data compression as a test are:
+It is not possible to test humans this way.
+It is unknown what particular "score" on this test—if any—is equivalent to passing a human-level Turing test.
+
+
+=== Other tests based on compression or Kolmogorov Complexity ===
+A related approach to Hutter's prize which appeared much earlier in the late 1990s is the inclusion of compression problems in an extended Turing Test. or by tests which are completely derived from Kolmogorov complexity. Other related tests in this line are presented by Hernandez-Orallo and Dowe.
+Algorithmic IQ, or AIQ for short, is an attempt to convert the theoretical Universal Intelligence Measure from Legg and Hutter (based on Solomonoff's inductive inference) into a working practical test of machine intelligence.
+Two major advantages of some of these tests are their applicability to nonhuman intelligences and their absence of a requirement for human testers.
+
+
+=== Ebert test ===
+The Turing test inspired the Ebert test proposed in 2011 by film critic Roger Ebert which is a test whether a computer-based synthesised voice has sufficient skill in terms of intonations, inflections, timing and so forth, to make people laugh.
+
+
+== Predictions ==
+Turing predicted that machines would eventually be able to pass the test; in fact, he estimated that by the year 2000, machines with around 100 MB of storage would be able to fool 30% of human judges in a five-minute test, and that people would no longer consider the phrase "thinking machine" contradictory. (In practice, from 2009–2012, the Loebner Prize chatterbot contestants only managed to fool a judge once, and that was only due to the human contestant pretending to be a chatbot.) He further predicted that machine learning would be an important part of building powerful machines, a claim considered plausible by contemporary researchers in artificial intelligence.
+In a 2008 paper submitted to 19th Midwest Artificial Intelligence and Cognitive Science Conference, Dr. Shane T. Mueller predicted a modified Turing Test called a "Cognitive Decathlon" could be accomplished within 5 years.
+By extrapolating an exponential growth of technology over several decades, futurist Ray Kurzweil predicted that Turing test-capable computers would be manufactured in the near future. In 1990, he set the year around 2020. By 2005, he had revised his estimate to 2029.
+The Long Bet Project Bet Nr. 1 is a wager of $20,000 between Mitch Kapor (pessimist) and Ray Kurzweil (optimist) about whether a computer will pass a lengthy Turing Test by the year 2029. During the Long Now Turing Test, each of three Turing Test Judges will conduct online interviews of each of the four Turing Test Candidates (i.e., the Computer and the three Turing Test Human Foils) for two hours each for a total of eight hours of interviews. The bet specifies the conditions in some detail.
+
+
+== Conferences ==
+
+
+=== Turing Colloquium ===
+1990 marked the fortieth anniversary of the first publication of Turing's "Computing Machinery and Intelligence" paper, and, thus, saw renewed interest in the test. Two significant events occurred in that year: The first was the Turing Colloquium, which was held at the University of Sussex in April, and brought together academics and researchers from a wide variety of disciplines to discuss the Turing Test in terms of its past, present, and future; the second was the formation of the annual Loebner Prize competition.
+Blay Whitby lists four major turning points in the history of the Turing Test – the publication of "Computing Machinery and Intelligence" in 1950, the announcement of Joseph Weizenbaum's ELIZA in 1966, Kenneth Colby's creation of PARRY, which was first described in 1972, and the Turing Colloquium in 1990.
+
+
+=== 2005 Colloquium on Conversational Systems ===
+In November 2005, the University of Surrey hosted an inaugural one-day meeting of artificial conversational entity developers, attended by winners of practical Turing Tests in the Loebner Prize: Robby Garner, Richard Wallace and Rollo Carpenter. Invited speakers included David Hamill, Hugh Loebner (sponsor of the Loebner Prize) and Huma Shah.
+
+
+=== 2008 AISB Symposium ===
+In parallel to the 2008 Loebner Prize held at the University of Reading, the Society for the Study of Artificial Intelligence and the Simulation of Behaviour (AISB), hosted a one-day symposium to discuss the Turing Test, organised by John Barnden, Mark Bishop, Huma Shah and Kevin Warwick. The Speakers included Royal Institution's Director Baroness Susan Greenfield, Selmer Bringsjord, Turing's biographer Andrew Hodges, and consciousness scientist Owen Holland. No agreement emerged for a canonical Turing Test, though Bringsjord expressed that a sizeable prize would result in the Turing Test being passed sooner.
+
+
+=== The Alan Turing Year, and Turing100 in 2012 ===
+Throughout 2012, a number of major events took place to celebrate Turing's life and scientific impact. The Turing100 group supported these events and also, organised a special Turing test event in Bletchley Park on 23 June 2012 to celebrate the 100th anniversary of Turing's birth.
+
+
+== In popular culture ==
+The Turing test has been used in a number of instances in popular media where machines are discussed. The 13th May 2017 comic strip of the popular comic Dilbert featured the Turing test.
+
+
+== See also ==
+
+
+== Notes ==
+
+
+== References ==
+
+
+== Further reading ==
+
+
+== External links ==
+The Turing Test – an Opera by Julian Wagstaff
+Turing test at DMOZ
+The Turing Test- How accurate could the turing test really be?
+Zalta, Edward N. (ed.). "The Turing test". Stanford Encyclopedia of Philosophy. 
+Turing Test: 50 Years Later reviews a half-century of work on the Turing Test, from the vantage point of 2000.
+Bet between Kapor and Kurzweil, including detailed justifications of their respective positions.
+Why The Turing Test is AI's Biggest Blind Alley by Blay Witby
+Jabberwacky.com An AI chatterbot that learns from and imitates humans
+New York Times essays on machine intelligence part 1 and part 2
+"The first ever (restricted) Turing test", on season 2 , episode 5 of Scientific American Frontiers.
+Computer Science Unplugged teaching activity for the Turing Test.
+Wiki News: "Talk:Computer professionals celebrate 10th birthday of A.L.I.C.E."

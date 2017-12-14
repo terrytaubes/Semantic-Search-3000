@@ -1,0 +1,12 @@
+Data Science Experience (DSx) is IBM’s platform for data science, a one-stop workspace that offers all the collaboration and open-source tools data scientists need and use every day. It was created for data scientists who like working with open source tools, collaborating with their peers and accessing their data tools and data sets in one place.
+In DSX, data scientists can create projects with a group of collaborators, all with access to a host of analytics models and support for various languages (R/Python/Scala). DSx brings together staple open source tools like RStudio, Spark and Python in an integrated environment - along with IBM value-adds like a managed Spark service and data shaping capabilities, all in a secure and governed environment.
+Data Science Experience provides access to data sets that are available through Watson Data Platform, on-premises or on the cloud. The platform also has a large community and embedded resources like articles on the latest developments from the data science world and public data sets. DSx is available on-premises, on the cloud and on desktop.
+In recent years, Microsoft and other technology vendors have also joined the machine learning market which is developing rapidly.
+
+
+== History ==
+IBM announced the launch of DSx at the Spark Summit 2016 in San Francisco. IBM invested $300 million in efforts to make Spark the analytics operating system for all of the company's big data efforts.
+In June 2017, Hortonworks and IBM announced their partnership to collaborate on IBM's Data Science Experience. DSx addresses every step of the Data Science lifecycle, offering notebooks, collaboration spaces, tutorials, Machine Learning models and support for Spark, R, Python, and other ML languages. Hortonworks previously had a partnership relationship with Microsoft.
+
+
+== References ==

@@ -1,0 +1,1655 @@
+In statistics and machine learning, the bias–variance tradeoff (or dilemma) is the problem of simultaneously minimizing two sources of error that prevent supervised learning algorithms from generalizing beyond their training set:
+The bias is error from erroneous assumptions in the learning algorithm. High bias can cause an algorithm to miss the relevant relations between features and target outputs (underfitting).
+The variance is error from sensitivity to small fluctuations in the training set. High variance can cause an algorithm to model the random noise in the training data, rather than the intended outputs (overfitting).
+The bias–variance decomposition is a way of analyzing a learning algorithm's expected generalization error with respect to a particular problem as a sum of three terms, the bias, variance, and a quantity called the irreducible error, resulting from noise in the problem itself.
+This tradeoff applies to all forms of supervised learning: classification, regression (function fitting), and structured output learning. It has also been invoked to explain the effectiveness of heuristics in human learning.
+
+
+== Motivation ==
+The bias–variance tradeoff is a central problem in supervised learning. Ideally, one wants to choose a model that both accurately captures the regularities in its training data, but also generalizes well to unseen data. Unfortunately, it is typically impossible to do both simultaneously. High-variance learning methods may be able to represent their training set well, but are at risk of overfitting to noisy or unrepresentative training data. In contrast, algorithms with high bias typically produce simpler models that don't tend to overfit, but may underfit their training data, failing to capture important regularities.
+Models with low bias are usually more complex (e.g. higher-order regression polynomials), enabling them to represent the training set more accurately. In the process, however, they may also represent a large noise component in the training set, making their predictions less accurate - despite their added complexity. In contrast, models with higher bias tend to be relatively simple (low-order or even linear regression polynomials), but may produce lower variance predictions when applied beyond the training set.
+
+
+== Bias–variance decomposition of squared error ==
+Suppose that we have a training set consisting of a set of points 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          x
+          
+            n
+          
+        
+      
+    
+    {\displaystyle x_{1},\dots ,x_{n}}
+   and real values 
+  
+    
+      
+        
+          y
+          
+            i
+          
+        
+      
+    
+    {\displaystyle y_{i}}
+   associated with each point 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle x_{i}}
+  . We assume that there is a function with noise 
+  
+    
+      
+        y
+        =
+        f
+        (
+        x
+        )
+        +
+        ϵ
+      
+    
+    {\displaystyle y=f(x)+\epsilon }
+  , where the noise, 
+  
+    
+      
+        ϵ
+      
+    
+    {\displaystyle \epsilon }
+  , has zero mean and variance 
+  
+    
+      
+        
+          σ
+          
+            2
+          
+        
+      
+    
+    {\displaystyle \sigma ^{2}}
+  .
+We want to find a function 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}(x)}
+  , that approximates the true function 
+  
+    
+      
+        f
+        (
+        x
+        )
+      
+    
+    {\displaystyle f(x)}
+   as well as possible, by means of some learning algorithm. We make "as well as possible" precise by measuring the mean squared error between 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   and 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}(x)}
+  : we want 
+  
+    
+      
+        (
+        y
+        −
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+        
+          )
+          
+            2
+          
+        
+      
+    
+    {\displaystyle (y-{\hat {f}}(x))^{2}}
+   to be minimal, both for 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          x
+          
+            n
+          
+        
+      
+    
+    {\displaystyle x_{1},\dots ,x_{n}}
+   and for points outside of our sample. Of course, we cannot hope to do so perfectly, since the 
+  
+    
+      
+        
+          y
+          
+            i
+          
+        
+      
+    
+    {\displaystyle y_{i}}
+   contain noise 
+  
+    
+      
+        ϵ
+      
+    
+    {\displaystyle \epsilon }
+  ; this means we must be prepared to accept an irreducible error in any function we come up with.
+Finding an 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+      
+    
+    {\displaystyle {\hat {f}}}
+   that generalizes to points outside of the training set can be done with any of the countless algorithms used for supervised learning. It turns out that whichever function 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+      
+    
+    {\displaystyle {\hat {f}}}
+   we select, we can decompose its expected error on an unseen sample 
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+   as follows:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  E
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    (
+                  
+                
+                y
+                −
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  
+                    
+                      )
+                    
+                  
+                  
+                    2
+                  
+                
+                
+                  
+                    ]
+                  
+                
+              
+              
+                
+                =
+                
+                  B
+                  i
+                  a
+                  s
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  
+                    
+                      ]
+                    
+                  
+                  
+                    2
+                  
+                
+                +
+                
+                  V
+                  a
+                  r
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  
+                    ]
+                  
+                
+                +
+                
+                  σ
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {E} {\Big [}{\big (}y-{\hat {f}}(x){\big )}^{2}{\Big ]}&=\mathrm {Bias} {\big [}{\hat {f}}(x){\big ]}^{2}+\mathrm {Var} {\big [}{\hat {f}}(x){\big ]}+\sigma ^{2}\\\end{aligned}}}
+  
+Where:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  B
+                  i
+                  a
+                  s
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  
+                    ]
+                  
+                
+                =
+                
+                  E
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                −
+                f
+                (
+                x
+                )
+                
+                  
+                    ]
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {Bias} {\big [}{\hat {f}}(x){\big ]}=\mathrm {E} {\big [}{\hat {f}}(x)-f(x){\big ]}\end{aligned}}}
+  
+and
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  V
+                  a
+                  r
+                
+                
+                  
+                    [
+                  
+                
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  
+                    ]
+                  
+                
+                =
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                
+                  )
+                  
+                    2
+                  
+                
+                ]
+                −
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                (
+                x
+                )
+                
+                  ]
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {Var} {\big [}{\hat {f}}(x){\big ]}=\mathrm {E} [{\hat {f}}(x)^{2}]-\mathrm {E} [{\hat {f}}(x)]^{2}\end{aligned}}}
+  
+The expectation ranges over different choices of the training set 
+  
+    
+      
+        
+          x
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          x
+          
+            n
+          
+        
+        ,
+        
+          y
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          y
+          
+            n
+          
+        
+      
+    
+    {\displaystyle x_{1},\dots ,x_{n},y_{1},\dots ,y_{n}}
+  , all sampled from the same joint distribution 
+  
+    
+      
+        P
+        (
+        x
+        ,
+        y
+        )
+      
+    
+    {\displaystyle P(x,y)}
+  . The three terms represent:
+the square of the bias of the learning method, which can be thought of as the error caused by the simplifying assumptions built into the method. E.g., when approximating a non-linear function 
+  
+    
+      
+        f
+        (
+        x
+        )
+      
+    
+    {\displaystyle f(x)}
+   using a learning method for linear models, there will be error in the estimates 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}(x)}
+   due to this assumption;
+the variance of the learning method, or, intuitively, how much the learning method 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}(x)}
+   will move around its mean;
+the irreducible error 
+  
+    
+      
+        
+          σ
+          
+            2
+          
+        
+      
+    
+    {\displaystyle \sigma ^{2}}
+  . Since all three terms are non-negative, this forms a lower bound on the expected error on unseen samples.
+The more complex the model 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}(x)}
+   is, the more data points it will capture, and the lower the bias will be. However, complexity will make the model "move" more to capture the data points, and hence its variance will be larger.
+
+
+=== Derivation ===
+The derivation of the bias–variance decomposition for squared error proceeds as follows. For notational convenience, abbreviate 
+  
+    
+      
+        f
+        =
+        f
+        (
+        x
+        )
+      
+    
+    {\displaystyle f=f(x)}
+   and 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        =
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle {\hat {f}}={\hat {f}}(x)}
+  . First, recall that, by definition, for any random variable 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  , we have
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  V
+                  a
+                  r
+                
+                [
+                X
+                ]
+                =
+                
+                  E
+                
+                [
+                
+                  X
+                  
+                    2
+                  
+                
+                ]
+                −
+                
+                  E
+                
+                [
+                X
+                
+                  ]
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {Var} [X]=\mathrm {E} [X^{2}]-\mathrm {E} [X]^{2}\end{aligned}}}
+  
+Rearranging, we get:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  E
+                
+                [
+                
+                  X
+                  
+                    2
+                  
+                
+                ]
+                =
+                
+                  V
+                  a
+                  r
+                
+                [
+                X
+                ]
+                +
+                
+                  E
+                
+                [
+                X
+                
+                  ]
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {E} [X^{2}]=\mathrm {Var} [X]+\mathrm {E} [X]^{2}\end{aligned}}}
+  
+Since 
+  
+    
+      
+        f
+      
+    
+    {\displaystyle f}
+   is deterministic
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  E
+                
+                [
+                f
+                ]
+                =
+                f
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {E} [f]=f\end{aligned}}}
+  .
+This, given 
+  
+    
+      
+        y
+        =
+        f
+        +
+        ϵ
+      
+    
+    {\displaystyle y=f+\epsilon }
+   and 
+  
+    
+      
+        
+          E
+        
+        [
+        ϵ
+        ]
+        =
+        0
+      
+    
+    {\displaystyle \mathrm {E} [\epsilon ]=0}
+  , implies 
+  
+    
+      
+        
+          E
+        
+        [
+        y
+        ]
+        =
+        
+          E
+        
+        [
+        f
+        +
+        ϵ
+        ]
+        =
+        
+          E
+        
+        [
+        f
+        ]
+        =
+        f
+      
+    
+    {\displaystyle \mathrm {E} [y]=\mathrm {E} [f+\epsilon ]=\mathrm {E} [f]=f}
+  .
+Also, since 
+  
+    
+      
+        
+          V
+          a
+          r
+        
+        [
+        ϵ
+        ]
+        =
+        
+          σ
+          
+            2
+          
+        
+      
+    
+    {\displaystyle \mathrm {Var} [\epsilon ]=\sigma ^{2}}
+  
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  V
+                  a
+                  r
+                
+                [
+                y
+                ]
+                =
+                
+                  E
+                
+                [
+                (
+                y
+                −
+                
+                  E
+                
+                [
+                y
+                ]
+                
+                  )
+                  
+                    2
+                  
+                
+                ]
+                =
+                
+                  E
+                
+                [
+                (
+                y
+                −
+                f
+                
+                  )
+                  
+                    2
+                  
+                
+                ]
+                =
+                
+                  E
+                
+                [
+                (
+                f
+                +
+                ϵ
+                −
+                f
+                
+                  )
+                  
+                    2
+                  
+                
+                ]
+                =
+                
+                  E
+                
+                [
+                
+                  ϵ
+                  
+                    2
+                  
+                
+                ]
+                =
+                
+                  V
+                  a
+                  r
+                
+                [
+                ϵ
+                ]
+                +
+                
+                  E
+                
+                [
+                ϵ
+                
+                  ]
+                  
+                    2
+                  
+                
+                =
+                
+                  σ
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {Var} [y]=\mathrm {E} [(y-\mathrm {E} [y])^{2}]=\mathrm {E} [(y-f)^{2}]=\mathrm {E} [(f+\epsilon -f)^{2}]=\mathrm {E} [\epsilon ^{2}]=\mathrm {Var} [\epsilon ]+\mathrm {E} [\epsilon ]^{2}=\sigma ^{2}\end{aligned}}}
+  
+Thus, since 
+  
+    
+      
+        ϵ
+      
+    
+    {\displaystyle \epsilon }
+   and 
+  
+    
+      
+        
+          
+            
+              f
+              ^
+            
+          
+        
+      
+    
+    {\displaystyle {\hat {f}}}
+   are independent, we can write
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  E
+                
+                
+                  
+                    [
+                  
+                
+                (
+                y
+                −
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                
+                  )
+                  
+                    2
+                  
+                
+                
+                  
+                    ]
+                  
+                
+              
+              
+                
+                =
+                
+                  E
+                
+                [
+                
+                  y
+                  
+                    2
+                  
+                
+                +
+                
+                  
+                    
+                      
+                        f
+                        ^
+                      
+                    
+                  
+                  
+                    2
+                  
+                
+                −
+                2
+                y
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+              
+            
+            
+              
+              
+                
+                =
+                
+                  E
+                
+                [
+                
+                  y
+                  
+                    2
+                  
+                
+                ]
+                +
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      
+                        f
+                        ^
+                      
+                    
+                  
+                  
+                    2
+                  
+                
+                ]
+                −
+                
+                  E
+                
+                [
+                2
+                y
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+              
+            
+            
+              
+              
+                
+                =
+                
+                  V
+                  a
+                  r
+                
+                [
+                y
+                ]
+                +
+                
+                  E
+                
+                [
+                y
+                
+                  ]
+                  
+                    2
+                  
+                
+                +
+                
+                  V
+                  a
+                  r
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                +
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                
+                  ]
+                  
+                    2
+                  
+                
+                −
+                2
+                f
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+              
+            
+            
+              
+              
+                
+                =
+                
+                  V
+                  a
+                  r
+                
+                [
+                y
+                ]
+                +
+                
+                  V
+                  a
+                  r
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                +
+                (
+                
+                  f
+                  
+                    2
+                  
+                
+                −
+                2
+                f
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                +
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                
+                  ]
+                  
+                    2
+                  
+                
+                )
+              
+            
+            
+              
+              
+                
+                =
+                
+                  V
+                  a
+                  r
+                
+                [
+                y
+                ]
+                +
+                
+                  V
+                  a
+                  r
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                +
+                (
+                f
+                −
+                
+                  E
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                
+                  )
+                  
+                    2
+                  
+                
+              
+            
+            
+              
+              
+                
+                =
+                
+                  σ
+                  
+                    2
+                  
+                
+                +
+                
+                  V
+                  a
+                  r
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                ]
+                +
+                
+                  B
+                  i
+                  a
+                  s
+                
+                [
+                
+                  
+                    
+                      f
+                      ^
+                    
+                  
+                
+                
+                  ]
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}\mathrm {E} {\big [}(y-{\hat {f}})^{2}{\big ]}&=\mathrm {E} [y^{2}+{\hat {f}}^{2}-2y{\hat {f}}]\\&=\mathrm {E} [y^{2}]+\mathrm {E} [{\hat {f}}^{2}]-\mathrm {E} [2y{\hat {f}}]\\&=\mathrm {Var} [y]+\mathrm {E} [y]^{2}+\mathrm {Var} [{\hat {f}}]+\mathrm {E} [{\hat {f}}]^{2}-2f\mathrm {E} [{\hat {f}}]\\&=\mathrm {Var} [y]+\mathrm {Var} [{\hat {f}}]+(f^{2}-2f\mathrm {E} [{\hat {f}}]+\mathrm {E} [{\hat {f}}]^{2})\\&=\mathrm {Var} [y]+\mathrm {Var} [{\hat {f}}]+(f-\mathrm {E} [{\hat {f}}])^{2}\\&=\sigma ^{2}+\mathrm {Var} [{\hat {f}}]+\mathrm {Bias} [{\hat {f}}]^{2}\end{aligned}}}
+  
+
+
+== Application to regression ==
+The bias–variance decomposition forms the conceptual basis for regression regularization methods such as Lasso and ridge regression. Regularization methods introduce bias into the regression solution that can reduce variance considerably relative to the OLS solution. Although the OLS solution provides non-biased regression estimates, the lower variance solutions produced by regularization techniques provide superior MSE performance.
+
+
+== Application to classification ==
+The bias–variance decomposition was originally formulated for least-squares regression. For the case of classification under the 0-1 loss (misclassification rate), it's possible to find a similar decomposition. Alternatively, if the classification problem can be phrased as probabilistic classification, then the expected squared error of the predicted probabilities with respect to the true probabilities can be decomposed as before.
+
+
+== Approaches ==
+Dimensionality reduction and feature selection can decrease variance by simplifying models. Similarly, a larger training set tends to decrease variance. Adding features (predictors) tends to decrease bias, at the expense of introducing additional variance. Learning algorithms typically have some tunable parameters that control bias and variance, e.g.:
+(Generalized) linear models can be regularized to decrease their variance at the cost of increasing their bias.
+In artificial neural networks, the variance increases and the bias decreases with the number of hidden units. Like in GLMs, regularization is typically applied.
+In k-nearest neighbor models, a high value of k leads to high bias and low variance (see below).
+In Instance-based learning, regularization can be achieved varying the mixture of prototypes and exemplars.
+In decision trees, the depth of the tree determines the variance. Decision trees are commonly pruned to control variance.
+One way of resolving the trade-off is to use mixture models and ensemble learning. For example, boosting combines many "weak" (high bias) models in an ensemble that has lower bias than the individual models, while bagging combines "strong" learners in a way that reduces their variance.
+
+
+=== K-nearest neighbors ===
+In the case of k-nearest neighbors regression, a closed-form expression exists that relates the bias–variance decomposition to the parameter k:
+
+  
+    
+      
+        
+          E
+        
+        [
+        (
+        y
+        −
+        
+          
+            
+              f
+              ^
+            
+          
+        
+        (
+        x
+        )
+        
+          )
+          
+            2
+          
+        
+        ∣
+        X
+        =
+        x
+        ]
+        =
+        
+          
+            (
+            f
+            (
+            x
+            )
+            −
+            
+              
+                1
+                k
+              
+            
+            
+              ∑
+              
+                i
+                =
+                1
+              
+              
+                k
+              
+            
+            f
+            (
+            
+              N
+              
+                i
+              
+            
+            (
+            x
+            )
+            )
+            )
+          
+          
+            2
+          
+        
+        +
+        
+          
+            
+              σ
+              
+                2
+              
+            
+            k
+          
+        
+        +
+        
+          σ
+          
+            2
+          
+        
+      
+    
+    {\displaystyle \mathrm {E} [(y-{\hat {f}}(x))^{2}\mid X=x]=\left(f(x)-{\frac {1}{k}}\sum _{i=1}^{k}f(N_{i}(x))\right)^{2}+{\frac {\sigma ^{2}}{k}}+\sigma ^{2}}
+  
+where 
+  
+    
+      
+        
+          N
+          
+            1
+          
+        
+        (
+        x
+        )
+        ,
+        …
+        ,
+        
+          N
+          
+            k
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle N_{1}(x),\dots ,N_{k}(x)}
+   are the k nearest neighbors of x in the training set. The bias (first term) is a monotone rising function of k, while the variance (second term) drops off as k is increased. In fact, under "reasonable assumptions" the bias of the first-nearest neighbor (1-NN) estimator vanishes entirely as the size of the training set approaches infinity.
+
+
+== Application to human learning ==
+While widely discussed in the context of machine learning, the bias-variance dilemma has been examined in the context of human cognition, most notably by Gerd Gigerenzer and co-workers in the context of learned heuristics. They have argued (see references below) that the human brain resolves the dilemma in the case of the typically sparse, poorly-characterised training-sets provided by experience by adopting high-bias/low variance heuristics. This reflects the fact that a zero-bias approach has poor generalisability to new situations, and also unreasonably presumes precise knowledge of the true state of the world. The resulting heuristics are relatively simple, but produce better inferences in a wider variety of situations.
+Geman et al. argue that the bias-variance dilemma implies that abilities such as generic object recognition cannot be learned from scratch, but require a certain degree of “hard wiring” that is later tuned by experience. This is because model-free approaches to inference require impractically large training sets if they are to avoid high variance.
+
+
+== See also ==
+
+
+== References ==
+
+
+== External links ==
+Fortmann-Roe, Scott (June 2012). "Understanding the Bias-Variance Tradeoff".

@@ -1,0 +1,1376 @@
+Grammar theory to model symbol strings originated from work in computational linguistics aiming to understand the structure of natural languages. Probabilistic context free grammars (PCFGs) have been applied in probabilistic modeling of RNA structures almost 40 years after they were introduced in computational linguistics.
+PCFGs extend context-free grammars similar to how hidden Markov models extend regular grammars. Each production is assigned a probability. The probability of a derivation (parse) is the product of the probabilities of the productions used in that derivation. These probabilities can be viewed as parameters of the model, and for large problems it is convenient to learn these parameters via machine learning. A probabilistic grammar's validity is constrained by context of its training dataset.
+PCFGs have application in areas as diverse as natural language processing to the study the structure of RNA molecules and design of programming languages. Designing efficient PCFGs has to weigh factors of scalability and generality. Issues such as grammar ambiguity must be resolved. The grammar design affects results accuracy. Grammar parsing algorithms have various time and memory requirements.
+
+
+== Definitions ==
+Derivation: The process of recursive generation of strings from a grammar.
+Parsing: Finding a valid derivation using an automaton.
+Parse Tree: The alignment of the grammar to a sequence.
+An example of a parser for PCFG grammars is the pushdown automaton. The algorithm parses grammar nonterminals from left to right in a stack-like manner. This brute-force approach is not very efficient. In RNA secondary structure prediction variants of the Cocke–Younger–Kasami (CYK) algorithm provide more efficient alternatives to grammar parsing than pushdown automata. Another example of a PCFG parser is the Stanford Statistical Parser which has been trained using Treebank,.
+
+
+== Formal definition ==
+Similar to a CFG, a probabilistic context-free grammar G can be defined by a quintuple:
+
+  
+    
+      
+        G
+        =
+        (
+        M
+        ,
+        T
+        ,
+        R
+        ,
+        S
+        ,
+        P
+        )
+      
+    
+    {\displaystyle G=(M,T,R,S,P)}
+  
+where
+M is the set of non-terminal symbols
+T is the set of terminal symbols
+R is the set of production rules
+S is the start symbol
+P is the set of probabilities on production rules
+
+
+== Relation with hidden Markov models ==
+PCFGs models extend context-free grammars the same way as hidden Markov models extend regular grammars.
+The Inside-Outside algorithm is an analogue of the Forward-Backward algorithm. It computes the total probability of all derivations that are consistent with a given sequence, based on some PCFG. This is equivalent to the probability of the PCFG generating the sequence, and is intuitively a measure of how consistent the sequence is with the given grammar. The Inside-Outside algorithm is used in model parametrization to estimate prior frequencies observed from training sequences in the case of RNAs.
+Dynamic programming variants of the CYK algorithm find the Viterbi parse of a RNA sequence for a PCFG model. This parse is the most likely derivation of the sequence by the given PCFG.
+
+
+== Grammar construction ==
+Context-free grammars are represented as a set of rules inspired from attempts to model natural languages. The rules are absolute and have a typical syntax representation known as Backus–Naur form. The production rules consist of terminal 
+  
+    
+      
+        
+          {
+          a
+          ,
+          b
+          }
+        
+      
+    
+    {\displaystyle \left\{a,b\right\}}
+   and non-terminal S symbols and a blank 
+  
+    
+      
+        ϵ
+      
+    
+    {\displaystyle \epsilon }
+   may also be used as an end point. In the production rules of CFG and PCFG the left side has only one nonterminal whereas the right side can be any string of terminal or nonterminals. In PCFG nulls are excluded. An example of a grammar:
+
+  
+    
+      
+        S
+        →
+        a
+        S
+        ,
+        S
+        →
+        b
+        S
+        ,
+        S
+        →
+        ϵ
+      
+    
+    {\displaystyle S\to aS,S\to bS,S\to \epsilon }
+  
+This grammar can be shortened using the '|' ('or') character into:
+
+  
+    
+      
+        S
+        →
+        a
+        S
+        
+          |
+        
+        b
+        S
+        
+          |
+        
+        ϵ
+      
+    
+    {\displaystyle S\to aS|bS|\epsilon }
+  
+Terminals in a grammar are words and through the grammar rules a non-terminal symbol is transformed into a string of either terminals and/or non-terminals. The above grammar is read as "beginning from a non-terminal S the emission can generate either a or b or 
+  
+    
+      
+        ϵ
+      
+    
+    {\displaystyle \epsilon }
+  ". Its derivation is:
+
+  
+    
+      
+        S
+        ⇒
+        a
+        S
+        ⇒
+        a
+        b
+        S
+        ⇒
+        a
+        b
+        b
+        S
+        ⇒
+        a
+        b
+        b
+      
+    
+    {\displaystyle S\Rightarrow aS\Rightarrow abS\Rightarrow abbS\Rightarrow abb}
+  
+Ambiguous grammar may result in ambiguous parsing if applied on homographs since the same word sequence can have more than one interpretation. Pun sentences such as the newspaper headline "Iraqi Head Seeks Arms" are an example of ambiguous parses.
+One strategy of dealing with ambiguous parses (originating with grammarians as early as Pāṇini) is to add yet more rules, or prioritize them so that one rule takes precedence over others. This, however, has the drawback of proliferating the rules, often to the point where they become difficult to manage. Another difficulty is overgeneration, where unlicensed structures are also generated.
+Probabilistic grammars circumvent these problems by ranking various productions on frequency weights, resulting in a "most likely" (winner-take-all) interpretation. As usage patterns are altered in diachronic shifts, these probabilistic rules can be re-learned, thus upgrading the grammar.
+Assigning probability to production rules makes a PCFG. These probabilities are informed by observing distributions on a training set of similar composition to the language to be modeled. On most samples of broad language, probabilistic grammars where probabilities are estimated from data typically outperform hand-crafted grammars. CFGs when contrasted with PCFGs are not applicable to RNA structure prediction because while they incorporate sequence-structure relationship they lack the scoring metrics that reveal a sequence structural potential 
+
+
+== Weighted context-free grammar ==
+A weighted context-free grammar (WCFG) is a more general category of context-free grammar, where each production has a numeric weight associated with it. The weight of a specific parse tree in a WCFG is the product (or sum ) of all rule weights in the tree. Each rule weight is included as often as the rule is used in the tree. A special case of WCFGs are PCFGs, where the weights are (logarithms of ) probabilities.
+An extended version of the CYK algorithm can be used to find the "lightest" (least-weight) derivation of a string given some WCFG.
+When the tree weight is the product of the rule weights, WCFGs and PCFGs can express the same set of probability distributions.
+
+
+== Applications ==
+
+
+=== RNA structure prediction ===
+Energy minimization and PCFG provide ways of predicting RNA secondary structure with comparable performance. However structure prediction by PCFGs is scored probabilistically rather than by minimum free energy calculation. PCFG model parameters are directly derived from frequencies of different features observed in databases of RNA structures  rather than by experimental determination as is the case with energy minimization methods.
+The types of various structure that can be modeled by a PCFG include long range interactions, pairwise structure and other nested structures. However, pseudoknots can not be modeled. PCFGs extend CFG by assigning probabilities to each production rule. A maximum probability parse tree from the grammar implies a maximum probability structure. Since RNAs preserve their structures over their primary sequence; RNA structure prediction can be guided by combining evolutionary information from comparative sequence analysis with biophysical knowledge about a structure plausibility based on such probabilities. Also search results for structural homologs using PCFG rules are scored according to PCFG derivations probabilities. Therefore, building grammar to model the behavior of base-pairs and single-stranded regions starts with exploring features of structural multiple sequence alignment of related RNAs.
+
+  
+    
+      
+        S
+        →
+        a
+        S
+        a
+        
+          |
+        
+        b
+        S
+        b
+        
+          |
+        
+        a
+        a
+        
+          |
+        
+        b
+        b
+      
+    
+    {\displaystyle S\to aSa|bSb|aa|bb}
+  
+The above grammar generates a string in an outside-in fashion, that is the basepair on the furthest extremes of the terminal is derived first. So a string such as 
+  
+    
+      
+        a
+        a
+        b
+        a
+        a
+        b
+        a
+        a
+      
+    
+    {\displaystyle aabaabaa}
+   is derived by first generating the distal a's on both sides before moving inwards:
+
+  
+    
+      
+        S
+        ⇒
+        a
+        S
+        a
+        ⇒
+        a
+        a
+        S
+        a
+        a
+        ⇒
+        a
+        a
+        b
+        S
+        b
+        a
+        a
+        ⇒
+        a
+        a
+        b
+        a
+        a
+        b
+        a
+        a
+      
+    
+    {\displaystyle S\Rightarrow aSa\Rightarrow aaSaa\Rightarrow aabSbaa\Rightarrow aabaabaa}
+  
+A PCFG model extendibility allows constraining structure prediction by incorporating expectations about different features of an RNA . Such expectation may reflect for example the propensity for assuming a certain structure by an RNA. However incorporation of too much information may increase PCFG space and memory complexity and it is desirable that a PCFG-based model be as simple as possible.
+Every possible string x a grammar generates is assigned a probability weight 
+  
+    
+      
+        P
+        (
+        x
+        
+          |
+        
+        θ
+        )
+      
+    
+    {\displaystyle P(x|\theta )}
+   given the PCFG model 
+  
+    
+      
+        θ
+      
+    
+    {\displaystyle \theta }
+  . It follows that the sum of all probabilities to all possible grammar productions is 
+  
+    
+      
+        
+          ∑
+          
+            x
+          
+        
+        P
+        (
+        x
+        
+          |
+        
+        θ
+        )
+        =
+        1
+      
+    
+    {\displaystyle \sum _{\text{x}}P(x|\theta )=1}
+  . The scores for each paired and unpaired residue explain likelihood for secondary structure formations. Production rules also allow scoring loop lengths as well as the order of base pair stacking hence it is possible to explore the range of all possible generations including suboptimal structures from the grammar and accept or reject structures based on score thresholds.
+
+
+==== Implementations ====
+RNA secondary structure implementations based on PCFG approaches can be utilized in :
+Finding consensus structure by optimizing structure joint probabilities over MSA.
+Modeling base-pair covariation to detecting homology in database searches.
+pairwise simultaneous folding and alignment.
+Different implementation of these approaches exist. For example, Pfold is used in secondary structure prediction from a group of related RNA sequences, covariance models are used in searching databases for homologous sequences and RNA annotation and classification, RNApromo, CMFinder and TEISER are used in finding stable structural motifs in RNAs.
+
+
+==== Design considerations ====
+PCFG design impacts the secondary structure prediction accuracy. Any useful structure prediction probabilistic model based on PCFG has to maintain simplicity without much compromise to prediction accuracy. Too complex a model of excellent performance on a single sequence may not scale. A grammar based model should be able to:
+Find the optimal alignment between a sequence and the PCFG.
+Score the probability of the structures for the sequence and subsequences.
+Parameterize the model by training on sequences/structures.
+Find the optimal grammar parse tree (CYK algorithm).
+Check for ambiguous grammar (Conditional Inside algorithm).
+The resulting of multiple parse trees per grammar denotes grammar ambiguity. This may be useful in revealing all possible base-pair structures for a grammar. However an optimal structure is the one where there is one and only one correspondence between the parse tree and the secondary structure.
+Two types of ambiguities can be distinguished. Parse tree ambiguity and structural ambiguity. Structural ambiguity does not affect thermodynamic approaches as the optimal structure selection is always on the basis of lowest free energy scores. Parse tree ambiguity concerns the existence of multiple parse trees per sequence. Such an ambiguity can reveal all possible base-paired structures for the sequence by generating all possible parse trees then finding the optimal one. In the case of structural ambiguity multiple parse trees describe the same secondary structure. This obscures the CYK algorithm decision on finding an optimal structure as the correspondence between the parse tree and the structure is not unique. Grammar ambiguity can be checked for by the conditional-inside algorithm.
+
+
+==== Building a PCFG model ====
+A probabilistic context free grammar consists of terminal and nonterminal variables. Each feature to be modeled has a production rule that is assigned a probability estimated from a training set of RNA structures. Production rules are recursively applied until only terminal residues are left.
+A starting non-terminal 
+  
+    
+      
+        
+          
+            S
+          
+        
+      
+    
+    {\displaystyle \mathbf {\mathit {S}} }
+   produces loops. The rest of the grammar proceeds with parameter 
+  
+    
+      
+        
+          
+            L
+          
+        
+      
+    
+    {\displaystyle \mathbf {\mathit {L}} }
+   that decide whether a loop is a start of a stem or a single stranded region s and parameter 
+  
+    
+      
+        
+          
+            F
+          
+        
+      
+    
+    {\displaystyle \mathbf {\mathit {F}} }
+   that produces paired bases.
+The formalism of this simple PCFG looks like:
+
+  
+    
+      
+        
+          
+            S
+            →
+            L
+            S
+            
+              |
+            
+            L
+          
+        
+      
+    
+    {\displaystyle {\mathit {S\to LS|L}}}
+  
+
+  
+    
+      
+        
+          
+            L
+            →
+            s
+            
+              |
+            
+            d
+            F
+            d
+          
+        
+      
+    
+    {\displaystyle {\mathit {L\to s|dFd}}}
+  
+
+  
+    
+      
+        
+          
+            F
+            →
+            d
+            F
+            d
+            
+              |
+            
+            L
+            S
+          
+        
+      
+    
+    {\displaystyle {\mathit {F\to dFd|LS}}}
+  
+The application of PCFGs in predicting structures is a multi-step process. In addition, the PCFG itself can be incorporated into probabilistic models that consider RNA evolutionary history or search homologous sequences in databases. In an evolutionary history context inclusion of prior distributions of RNA structures of a structural alignment in the production rules of the PCFG facilitates good prediction accuracy.
+A summary of general steps for utilizing PCFGs in various scenarios:
+Generate production rules for the sequences.
+Check ambiguity.
+Recursively generate parse trees of the possible structures using the grammar.
+Rank and score the parse trees for the most plausible sequence.
+
+
+==== Algorithms ====
+Several algorithms dealing with aspects of PCFG based probabilistic models in RNA structure prediction exist. For instance the inside-outside algorithm and the CYK algorithm. The inside-outside algorithm is a recursive dynamic programming scoring algorithm that can follow expectation-maximization paradigms. It computes the total probability of all derivations that are consistent with a given sequence, based on some PCFG. The inside part scores the subtrees from a parse tree and therefore subsequences probabilities given an PCFG. The outside part scores the probability of the complete parse tree for a full sequence. CYK modifies the inside-outside scoring. Note that the term 'CYK algorithm' describes the CYK variant of the inside algorithm that finds an optimal parse tree for a sequence using a PCFG. It extends the actual CYK algorithm used in non-probabilistic CFGs.
+The inside algorithm calculates 
+  
+    
+      
+        α
+        (
+        i
+        ,
+        j
+        ,
+        v
+        )
+      
+    
+    {\displaystyle \alpha (i,j,v)}
+   probabilities for all 
+  
+    
+      
+        i
+        ,
+        j
+        ,
+        v
+      
+    
+    {\displaystyle i,j,v}
+   of a parse subtree rooted at 
+  
+    
+      
+        
+          W
+          
+            v
+          
+        
+      
+    
+    {\displaystyle W_{v}}
+   for subsequence 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+        ,
+        .
+        .
+        .
+        ,
+        
+          x
+          
+            j
+          
+        
+      
+    
+    {\displaystyle x_{i},...,x_{j}}
+  . Outside algorithm calculates 
+  
+    
+      
+        β
+        (
+        i
+        ,
+        j
+        ,
+        v
+        )
+      
+    
+    {\displaystyle \beta (i,j,v)}
+   probabilities of a complete parse tree for sequence x from root excluding the calculation of 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+        ,
+        .
+        .
+        .
+        ,
+        
+          x
+          
+            j
+          
+        
+      
+    
+    {\displaystyle x_{i},...,x_{j}}
+  . The variables α and β refine the estimation of probability parameters of an PCFG. It is possible to reestimate the PCFG algorithm by finding the expected number of times a state is used in a derivation through summing all the products of α and β divided by the probability for a sequence x given the model 
+  
+    
+      
+        P
+        (
+        x
+        
+          |
+        
+        θ
+        )
+      
+    
+    {\displaystyle P(x|\theta )}
+  . It is also possible to find the expected number of times a production rule is used by an expectation-maximization that utilizes the values of α and β. The CYK algorithm calculates 
+  
+    
+      
+        γ
+        (
+        i
+        ,
+        j
+        ,
+        v
+        )
+      
+    
+    {\displaystyle \gamma (i,j,v)}
+   to find the most probable parse tree 
+  
+    
+      
+        
+          
+            
+              π
+              ^
+            
+          
+        
+      
+    
+    {\displaystyle {\hat {\pi }}}
+   and yields 
+  
+    
+      
+        log
+        ⁡
+        P
+        (
+        x
+        ,
+        
+          
+            
+              π
+              ^
+            
+          
+        
+        
+          |
+        
+        θ
+        )
+      
+    
+    {\displaystyle \log P(x,{\hat {\pi }}|\theta )}
+  .
+Memory and time complexity for general PCFG algorithms in RNA structure predictions are 
+  
+    
+      
+        O
+        (
+        
+          L
+          
+            2
+          
+        
+        M
+        )
+      
+    
+    {\displaystyle O(L^{2}M)}
+   and 
+  
+    
+      
+        O
+        (
+        
+          L
+          
+            3
+          
+        
+        
+          M
+          
+            3
+          
+        
+        )
+      
+    
+    {\displaystyle O(L^{3}M^{3})}
+   respectively. Restricting a PCFG may alter this requirement as is the case with database searches methods.
+
+
+==== PCFG in homology search ====
+Covariance models (CMs) are a special type of PCFGs with applications in database searches for homologs, annotation and RNA classification. Through CMs it is possible to build PCFG-based RNA profiles where related RNAs can be represented by a consensus secondary structure. The RNA analysis package Infernal uses such profiles in inference of RNA alignments. The Rfam database also uses CMs in classifying RNAs into families based on their structure and sequence information.
+CMs are designed from a consensus RNA structure. A CM allows indels of unlimited length in the alignment. Terminals constitute states in the CM and the transition probabilities between the states is 1 if no indels are considered. Grammars in a CM are as follows:
+
+  
+    
+      
+        P
+        →
+        a
+        W
+        b
+      
+    
+    {\displaystyle P\to aWb}
+  
+probabilities of pairwise interactions between 16 possible pairs
+
+  
+    
+      
+        L
+        →
+        a
+        W
+      
+    
+    {\displaystyle L\to aW}
+  
+probabilities of generating 4 possible single bases on the left
+
+  
+    
+      
+        R
+        →
+        W
+        a
+      
+    
+    {\displaystyle R\to Wa}
+  
+probabilities of generating 4 possible single bases on the right
+
+  
+    
+      
+        B
+        →
+        S
+        S
+      
+    
+    {\displaystyle B\to SS}
+  
+bifurcation with a probability of 1
+
+  
+    
+      
+        S
+        →
+        W
+      
+    
+    {\displaystyle S\to W}
+  
+start with a probability of 1
+
+  
+    
+      
+        E
+        →
+        ϵ
+      
+    
+    {\displaystyle E\to \epsilon }
+  
+end with a probability of 1
+
+The model has 6 possible states and each state grammar includes different types of secondary structure probabilities of the non-terminals. The states are connected by transitions. Ideally current node states connect to all insert states and subsequent node states connect to non-insert states. In order to allow insertion of more than one base insert states connect to themselves.
+In order to score a CM model the inside-outside algorithms are used. CMs use a slightly different implementation of CYK. Log-odds emission scores for the optimum parse tree - 
+  
+    
+      
+        log
+        ⁡
+        
+          
+            
+              e
+              ^
+            
+          
+        
+      
+    
+    {\displaystyle \log {\hat {e}}}
+   - are calculated out of the emitting states 
+  
+    
+      
+        P
+        ,
+         
+        L
+        ,
+         
+        R
+      
+    
+    {\displaystyle P,~L,~R}
+  . Since these scores are a function of sequence length a more discriminative measure to recover an optimum parse tree probability score- 
+  
+    
+      
+        log
+        ⁡
+        
+          P
+        
+        (
+        x
+        ,
+        
+          
+            
+              π
+              ^
+            
+          
+        
+        
+          |
+        
+        θ
+        )
+      
+    
+    {\displaystyle \log {\text{P}}(x,{\hat {\pi }}|\theta )}
+   - is reached by limiting the maximum length of the sequence to be aligned and calculating the log-odds relative to a null. The computation time of this step is linear to the database size and the algorithm has a memory complexity of 
+  
+    
+      
+        O
+        (
+        
+          M
+          
+            a
+          
+        
+        D
+        +
+        
+          M
+          
+            b
+          
+        
+        
+          D
+          
+            2
+          
+        
+        )
+      
+    
+    {\displaystyle O(M_{a}D+M_{b}D^{2})}
+  .
+
+
+==== Example: Using evolutionary information to guide structure prediction ====
+The KH-99 algorithm by Knudsen and Hein lays the basis of the Pfold approach to predicting RNA secondary structure. In this approach the parameterization requires evolutionary history information derived from an alignment tree in addition to probabilities of columns and mutations. The grammar probabilities are observed from a training dataset.
+
+
+===== Estimate column probabilities for paired and unpaired bases =====
+In a structural alignment the probabilities of the unpaired bases columns and the paired bases columns are independent of other columns. By counting bases in single base positions and paired positions one obtains the frequencies of bases in loops and stems. For basepair X and Y an occurrence of 
+  
+    
+      
+        X
+        Y
+      
+    
+    {\displaystyle XY}
+   is also counted as an occurrence of 
+  
+    
+      
+        Y
+        X
+      
+    
+    {\displaystyle YX}
+  . Identical basepairs such as 
+  
+    
+      
+        X
+        X
+      
+    
+    {\displaystyle XX}
+   are counted twice.
+
+
+===== Calculate mutation rates for paired and unpaired bases =====
+By pairing sequences in all possible ways overall mutation rates are estimated. In order to recover plausible mutations a sequence identity threshold should be used so that the comparison is between similar sequences. This approach uses 85% identity threshold between pairing sequences. First single base positions differences -except for gapped columns- between sequence pairs are counted such that if the same position in two sequences had different bases X, Y the count of the difference is incremented for each sequence.
+
+while 
+  
+    
+      
+        X
+        ≠
+        Y
+      
+    
+    {\displaystyle X\neq Y}
+  
+               
+  
+    
+      
+        
+          C
+          
+            XY
+          
+        
+        +
+        1
+      
+    
+    {\displaystyle C_{\text{XY}}+1}
+   first sequence  pair
+               
+  
+    
+      
+        
+          C
+          
+            YX
+          
+        
+        +
+        1
+      
+    
+    {\displaystyle C_{\text{YX}}+1}
+   second sequence pair
+
+Calculate mutation rates.
+               Let  
+  
+    
+      
+        
+          r
+          
+            XY
+          
+        
+        =
+      
+    
+    {\displaystyle r_{\text{XY}}=}
+   mutation of base X to base Y 
+  
+    
+      
+        =
+        
+          
+            
+              K
+               
+              
+                C
+                
+                  XY
+                
+              
+            
+            
+              
+                P
+                
+                  x
+                
+              
+              
+                P
+                
+                  s
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle ={\frac {K~C_{\text{XY}}}{P_{x}P_{s}}}}
+  
+               Let  
+  
+    
+      
+        
+          r
+          
+            XX
+          
+        
+        =
+      
+    
+    {\displaystyle r_{\text{XX}}=}
+   the negative of the rate of X mutation to other bases 
+  
+    
+      
+        =
+        −
+        ∑
+        
+          r
+          
+            XY
+          
+        
+      
+    
+    {\displaystyle =-\sum r_{\text{XY}}}
+  
+               
+  
+    
+      
+        
+          P
+          
+            s
+          
+        
+        =
+      
+    
+    {\displaystyle P_{s}=}
+   the probability that the base is not paired.
+
+For unpaired bases a 4 X 4 mutation rate matrix is used that satisfies that the mutation flow from X to Y is reversible:
+
+  
+    
+      
+        P
+        
+          X
+          
+            r
+          
+        
+        X
+        Y
+        =
+        P
+        
+          Y
+          
+            r
+          
+        
+        Y
+        X
+      
+    
+    {\displaystyle PX^{r}XY=PY^{r}YX}
+  
+For basepairs a 16 X 16 rate distribution matrix is similarly generated. The PCFG is used to predict the prior probability distribution of the structure whereas posterior probabilities are estimated by the inside-outside algorithm and the most likely structure is found by the CYK algorithm.
+
+
+===== Estimate alignment probabilities =====
+After calculating the column prior probabilities the alignment probability is estimated by summing over all possible secondary structures. Any column C in a secondary structure 
+  
+    
+      
+        σ
+      
+    
+    {\displaystyle \sigma }
+   for a sequence D of length l such that 
+  
+    
+      
+        D
+        =
+        (
+        
+          C
+          
+            1
+          
+        
+        ,
+         
+        
+          C
+          
+            2
+          
+        
+        ,
+        .
+        .
+        .
+        
+          C
+          
+            l
+          
+        
+        )
+      
+    
+    {\displaystyle D=(C_{1},~C_{2},...C_{l})}
+   can be scored with respect to the alignment tree T and the mutational model M. The prior distribution given by the PCFG is 
+  
+    
+      
+        P
+        (
+        σ
+        
+          |
+        
+        M
+        )
+      
+    
+    {\displaystyle P(\sigma |M)}
+  . The phylogenetic tree, T can be calculated from the model by maximum likelihood estimation. Note that gaps are treated as unknown bases and the summation can be done through dynamic programming.
+
+  
+    
+      
+        P
+        (
+        D
+        
+          |
+        
+        T
+        ,
+        M
+        )
+      
+    
+    {\displaystyle P(D|T,M)}
+  
+
+  
+    
+      
+        =
+        ∑
+        P
+        (
+        D
+        ,
+        σ
+        
+          |
+        
+        T
+        ,
+        M
+        )
+      
+    
+    {\displaystyle =\sum P(D,\sigma |T,M)}
+  
+
+  
+    
+      
+        =
+        ∑
+        P
+        (
+        D
+        
+          |
+        
+        σ
+        ,
+        T
+        ,
+        M
+        )
+        P
+        (
+        σ
+        
+          |
+        
+        T
+        ,
+        M
+        )
+      
+    
+    {\displaystyle =\sum P(D|\sigma ,T,M)P(\sigma |T,M)}
+  
+
+  
+    
+      
+        =
+        ∑
+        P
+        (
+        D
+        
+          |
+        
+        σ
+        ,
+        T
+        ,
+        M
+        )
+        P
+        (
+        σ
+        
+          |
+        
+        M
+        )
+      
+    
+    {\displaystyle =\sum P(D|\sigma ,T,M)P(\sigma |M)}
+  
+
+
+===== Assign production probabilities to each rule in the grammar =====
+Each structure in the grammar is assigned production probabilities devised from the structures of the training dataset. These prior probabilities give weight to predictions accuracy. The number of times each rule is used depends on the observations from the training dataset for that particular grammar feature. These probabilities are written in parenthesis in the grammar formalism and each rule will have a total of 100%. For instance:
+
+  
+    
+      
+        S
+        →
+        L
+        S
+        (
+        80
+        %
+        )
+        
+          |
+        
+        L
+        (
+        20
+        %
+        )
+      
+    
+    {\displaystyle S\to LS(80\%)|L(20\%)}
+  
+
+  
+    
+      
+        L
+        →
+        s
+        (
+        70
+        %
+        )
+        
+          |
+        
+        d
+        F
+        d
+        (
+        30
+        %
+        )
+      
+    
+    {\displaystyle L\to s(70\%)|dFd(30\%)}
+  
+
+  
+    
+      
+        F
+        →
+        d
+        F
+        d
+        (
+        60.4
+        %
+        )
+        
+          |
+        
+        L
+        S
+        (
+        39.6
+        %
+        )
+      
+    
+    {\displaystyle F\to dFd(60.4\%)|LS(39.6\%)}
+  
+
+
+===== Predict the structure likelihood =====
+Given the prior alignment frequencies of the data the most likely structure from the ensemble predicted by the grammar can then be computed by maximizing 
+  
+    
+      
+        P
+        (
+        σ
+        
+          |
+        
+        D
+        ,
+        T
+        ,
+        M
+        )
+      
+    
+    {\displaystyle P(\sigma |D,T,M)}
+   through the CYK algorithm. The structure with the highest predicted number of correct predictions is reported as the consensus structure.
+
+  
+    
+      
+        
+          σ
+          
+            M
+            A
+            P
+          
+        
+        =
+        arg
+        ⁡
+        
+          
+            max
+            σ
+          
+        
+        P
+        (
+        D
+        
+          |
+        
+        σ
+        ,
+        
+          T
+          
+            M
+          
+        
+        L
+        ,
+        M
+        )
+        P
+        (
+        σ
+        
+          |
+        
+        M
+        )
+      
+    
+    {\displaystyle \sigma _{MAP}=\arg {\underset {\sigma }{\max }}P(D|\sigma ,T^{M}L,M)P(\sigma |M)}
+  
+
+
+===== Pfold improvements on the KH-99 algorithm =====
+PCFG based approaches are desired to be scalable and general enough. Compromising speed for accuracy needs to as minimal as possible. Pfold addresses the limitations of the KH-99 algorithm with respect to scalability, gaps, speed and accuracy.
+In Pfold gaps are treated as unknown. In this sense the probability of a gapped column equals that of an ungapped one.
+In Pfold the tree T is calculated prior to structure prediction through neighbor joining and not by maximum likelihood through the PCFG grammar. Only the branch lengths are adjusted to maximum likelihood estimates.
+An assumption of Pfold is that all sequences have the same structure. Sequence identity threshold and allowing a 1% probability that any nucleotide becomes another limit the performance deterioration due to alignment errors.
+
+
+=== Protein sequence analysis ===
+Whereas PCFGs have proved powerful tools for predicting RNA secondary structure, usage in the field of protein sequence analysis has been limited. Indeed, the size of the amino acid alphabet and the variety of interactions seen in proteins make grammar inference much more challenging. As a consequence, most applications of formal language theory to protein analysis have been mainly restricted to the production of grammars of lower expressive power to model simple functional patterns based on local interactions. Since protein structures commonly display higher-order dependencies including nested and crossing relationships, they clearly exceed the capabilities of any CFG. Still, development of PCFGs allows expressing some of those dependencies and providing the ability to model a wider range of protein patterns.
+One of the main obstacles in inferring a protein grammar is the size of the alphabet that should encode the 20 different amino acids. It has been proposed to address this by using physico-chemical properties of amino acids to reduce significantly the number of possible combinations of right side symbols in production rules: 3 levels of a quantitative property are utilised instead of the 20 amino acid types, e.g. small, medium or large van der Waals volume. Based on such a scheme, PCFGs have been produced to generate both binding site  and helix-helix contact site descriptors. A significant feature of those grammars is that analysis of their rules and parse trees can provide biologically meaningful information.
+
+
+== See also ==
+Statistical parsing
+L-system
+
+
+== References ==
+
+
+== External links ==
+Rfam Database
+Infernal
+The Stanford Parser: A statistical parser
+pyStatParser

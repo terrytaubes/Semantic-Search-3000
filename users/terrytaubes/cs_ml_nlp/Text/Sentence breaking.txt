@@ -1,0 +1,52 @@
+Sentence boundary disambiguation (SBD), also known as sentence breaking or sentence boundary detection, is the problem in natural language processing of deciding where sentences begin and end. Often, natural language processing tools require their input to be divided into sentences for a number of reasons; however, sentence boundary identification is challenging because punctuation marks are often ambiguous. For example, a period may denote an abbreviation, decimal point, an ellipsis, or an email address – not the end of a sentence. About 47% of the periods in the Wall Street Journal corpus denote abbreviations. As well, question marks and exclamation marks may appear in embedded quotations, emoticons, computer code, and slang.
+Languages like Japanese and Chinese have unambiguous sentence-ending markers.
+
+
+== Strategies ==
+The standard 'vanilla' approach to locate the end of a sentence:
+(a) If it's a period, it ends a sentence.
+(b) If the preceding token is in the hand-compiled list of abbreviations, then it doesn't end a sentence.
+(c) If the next token is capitalized, then it ends a sentence.
+This strategy gets about 95% of sentences correct. Things such as shortened names, e.g. "D. H. Lawrence" (with whitespaces between the individual words that form the full name), idiosyncratic orthographical spellings used for stylistic purposes (often referring to a single concept, e.g. an entertainment product title like ".hack//SIGN") and usage of non-standard punctuation (or non-standard usage of punctuation) in a text often fall under the remaining 5%.
+Another approach is to automatically learn a set of rules from a set of documents where the sentence breaks are pre-marked. Solutions have been based on a maximum entropy model. The SATZ architecture uses a neural network to disambiguate sentence boundaries and achieves 98.5% accuracy.
+
+
+== Software ==
+Examples of use of Perl compatible regular expressions ("PCRE")
+
+((?<=[a-z0-9][.?!])|(?<=[a-z0-9][.?!]\"))(\s|\r\n)(?=\"?[A-Z])
+$sentences=preg_split("/(?<!\..)([\?\!\.]+)\s(?!.\.)/",$text,-1, PREG_SPLIT_DELIM_CAPTURE); (for PHP)
+
+Online use, libraries, and APIs
+
+sent_detector – Java
+Lingua-EN-Sentence – perl
+Sentence.pm – perl
+SATZ – An Adaptive Sentence Segmentation System – by David D. Palmer – C
+
+Toolkits that include sentence detection
+
+Apache OpenNLP – [1]
+Freeling (software) – [2]
+Natural Language Toolkit – [3]
+Stanford NLP – [4]
+GExp – [5]
+
+
+== See also ==
+Sentence spacing
+Word divider
+Syllabification
+Punctuation
+Text segmentation
+Speech segmentation
+Sentence extraction
+Translation memory
+Multiword expression
+
+
+== References ==
+
+
+== External links ==
+Search for 'sentence boundary disambiguation', Google Scholar.

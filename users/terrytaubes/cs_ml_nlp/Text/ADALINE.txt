@@ -1,0 +1,243 @@
+ADALINE (Adaptive Linear Neuron or later Adaptive Linear Element) is an early single-layer artificial neural network and the name of the physical device that implemented this network. The network uses memistors. It was developed by Professor Bernard Widrow and his graduate student Ted Hoff at Stanford University in 1960. It is based on the McCulloch–Pitts neuron. It consists of a weight, a bias and a summation function.
+The difference between Adaline and the standard (McCulloch–Pitts) perceptron is that in the learning phase, the weights are adjusted according to the weighted sum of the inputs (the net). In the standard perceptron, the net is passed to the activation (transfer) function and the function's output is used for adjusting the weights.
+A multilayer network of ADALINE units is known as a MADALINE.
+
+
+== Definition ==
+Adaline is a single layer neural network with multiple nodes where each node accepts multiple inputs and generates one output. Given the following variables:as
+
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+   is the input vector
+
+  
+    
+      
+        w
+      
+    
+    {\displaystyle w}
+   is the weight vector
+
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+   is the number of inputs
+
+  
+    
+      
+        θ
+      
+    
+    {\displaystyle \theta }
+   some constant
+
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   is the output of the model
+then we find that the output is 
+  
+    
+      
+        y
+        =
+        
+          ∑
+          
+            j
+            =
+            1
+          
+          
+            n
+          
+        
+        
+          x
+          
+            j
+          
+        
+        
+          w
+          
+            j
+          
+        
+        +
+        θ
+      
+    
+    {\displaystyle y=\sum _{j=1}^{n}x_{j}w_{j}+\theta }
+  . If we further assume that
+
+  
+    
+      
+        
+          x
+          
+            0
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle x_{0}=1}
+  
+
+  
+    
+      
+        
+          w
+          
+            0
+          
+        
+        =
+        θ
+      
+    
+    {\displaystyle w_{0}=\theta }
+  
+then the output further reduces to: 
+  
+    
+      
+        y
+        =
+        
+          ∑
+          
+            j
+            =
+            0
+          
+          
+            n
+          
+        
+        
+          x
+          
+            j
+          
+        
+        
+          w
+          
+            j
+          
+        
+      
+    
+    {\displaystyle y=\sum _{j=0}^{n}x_{j}w_{j}}
+  
+
+
+== Learning algorithm ==
+Let us assume:
+
+  
+    
+      
+        η
+      
+    
+    {\displaystyle \eta }
+   is the learning rate (some positive constant)
+
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+   is the output of the model
+
+  
+    
+      
+        o
+      
+    
+    {\displaystyle o}
+   is the target (desired) output
+then the weights are updated as follows 
+  
+    
+      
+        w
+        ←
+        w
+        +
+        η
+        (
+        o
+        −
+        y
+        )
+        x
+      
+    
+    {\displaystyle w\leftarrow w+\eta (o-y)x}
+  . The ADALINE converges to the least squares error which is 
+  
+    
+      
+        E
+        =
+        (
+        o
+        −
+        y
+        
+          )
+          
+            2
+          
+        
+      
+    
+    {\displaystyle E=(o-y)^{2}}
+  . This update rule is in fact the stochastic gradient descent update for linear regression.
+
+
+== MADALINE ==
+MADALINE (Many ADALINE) is a three-layer (input, hidden, output), fully connected, feed-forward artificial neural network architecture for classification that uses ADALINE units in its hidden and output layers, i.e. its activation function is the sign function. The three-layer network uses memistors. Three different training algorithms for MADALINE networks, which cannot be learned using backpropagation because the sign function is not differentiable, have been suggested, called Rule I, Rule II and Rule III. The first of these dates back to 1962 and cannot adapt the weights of the hidden-output connection. The second training algorithm improved on Rule I and was described in 1988. The third "Rule" applied to a modified network with sigmoid activations instead of signum; it was later found to be equivalent to backpropagation.
+The Rule II training algorithm is based on a principle called "minimal disturbance". It proceeds by looping over training examples, then for each example, it:
+finds the hidden layer unit (ADALINE classifier) with the lowest confidence in its prediction,
+tentatively flips the sign of the unit,
+accepts or rejects the change based on whether the network's error is reduced,
+stops when the error is zero.
+Additionally, when flipping single units' signs does not drive the error to zero for a particular example, the training algorithm starts flipping pairs of units' signs, then triples of units, etc.
+
+
+== See also ==
+Multilayer perceptron
+
+
+== References ==
+
+
+== External links ==
+"Delta Learning Rule: ADALINE". Artificial Neural Networks. Universidad Politécnica de Madrid. Archived from the original on 2002-06-15. 
+"Memristor-Based Multilayer Neural Networks With Online Gradient Descent Training". Implementation of the ADALINE algorithm with memristors in analog computing.

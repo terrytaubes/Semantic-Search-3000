@@ -1,0 +1,329 @@
+Agile software development describes a set of values and principles for software development under which requirements and solutions evolve through the collaborative effort of self-organizing cross-functional teams. It advocates adaptive planning, evolutionary development, early delivery, and continuous improvement, and it encourages rapid and flexible response to change. These principles support the definition and continuing evolution of many software development methods.
+The term agile (sometimes written Agile) was popularized by the Manifesto for agile software development, which defines those values and principles. Agile software development frameworks continue to evolve, two of the most widely used being Scrum and Kanban.
+
+
+== History ==
+Iterative and incremental software development methods can be traced back to 1957. Evolutionary project management and adaptive software development emerged in the early 1970s. During the 1990s, a number of lightweight software development methods evolved in reaction to the prevailing heavyweight methods that critics described as heavily regulated, planned, and micro-managed. These included: from 1991, rapid application development; from 1994, the unified process and dynamic systems development method (DSDM); from 1995, Scrum; from 1996, Crystal Clear and extreme programming (XP); and from 1997, feature-driven development. Although these originated before the publication of the Manifesto for Agile Software Development, they are collectively referred to as agile software development methods. At the same time, similar changes were underway in manufacturing and aerospace.
+In 2001, seventeen software developers met at the Snowbird resort in Utah to discuss these lightweight development methods, among others Jeff Sutherland, Ken Schwaber, and Alistair Cockburn. Together they published the Manifesto for Agile Software Development.
+In 2005, a group headed by Alistair Cockburn and Jim Highsmith wrote an addendum of project management principles, the Declaration of Interdependence, to guide software project management according to agile software development methods.
+In 2009, a movement by Robert C Martin wrote an extension of software development principles, the Software Craftsmanship Manifesto, to guide agile software development according to professional conduct and mastery.
+In 2011 the Agile Alliance created the Guide to Agile Practices (renamed the Agile Glossary in 2016), an evolving open-source compendium of the working definitions of agile practices, terms, and elements, along with interpretations and experience guidelines from the worldwide community of agile practitioners.
+
+
+== The Manifesto for Agile Software Development ==
+Based on their combined experience of developing software and helping others do that, the seventeen signatories to the manifesto proclaimed that they value:
+Individuals and Interactions over processes and tools
+Working Software over comprehensive documentation
+Customer Collaboration over contract negotiation
+Responding to Change over following a plan
+That is, while there is value in the items on the right, they value the items on the left more.
+
+
+=== Agile software development values ===
+By these terms, they meant:
+
+
+==== Individuals and interactions ====
+Self-organization and motivation are important, as are interactions like co-location and pair programming. It is better to have a good team of developers who communicate and collaborate well, rather than a team of experts each operating in isolation. Communication is a fundamental concept.
+
+
+==== Working software ====
+Working software is more useful and welcome than just presenting documents to clients in meetings. It is better to comment inline with the code and to keep external documentation light, rather than heavy documents that take a lot of effort and quickly become outdated.
+
+
+==== Customer collaboration ====
+Requirements cannot be fully collected at the beginning of the software development cycle, so it is better to directly involve the paying customer and their end-users, or a proxy for them so that detailed requirements can be progressively elaborated and adapted based on feedback.
+
+
+==== Responding to change ====
+Agile software development methods are focused on quick responses to change and continuous development.
+Some of the authors formed the Agile Alliance, a non-profit organization that promotes software development according to the manifesto's values and principles. Introducing the manifesto on behalf of the Agile Alliance, Jim Highsmith said,
+
+The Agile movement is not anti-methodology, in fact many of us want to restore credibility to the word methodology. We want to restore a balance. We embrace modeling, but not in order to file some diagram in a dusty corporate repository. We embrace documentation, but not hundreds of pages of never-maintained and rarely-used tomes. We plan, but recognize the limits of planning in a turbulent environment. Those who would brand proponents of XP or SCRUM or any of the other Agile Methodologies as "hackers" are ignorant of both the methodologies and the original definition of the term hacker.
+
+
+=== Agile software development principles ===
+The Manifesto for Agile Software Development is based on twelve principles:
+Customer satisfaction by early and continuous delivery of valuable software
+Welcome changing requirements, even in late development
+Working software is delivered frequently (weeks rather than months)
+Close, daily cooperation between business people and developers
+Projects are built around motivated individuals, who should be trusted
+Face-to-face conversation is the best form of communication (co-location)
+Working software is the primary measure of progress
+Sustainable development, able to maintain a constant pace
+Continuous attention to technical excellence and good design
+Simplicity—the art of maximizing the amount of work not done—is essential
+Best architectures, requirements, and designs emerge from self-organizing teams
+Regularly, the team reflects on how to become more effective, and adjusts accordingly
+
+
+== Overview ==
+
+
+=== Iterative, incremental and evolutionary ===
+Most agile development methods break product development work into small increments that minimize the amount of up-front planning and design. Iterations, or sprints, are short time frames (timeboxes) that typically last from one to four weeks. Each iteration involves a cross-functional team working in all functions: planning, analysis, design, coding, unit testing, and acceptance testing. At the end of the iteration a working product is demonstrated to stakeholders. This minimizes overall risk and allows the product to adapt to changes quickly. An iteration might not add enough functionality to warrant a market release, but the goal is to have an available release (with minimal bugs) at the end of each iteration. Multiple iterations might be required to release a product or new features.
+Working software is the primary measure of progress.
+
+
+=== Efficient and face-to-face communication ===
+No matter which development method is followed, every team should include a customer representative (Product Owner in Scrum). This person is agreed by stakeholders to act on their behalf and makes a personal commitment to being available for developers to answer questions throughout the iteration. At the end of each iteration, stakeholders and the customer representative review progress and re-evaluate priorities with a view to optimizing the return on investment (ROI) and ensuring alignment with customer needs and company goals.
+In agile software development, an information radiator is a (normally large) physical display located prominently near the development team, where passers-by can see it. It presents an up-to-date summary of the product development status. A build light indicator may also be used to inform a team about the current status of their product development.
+
+
+=== Very short feedback loop and adaptation cycle ===
+A common characteristic in agile software development is the daily stand-up (also known as the daily scrum). In a brief session, team members report to each other what they did the previous day toward their team's iteration goal, what they intend to do today toward the goal, and any roadblocks or impediments they can see to the goal.
+
+
+=== Quality focus ===
+Specific tools and techniques, such as continuous integration, automated unit testing, pair programming, test-driven development, design patterns, domain-driven design, code refactoring and other techniques are often used to improve quality and enhance product development agility.
+
+
+== Philosophy ==
+Compared to traditional software engineering, agile software development mainly targets complex systems and product development with dynamic, non-deterministic and non-linear characteristics. Accurate estimates, stable plans, and predictions are often hard to get in early stages, and confidence in them is likely to be low. Agile practitioners will seek to reduce the "leap-of-faith" that is needed before any evidence of value can be obtained. Requirements and design are held to be emergent. Big up-front specifications would probably cause a lot of waste in such cases, i.e., are not economically sound. These basic arguments and previous industry experiences, learned from years of successes and failures, have helped shape agile development's favor of adaptive, iterative and evolutionary development.
+
+
+=== Adaptive vs. predictive ===
+Development methods exist on a continuum from adaptive to predictive. Agile software development methods lie on the adaptive side of this continuum. One key of adaptive development methods is a "Rolling Wave" approach to schedule planning, which identifies milestones but leaves flexibility in the path to reach them, and also allows for the milestones themselves to change.
+Adaptive methods focus on adapting quickly to changing realities. When the needs of a project change, an adaptive team changes as well. An adaptive team has difficulty describing exactly what will happen in the future. The further away a date is, the more vague an adaptive method is about what will happen on that date. An adaptive team cannot report exactly what tasks they will do next week, but only which features they plan for next month. When asked about a release six months from now, an adaptive team might be able to report only the mission statement for the release, or a statement of expected value vs. cost.
+Predictive methods, in contrast, focus on analysing and planning the future in detail and cater for known risks. In the extremes, a predictive team can report exactly what features and tasks are planned for the entire length of the development process. Predictive methods rely on effective early phase analysis and if this goes very wrong, the project may have difficulty changing direction. Predictive teams often institute a change control board to ensure they consider only the most valuable changes.
+Risk analysis can be used to choose between adaptive (agile or value-driven) and predictive (plan-driven) methods. Barry Boehm and Richard Turner suggest that each side of the continuum has its own home ground, as follows:
+
+
+=== Iterative vs. waterfall ===
+One of the differences between agile software development methods and waterfall is the approach to quality and testing. In the waterfall model, there is always a separate testing phase after a build phase; however, in agile software development testing is completed in the same iteration as programming.
+Because testing is done in every iteration—which develops a small piece of the software—users can frequently use those new pieces of software and validate the value. After the users know the real value of the updated piece of software, they can make better decisions about the software's future. Having a value retrospective and software re-planning session in each iteration—Scrum typically has iterations of just two weeks—helps the team continuously adapt its plans so as to maximize the value it delivers. This follows a pattern similar to the PDCA cycle, as the work is planned, done, checked (in the review and retrospective), and any changes agreed are acted upon.
+This iterative approach supports a product rather than a project mindset. This provides greater flexibility throughout the development process; whereas on projects the requirements are defined and locked down from the very beginning, making it difficult to change them later. Iterative product development allows the software to evolve in response to changes in business environment or market requirements.
+Because of the short iteration style of agile software development, it also has strong connections with the lean startup concept.
+
+
+=== Code vs. documentation ===
+In a letter to IEEE Computer, Steven Rakitin expressed cynicism about agile software development, calling it "yet another attempt to undermine the discipline of software engineering" and translating "Working software over comprehensive documentation" as "We want to spend all our time coding. Remember, real programmers don't write documentation."
+This is disputed by proponents of agile software development, who state that developers should write documentation if that's the best way to achieve the relevant goals, but that there are often better ways to achieve those goals than writing static documentation. Scott Ambler states that documentation should be "Just Barely Good Enough" (JBGE), that too much or comprehensive documentation would usually cause waste, and developers rarely trust detailed documentation because it's usually out of sync with code, while too little documentation may also cause problems for maintenance, communication, learning and knowledge sharing. Alistair Cockburn wrote of the Crystal Clear method:
+
+Crystal considers development a series of co-operative games, and intends that the documentation is enough to help the next win at the next game. The work products for Crystal include use cases, risk list, iteration plan, core domain models, and design notes to inform on choices...however there are no templates for these documents and descriptions are necessarily vague, but the objective is clear, just enough documentation for the next game. I always tend to characterize this to my team as: what would you want to know if you joined the team tomorrow.
+
+
+== Agile software development methods ==
+
+Agile software development methods support a broad range of the software development life cycle. Some focus on the practices (e.g., XP, pragmatic programming, agile modeling), while some focus on managing the flow of work (e.g., Scrum, Kanban). Some support activities for requirements specification and development (e.g., FDD), while some seek to cover the full development life cycle (e.g., DSDM, RUP).
+Popular agile software development frameworks include (but are not limited to):
+Adaptive software development (ASD)
+Agile modeling
+Agile Unified Process (AUP)
+Disciplined agile delivery
+Dynamic systems development method (DSDM)
+Extreme programming (XP)
+Feature-driven development (FDD)
+Lean software development
+Kanban
+Rapid application development (RAD)
+Scrum
+Scrumban
+
+
+=== Agile software development practices ===
+Agile software development is supported by a number of concrete practices, covering areas like requirements, design, modelling, coding, testing, planning, risk management, process, quality, etc. Some notable agile software development practices include:
+Acceptance test-driven development (ATDD)
+Agile modeling
+Agile testing
+Backlogs (Product and Sprint)
+Behavior-driven development (BDD)
+Business analyst designer method (BADM)
+Continuous integration (CI)
+Cross-functional team
+Domain-driven design (DDD)
+Information radiators (scrum board, task board, visual management board, burndown chart)
+Iterative and incremental development (IID)
+Low-code development platforms
+Pair programming
+Planning poker
+Refactoring
+Retrospective
+Scrum events (sprint planning, daily scrum, sprint review and retrospective)
+Story-driven modeling
+Test-driven development (TDD)
+Timeboxing
+User story
+User story mapping
+Velocity tracking
+The Agile Alliance has provided a comprehensive online guide to applying agile these and other practices.
+
+
+=== Method tailoring ===
+In the literature, different terms refer to the notion of method adaptation, including 'method tailoring', 'method fragment adaptation' and 'situational method engineering'. Method tailoring is defined as:
+
+A process or capability in which human agents determine a system development approach for a specific project situation through responsive changes in, and dynamic interplays between contexts, intentions, and method fragments.
+
+Potentially, almost all agile methods are suitable for method tailoring. Even the DSDM method is being used for this purpose and has been successfully tailored in a CMM context. Situation-appropriateness can be considered as a distinguishing characteristic between agile methods and traditional software development methods, with the latter being relatively much more rigid and prescriptive. The practical implication is that agile methods allow product development teams to adapt working practices according to the needs of individual products. Practices are concrete activities and products that are part of a method framework. At a more extreme level, the philosophy behind the method, consisting of a number of principles, could be adapted (Aydin, 2004).
+Some approaches, such as Scrum and extreme programming, make the need for method adaptation explicit. With these less-prescriptive frameworks, one of the principles is that no single process fits every product development, but rather that practices should be tailored to the needs of the product. Mehdi Mirakhorli proposes a tailoring practice that provides a sufficient road-map and guidelines for adapting all the practices. RDP Practice is designed for customizing XP. This practice, first proposed as a long research paper in the APSO workshop at the ICSE 2008 conference, is currently the only proposed and applicable method for customizing XP. Although it is specifically a solution for XP, this practice has the capability of extending to other methodologies. At first glance, this practice seems to be in the category of static method adaptation but experiences with RDP Practice says that it can be treated like dynamic method adaptation. The distinction between static method adaptation and dynamic method adaptation is subtle.
+Scrum isn't designed for method tailoring. Schwaber notes that "Scrum is not a methodology that needs enhancing. That is how we got into trouble in the first place, thinking that the problem was not having a perfect methodology. Effort centers on the changes in the enterprise that is needed." Bas Vodde reinforces this statement, suggesting that Scrum isn't like traditional, large methodologies that require you to "pick and choose" elements. It is the basics on top of which you add additional elements to localise and contextualise its use.
+
+
+=== Large-scale, offshore and distributed ===
+Agile software development has been widely seen as highly suited to certain types of environments, including small teams of experts working on greenfield projects, and the challenges and limitations encountered in the adoption of agile software development methods in a large organization with legacy infrastructure are well-documented and understood.
+In response, a range of strategies and patterns has evolved for overcoming challenges with large-scale development efforts (>20 developers) or distributed (non-colocated) development teams, amongst other challenges; and there are now several recognised frameworks that seek to mitigate or avoid these challenges.
+Scaled agile framework (SAFe), Dean Leffingwell inter alia
+Disciplined agile delivery (DAD), Scott Ambler inter alia
+Large-scale scrum (LeSS), Craig Larman and Bas Vodde
+Nexus (scaled professional Scrum), Ken Schwaber
+Scrum at Scale, Jeff Sutherland, Alex Brown
+Enterprise Scrum, Mike Beedle
+Setchu (Scrum-based lightweight framework), Michael Ebbage
+Xscale
+Agile path
+Holistic Software Development 
+There are many conflicting viewpoints on whether all of these are effective or indeed fit the definition of agile development, and this remains an active and ongoing area of research.
+When agile software development is applied in a distributed setting (with teams dispersed across multiple business locations), it is commonly referred to as distributed agile development. The goal is to leverage the unique benefits offered by each approach. Distributed development allow organizations to build software by strategically setting up teams in different parts of the globe, virtually building software round-the-clock (more commonly referred to as follow-the-sun model). On the other hand, agile development provides increased transparency, continuous feedback and more flexibility when responding to changes.
+
+
+=== Regulated domains ===
+Agile software development methods were initially seen as best suitable for non-critical product developments, thereby excluded from use in regulated domains such as medical devices, pharmaceutical, financial, nuclear systems, automotive, and avionics sectors, etc. However, in the last several years, there have been several initiatives for the adaptation of agile methods for these domains.
+There are numerous standards that may apply in regulated domains, including ISO 26262, ISO 9000, ISO 9001, and ISO/IEC 15504. A number of key concerns are of particular importance in regulated domains:
+Quality assurance (QA): Systematic and inherent quality management underpinning a controlled professional process and reliability and correctness of product.
+Safety and security: Formal planning and risk management to mitigate safety risks for users and securely protecting users from unintentional and malicious misuse.
+Traceability: Documentation providing auditable evidence of regulatory compliance and facilitating traceability and investigation of problems.
+Verification and Validation (V&V): Embedded throughout the software development process (e.g. user requirements specification, functional specification, design specification, code review, unit tests, integration tests, system tests).
+The Scrum framework in particular has received considerable attention. Two derived methods have been defined: R-Scrum (Regulated Scrum) and SafeScrum.
+
+
+== Experience and adoption ==
+Although agile software development methods can be used with any programming paradigm or language in practice, they were originally closely associated with object-oriented environments such as Smalltalk and Lisp and later Java. The initial adopters of agile methods were usually small to medium-sized teams working on unprecedented systems with requirements that were difficult to finalize and likely to change as the system was being developed. This section describes common problems that organizations encounter when they try to adopt agile software development methods as well as various techniques to measure the quality and performance of agile teams.
+
+
+=== Common agile software development pitfalls ===
+Organizations and teams implementing agile software development often face difficulties transitioning from more traditional methods such as waterfall development, such as teams having an agile process forced on them. These are often termed agile anti-patterns or more commonly agile smells. Below are some common examples:
+
+
+==== Lack of overall product design ====
+A goal of agile software development is to focus more on producing working software and less on documentation. This is in contrast to waterfall models where the process is often highly controlled and minor changes to the system require significant revision of supporting documentation. However, this does not justify completely doing without any analysis or design at all. Failure to pay attention to design can cause a team to proceed rapidly at first but then to have significant rework required as they attempt to scale up the system. One of the key features of agile software development is that it is iterative. When done correctly design emerges as the system is developed and commonalities and opportunities for re-use are discovered.
+
+
+==== Adding stories to an iteration in progress ====
+In agile software development, stories (similar to use case descriptions) are typically used to define requirements and an iteration is a short period of time during which the team commits to specific goals. Adding stories to an iteration in progress is detrimental to a good flow of work. These should be added to the product backlog and prioritized for a subsequent iteration or in rare cases the iteration could be cancelled.
+This does not mean that a story cannot expand. Teams must deal with new information, which may produce additional tasks for a story. If the new information prevents the story from being completed during the iteration, then it should be carried over to a subsequent iteration. However, it should be prioritized against all remaining stories, as the new information may have changed the story's original priority.
+
+
+==== Lack of sponsor support ====
+Agile software development is often implemented as a grassroots effort in organizations by software development teams trying to optimize their development processes and ensure consistency in the software development life cycle. By not having sponsor support, teams may face difficulties and resistance from business partners, other development teams and management. Additionally, they may suffer without appropriate funding and resources. This increases the likelihood of failure.
+
+
+==== Insufficient training ====
+A survey performed by VersionOne found respondents cited insufficient training as the most significant cause for failed agile implementations Teams have fallen into the trap of assuming the reduced processes of agile software development compared to other methodologies such as waterfall means that there are no actual rules for agile software development. Agile software development is a set of prescribed methodologies, and training/practice is a requirement.
+
+
+==== Product owner role is not properly filled ====
+The product owner is responsible for representing the business in the development activity and is often the most demanding role.
+A common mistake is to have the product owner role filled by someone from the development team. This requires the team to make its own decisions on prioritization without real feedback from the business. They try to solve business issues internally or delay work as they reach outside the team for direction. This often leads to distraction and a breakdown in collaboration.
+
+
+==== Teams are not focused ====
+Agile software development requires teams to meet product commitments, which means they should focus only on work for that product. However, team members who appear to have spare capacity are often expected to take on other work, which makes it difficult for them to help complete the work to which their team had committed.
+
+
+==== Excessive preparation/planning ====
+Teams may fall into the trap of spending too much time preparing or planning. This is a common trap for teams less familiar with agile software development where the teams feel obliged to have a complete understanding and specification of all stories. Teams should be prepared to move forward only with those stories in which they have confidence, then during the iteration continue to discover and prepare work for subsequent iterations (often referred to as backlog refinement or grooming).
+
+
+==== Problem-solving in the daily standup ====
+A daily standup should be a focused, timely meeting where all team members disseminate information. If problem-solving occurs, it often can only involve certain team members and potentially is not the best use of the entire team's time. If during the daily standup the team starts diving into problem-solving, it should be set aside until a sub-team can discuss, usually immediately after the standup completes.
+
+
+==== Assigning tasks ====
+One of the intended benefits of agile software development is to empower the team to make choices, as they are closest to the problem. Additionally, they should make choices as close to implementation as possible, to use more timely information in the decision. If team members are assigned tasks by others or too early in the process, the benefits of localized and timely decision making can be lost.
+Being assigned work also constrains team members into certain roles (for example, team member A must always do the database work), which limits opportunities for cross-training. Team members themselves can choose to take on tasks that stretch their abilities and provide cross-training opportunities.
+
+
+==== Scrum master as a contributor ====
+Another common pitfall is for a scrum master to act as a contributor. While not prohibited by the Scrum methodology, the scrum master needs to ensure they have the capacity to act in the role of scrum master first and not working on development tasks. A scrum master's role is to facilitate the process rather than create the product.
+Having the scrum master also multitasking may result in too many context switches to be productive. Additionally, as a scrum master is responsible for ensuring roadblocks are removed so that the team can make forward progress, the benefit gained by individual tasks moving forward may not outweigh roadblocks that are deferred due to lack of capacity.
+
+
+==== Lack of test automation ====
+Due to the iterative nature of agile development, multiple rounds of testing are often needed. Automated testing helps reduce the impact of repeated unit, integration, and regression tests and frees developers and testers to focus on higher value work.
+Test automation also supports continued refactoring required by iterative software development. Allowing a developer to quickly run tests to confirm refactoring has not modified the functionality of the application may reduce the workload and increase confidence that cleanup efforts have not introduced new defects.
+
+
+==== Allowing technical debt to build up ====
+Focusing on delivering new functionality may result in increased technical debt. The team must allow themselves time for defect remediation and refactoring. Technical debt hinders planning abilities by increasing the amount of unscheduled work as production defects distract the team from further progress.
+As the system evolves it is important to refactor as entropy of the system naturally increases. Over time the lack of constant maintenance causes increasing defects and development costs.
+
+
+==== Attempting to take on too much in an iteration ====
+A common misconception is that agile software development allows continuous change, however an iteration backlog is an agreement of what work can be completed during an iteration. Having too much work-in-progress (WIP) results in inefficiencies such as context-switching and queueing. The team must avoid feeling pressured into taking on additional work.
+
+
+==== Fixed time, resources, scope, and quality ====
+Agile software development fixes time (iteration duration), quality, and ideally resources in advance (though maintaining fixed resources may be difficult if developers are often pulled away from tasks to handle production incidents), while the scope remains variable. The customer or product owner often pushes for a fixed scope for an iteration. However, teams should be reluctant to commit to locked time, resources and scope (commonly known as the project management triangle). Efforts to add scope to the fixed time and resources of agile software development may result in decreased quality.
+
+
+=== Measuring agility ===
+The best agile practitioners have always emphasized sound engineering principles. As a result, there are a number of best practices and tools for measuring the performance of agile software development and teams.
+
+
+==== Internal assessments ====
+The Agility measurement index, amongst others, rates developments against five dimensions of product development (duration, risk, novelty, effort, and interaction).
+Other techniques are based on measurable goals and one study suggests that velocity can be used as a metric of agility.
+There are also agile self-assessments to determine whether a team is using agile software development practices (Nokia test, Karlskrona test, 42 points test).
+
+
+==== Public surveys ====
+One of the early studies reporting gains in quality, productivity, and business satisfaction by using agile software developments methods was a survey conducted by Shine Technologies from November 2002 to January 2003.
+A similar survey, the State of Agile, is conducted every year starting in 2006 with thousands of participants from around the software development community. This tracks trends on the benefits of agility, lessons learned, and good practices. Each survey has reported increasing numbers saying that agile software development helps them deliver software faster; improves their ability to manage changing customer priorities; and increases their productivity. Surveys have also consistently shown better results with agile product development methods compared to classical project management. In balance, there are reports that some feel that agile development methods are still too young to enable extensive academic research of their success.
+
+
+== Agile management ==
+The term "agile management" is applied to an iterative, incremental method of managing the design and build activities of engineering, information technology and other business areas that aim to provide new product or service development in a highly flexible and interactive manner, based on the principles expressed in the Manifesto for Agile Software Development.
+Agile X techniques may also be called extreme process management. It is a variant of iterative life cycle where deliverables are submitted in stages. The main difference between agile and iterative development is that agile methods complete small portions of the deliverables in each delivery cycle (iteration), while iterative methods evolve the entire set of deliverables over time, completing them near the end of the project. Both iterative and agile methods were developed as a reaction to various obstacles that developed in more sequential forms of project organization. For example, as technology projects grow in complexity, end users tend to have difficulty defining the long term requirements without being able to view progressive prototypes. Projects that develop in iterations can constantly gather feedback to help refine those requirements.
+Agile management also offers a simple framework promoting communication and reflection on past work amongst team members. Teams who were using traditional waterfall planning and adopted the agile way of development typically go through a transformation phase and often take help from agile coaches who help guide the teams through a smooth transformation. There are typically two styles of agile coaching: push-based and pull-based agile coaching. Agile management approaches have also been employed and adapted within the business and government sectors. For example, within the federal government of the United States, the United States Agency for International Development (USAID) is employing a collaborative project management approach that focuses on incorporating collaborating, learning and adapting (CLA) strategies to iterate and adapt programming.
+Agile methods are mentioned in the Guide to the Project Management Body of Knowledge (PMBOK Guide) under the Project Lifecycle definition:
+
+Adaptive project life cycle, a project life cycle, also known as change-driven or agile methods, that is intended to facilitate change and require a high degree of ongoing stakeholder involvement. Adaptive life cycles are also iterative and incremental, but differ in that iterations are very rapid (usually 2-4 weeks in length) and are fixed in time and resources.
+
+
+=== Applications outside software development ===
+
+According to Jean-Loup Richet (Research Fellow at ESSEC Institute for Strategic Innovation & Services) "this approach can be leveraged effectively for non-software products and for project management in general, especially in areas of innovation and uncertainty." The end result is a product or project that best meets current customer needs and is delivered with minimal costs, waste, and time, enabling companies to achieve bottom line gains earlier than via traditional approaches.
+Agile software development methods have been extensively used for development of software products and some of them use certain characteristics of software, such as object technologies. However, these techniques can be applied to the development of non-software products, such as computers, motor vehicles, medical devices, food, clothing, and music; see Flexible product development. Agile software development methods have been used in non-development IT infrastructure deployments and migrations. Some of the wider principles of agile software development have also found application in general management (e.g., strategy, governance, risk, finance) under the terms business agility or agile business management.
+Under an agile business management model, agile software development techniques, practices, principles and values are expressed across five domains.
+Integrated customer engagement: to embed customers within any delivery process to share accountability for product/service delivery.
+Facilitation-based management: adopting agile management models, like the role of Scrum Master, to facilitate the day-to-day operation of teams.
+Agile work practices: adopting specific iterative and incremental work practices such as Scrum, Kanban, test-driven development or feature-driven development across all business functions (from sales, human resources, finance and Marketing).
+An enabling organisational structure: with a focus on staff engagement, personal autonomy and outcomes based governance.
+Applications of agile process, along with devops and lean manufacturing, to data analytics, business intelligence, big data, and data science of Agile is called DataOps
+Agile software development paradigms can be used in other areas of life such as raising children. Its success in child development might be founded on some basic management principles; communication, adaptation and awareness. Bruce Feiler has claimed that the basic agile development paradigms can be applied to household management and raising children. In his TED Talk "Agile programming – for your family", these paradigms brought significant changes to his household environment, such as the kids doing dishes, taking out the trash, and decreasing his children's emotional outbreaks, which inadvertently increased their emotional stability.
+
+
+== Criticism ==
+Agile methodologies can be inefficient in large organizations and certain types of developments. Many organizations believe that agile software development methodologies are too extreme and adopt a hybrid approach that mixes elements of agile software development and plan-driven approaches. Some methods, such as dynamic systems development method (DSDM) attempt this in a disciplined way, without sacrificing fundamental principles.
+The term "Agile" has also been criticized as being a management fad that simply describes existing good practices under new jargon, promotes a "one size fits all" mindset towards development strategies, and wrongly emphasizes method over results.
+Alistair Cockburn organized a celebration of the 10th anniversary of the Manifesto for Agile Software Development in Snowbird, Utah on 12 February 2011, gathering some 30+ people who had been involved at the original meeting and since. A list of about 20 elephants in the room ("undiscussable" agile topics/issues) were collected, including aspects: the alliances, failures and limitations of agile software development practices and context (possible causes: commercial interests, decontextualization, no obvious way to make progress based on failure, limited objective evidence, cognitive biases and reasoning fallacies), politics and culture. As Philippe Kruchten wrote:
+
+The agile movement is in some ways a bit like a teenager: very self-conscious, checking constantly its appearance in a mirror, accepting few criticisms, only interested in being with its peers, rejecting en bloc all wisdom from the past, just because it is from the past, adopting fads and new jargon, at times cocky and arrogant. But I have no doubts that it will mature further, become more open to the outside world, more reflective, and also therefore more effective.
+
+
+== References ==
+
+
+== Further reading ==
+Abrahamsson, P.; Salo, O.; Ronkainen, J.; Warsta, J. (2002). "Agile Software Development Methods: Review and Analysis". VTT Publications. 478. 
+Cohen, D.; Lindvall, M.; Costa, P. (2004). "An introduction to agile methods". In Zelkowitz, Marvin. Advances in Software Engineering. Advances in Computers. 62. Academic Press. pp. 1–66. ISBN 978-0-08-047190-7. 
+Dingsøyr, Torgeir; Dybå, Tore; Moe, Nils Brede (2010). Agile Software Development: Current Research and Future Directions. Springer. ISBN 978-3-642-12575-1. 
+Moran, Alan (2015). Managing Agile: Strategy, Implementation, Organisation and People. Springer. ISBN 978-3-319-16262-1. 
+Fowler, Martin (2001). "Is Design Dead?". In Succi, Giancarlo; Marchesi, Michele. Extreme Programming Examined. Addison-Wesley. pp. 3–18. ISBN 978-0-201-71040-3. 
+Larman, Craig; Basili, Victor R. (June 2003). "Iterative and Incremental Development: A Brief History" (PDF). IEEE Computer. 36 (3): 47–56. doi:10.1109/MC.2003.1204375. 
+Riehle, Dirk. "A Comparison of the Value Systems of Adaptive Software Development and Extreme Programming: How Methodologies May Learn From Each Other".  In Succi & Marchesi 2001
+Stephens, M.; Rosenberg, D. (2003). Extreme Programming Refactored: The Case Against XP. Apress. ISBN 1-59059-096-1. 
+Shore, James; Warden, Shane (2008). The Art of Agile Development. O'Reilly Media. ISBN 978-0-596-52767-9. 
+Willison, Brian (2008). Iterative Milestone Engineering Model. New York, NY.
+Willison, Brian (2008). Visualization Driven Rapid Prototyping. Parsons Institute for Information Mapping.
+
+
+== External links ==
+Agile Manifesto
+Agile Glossary
+The New Methodology Martin Fowler's description of the background to agile methods
+Ten Authors of The Agile Manifesto Celebrate its Tenth Anniversary
+AgilePatterns.org
+Agile Continuous Delivery in the Cloud by Tariq Khurshid
+Agile Training and resources available from Ivar Jacobson

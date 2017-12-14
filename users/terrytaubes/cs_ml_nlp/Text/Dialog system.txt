@@ -1,0 +1,107 @@
+A dialog system or conversational agent (CA) is a computer system intended to converse with a human, with a coherent structure. Dialog systems have employed text, speech, graphics, haptics, gestures and other modes for communication on both the input and output channel.
+What does and does not constitute a dialog system may be debatable. The typical GUI wizard does engage in some sort of dialog, but it includes very few of the common dialog system components, and dialog state is trivial.
+
+
+== Components ==
+There are many different architectures for dialog systems. What sets of components are included in a dialog system, and how those components divide up responsibilities differs from system to system. Principal to any dialog system is the dialog manager, which is a component that manages the state of the dialog, and dialog strategy. A typical activity cycle in a dialog system contains the following phases:
+The user speaks, and the input is converted to plain text by the system's input recognizer/decoder, which may include:
+automatic speech recognizer (ASR)
+gesture recognizer
+handwriting recognizer
+
+The text is analyzed by a Natural language understanding unit (NLU), which may include:
+Proper Name identification
+part of speech tagging
+Syntactic/semantic parser
+
+The semantic information is analyzed by the dialog manager, that keeps the history and state of the dialog and manages the general flow of the conversation.
+Usually, the dialog manager contacts one or more task managers, that have knowledge of the specific task domain.
+The dialog manager produces output using an output generator, which may include:
+natural language generator
+gesture generator
+layout engine
+
+Finally, the output is rendered using an output renderer, which may include:
+text-to-speech engine (TTS)
+talking head
+robot or avatar
+
+Dialog systems that are based on a text-only interface (e.g. text-based chat) contain only stages 2–5.
+
+
+== Types of systems ==
+Dialog systems fall into the following categories, which are listed here along a few dimensions. Many of the categories overlap and the distinctions may not be well established.
+by modality
+text-based
+spoken dialog system
+graphical user interface
+multi-modal
+
+by device
+telephone-based systems
+PDA systems
+in-car systems
+robot systems
+desktop/laptop systems
+native
+in-browser systems
+in-virtual machine
+
+in-virtual environment
+robots
+
+by style
+command-based
+menu-driven
+natural language
+speech graffiti
+
+by initiative
+system initiative
+user initiative
+mixed initiative
+
+
+== Natural dialog systems ==
+"A Natural Dialogue System is a form of dialogue system that tries to improve usability and user satisfaction by imitating human behaviour"  (Berg, 2014). It addresses the features of a human-to-human dialog (e.g. sub dialogues and topic changes) and aims to integrate them into dialog systems for human-machine interaction. Often, (spoken) dialog systems require the user to adapt to the system because the system is only able to understand a very limited vocabulary, is not able to react on topic changes, and does not allow the user to influence the dialogue flow. Mixed-initiative is a way to enable the user to have an active part in the dialogue instead of only answering questions. However, the mere existence of mixed-initiative is not sufficient to be classified as natural dialogue system. Other important aspects include:
+Adaptivity of the system
+Support of implicit confirmation
+Usage of verification questions
+Possibilities to correct information that have already been given
+Over-informativeness (give more information than has been asked for)
+Support negations
+Understand references by analyzing discourse and anaphora
+Natural language generation to prevent monotonous and recurring prompts
+Adaptive and situation-aware formulation
+Social behavior (greetings, same level of formality as the user, politeness)
+Quality of speech recognition and synthesis
+Although most of these aspects are issues of many different research projects, there is a lack of tools that support the development of dialog systems addressing these topics. Apart from VoiceXML that focusses on interactive voice response systems and is the basis for many spoken dialog systems in industry (customer support applications) and AIML that is famous for the A.L.I.C.E. chatbot, none of these integrate linguistic features like dialog acts or language generation. Therefore, NADIA (a research prototype) gives an idea how to fill that gap and combines some of the aforementioned aspects like natural language generation, adaptive formulation and sub dialogues.
+
+
+== Applications ==
+Dialog systems can support a broad range of applications in business enterprises, education, government, healthcare, and entertainment. For example:
+Responding to customers' questions about products and services via a company's website or intranet portal
+Customer service agent knowledge base: Allows agents to type in a customer's question and guide them with a response
+Guided selling: Facilitating transactions by providing answers and guidance in the sales process, particularly for complex products being sold to novice customers
+Help desk: Responding to internal employee questions, e.g., responding to HR questions
+Website navigation: Guiding customers to relevant portions of complex websites—a Website concierge
+Technical support: Responding to technical problems, such as diagnosing a problem with a product or device
+Personalized service: Conversational agents can leverage internal and external databases to personalize interactions, such as answering questions about account balances, providing portfolio information, delivering frequent flier or membership information, for example
+Training or education: They can provide problem-solving advice while the user learns
+Simple dialog systems are widely used to decrease human workload in call centres. In this and other industrial telephony applications, the functionality provided by dialog systems is known as interactive voice response or IVR.
+In some cases, conversational agents can interact with users using artificial characters. These agents are then referred to as embodied agents.
+
+
+== Toolkits and architectures ==
+A survey of current frameworks, languages and technologies for defining dialog systems.
+
+
+== See also ==
+Call avoidance
+
+
+== References ==
+
+
+== Further reading ==
+Will, Thomas (2007). Creating a Dynamic Speech Dialogue. VDM Verlag Dr. Müller. ISBN 978-3-8364-4990-8.

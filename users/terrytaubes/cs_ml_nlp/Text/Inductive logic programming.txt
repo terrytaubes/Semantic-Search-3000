@@ -1,0 +1,1807 @@
+Inductive logic programming (ILP) is a subfield of machine learning which uses logic programming as a uniform representation for examples, background knowledge and hypotheses. Given an encoding of the known background knowledge and a set of examples represented as a logical database of facts, an ILP system will derive a hypothesised logic program which entails all the positive and none of the negative examples.
+Schema: positive examples + negative examples + background knowledge ⇒ hypothesis.
+Inductive logic programming is particularly useful in bioinformatics and natural language processing. Gordon Plotkin and Ehud Shapiro laid the initial theoretical foundation for inductive machine learning in a logical setting. Shapiro built its first implementation (Model Inference System) in 1981: a Prolog program that inductively inferred logic programs from positive and negative examples. The term Inductive Logic Programming was first introduced in a paper by Stephen Muggleton in 1991. Muggleton also founded the annual international conference on Inductive Logic Programming, introduced the theoretical ideas of Predicate Invention, Inverse resolution, and Inverse entailment,. Muggleton implemented Inverse entailment first in the PROGOL system. The term "inductive" here refers to philosophical (i.e. suggesting a theory to explain observed facts) rather than mathematical (i.e. proving a property for all members of a well-ordered set) induction.
+
+
+== Formal definition ==
+The background knowledge is given as a logic theory B, commonly in the form of Horn clauses used in logic programming. The positive and negative examples are given as a conjunction 
+  
+    
+      
+        
+          E
+          
+            +
+          
+        
+      
+    
+    {\displaystyle E^{+}}
+   and 
+  
+    
+      
+        
+          E
+          
+            −
+          
+        
+      
+    
+    {\displaystyle E^{-}}
+   of unnegated and negated ground literals, respectively. A correct hypothesis h is a logic proposition satisfying the following requirements.
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  Necessity:
+                
+              
+              
+                B
+              
+              
+                ⊭
+              
+              
+                
+                  E
+                  
+                    +
+                  
+                
+              
+            
+            
+              
+                
+                  Sufficiency:
+                
+              
+              
+                B
+                ∧
+                h
+              
+              
+                
+                  
+                    ⊨
+                  
+                
+              
+              
+                
+                  E
+                  
+                    +
+                  
+                
+              
+            
+            
+              
+                
+                  Weak consistency:
+                
+              
+              
+                B
+                ∧
+                h
+              
+              
+                ⊭
+              
+              
+                
+                  
+                    false
+                  
+                
+              
+            
+            
+              
+                
+                  Strong consistency:
+                
+              
+              
+                B
+                ∧
+                h
+                ∧
+                
+                  E
+                  
+                    −
+                  
+                
+              
+              
+                ⊭
+              
+              
+                
+                  
+                    false
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{array}{llll}{\text{Necessity:}}&B&\not \models &E^{+}\\{\text{Sufficiency:}}&B\land h&\color {blue}{\models }&E^{+}\\{\text{Weak consistency:}}&B\land h&\not \models &{\textit {false}}\\{\text{Strong consistency:}}&B\land h\land E^{-}&\not \models &{\textit {false}}\end{array}}}
+  
+"Necessity" does not impose a restriction on h, but forbids any generation of a hypothesis as long as the positive facts are explainable without it. "Sufficiency" requires any generated hypothesis h to explain all positive examples 
+  
+    
+      
+        
+          E
+          
+            +
+          
+        
+      
+    
+    {\displaystyle E^{+}}
+  . "Weak consistency" forbids generation of any hypothesis h that contradicts the background knowledge B. "Strong consistency" also forbids generation of any hypothesis h that is inconsistent with the negative examples 
+  
+    
+      
+        
+          E
+          
+            −
+          
+        
+      
+    
+    {\displaystyle E^{-}}
+  , given the background knowledge B; it implies "Weak consistency"; if no negative examples are given, both requirements coincide. Džeroski  requires only "Sufficiency" (called "Completeness" there) and "Strong consistency".
+
+
+== Example ==
+
+The following well-known example about learning definitions of family relations uses the abbreviations
+
+  
+    
+      
+        
+          
+            par
+          
+        
+        :
+        
+          
+            parent
+          
+        
+      
+    
+    {\displaystyle {\textit {par}}:{\textit {parent}}}
+  , 
+  
+    
+      
+        
+          
+            fem
+          
+        
+        :
+        
+          
+            female
+          
+        
+      
+    
+    {\displaystyle {\textit {fem}}:{\textit {female}}}
+  , 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        :
+        
+          
+            daughter
+          
+        
+      
+    
+    {\displaystyle {\textit {dau}}:{\textit {daughter}}}
+  , 
+  
+    
+      
+        g
+        :
+        
+          
+            George
+          
+        
+      
+    
+    {\displaystyle g:{\textit {George}}}
+  , 
+  
+    
+      
+        h
+        :
+        
+          
+            Helen
+          
+        
+      
+    
+    {\displaystyle h:{\textit {Helen}}}
+  , 
+  
+    
+      
+        m
+        :
+        
+          
+            Mary
+          
+        
+      
+    
+    {\displaystyle m:{\textit {Mary}}}
+  , 
+  
+    
+      
+        t
+        :
+        
+          
+            Tom
+          
+        
+      
+    
+    {\displaystyle t:{\textit {Tom}}}
+  , 
+  
+    
+      
+        n
+        :
+        
+          
+            Nancy
+          
+        
+      
+    
+    {\displaystyle n:{\textit {Nancy}}}
+  , and 
+  
+    
+      
+        e
+        :
+        
+          
+            Eve
+          
+        
+      
+    
+    {\displaystyle e:{\textit {Eve}}}
+  .
+It starts from the background knowledge (cf. picture)
+
+  
+    
+      
+        
+          
+            par
+          
+        
+        (
+        h
+        ,
+        m
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        h
+        ,
+        t
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        g
+        ,
+        m
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        t
+        ,
+        e
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        n
+        ,
+        e
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        h
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        m
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        n
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        e
+        )
+      
+    
+    {\displaystyle {\textit {par}}(h,m)\land {\textit {par}}(h,t)\land {\textit {par}}(g,m)\land {\textit {par}}(t,e)\land {\textit {par}}(n,e)\land {\textit {fem}}(h)\land {\textit {fem}}(m)\land {\textit {fem}}(n)\land {\textit {fem}}(e)}
+  ,
+the positive examples
+
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        m
+        ,
+        h
+        )
+        ∧
+        
+          
+            dau
+          
+        
+        (
+        e
+        ,
+        t
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(m,h)\land {\textit {dau}}(e,t)}
+  ,
+and the trivial proposition 
+  
+    
+      
+        
+          
+            true
+          
+        
+      
+    
+    {\displaystyle {\textit {true}}}
+   to denote the absence of negative examples.
+Plotkin's  "relative least general generalization (rlgg)" approach to inductive logic programming shall be used to obtain a suggestion about how to formally define the daughter relation 
+  
+    
+      
+        
+          
+            dau
+          
+        
+      
+    
+    {\displaystyle {\textit {dau}}}
+  .
+This approach uses the following steps.
+Relativize each positive example literal with the complete background knowledge:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  
+                    dau
+                  
+                
+                (
+                m
+                ,
+                h
+                )
+                ←
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                m
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                t
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                g
+                ,
+                m
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                t
+                ,
+                e
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                n
+                ,
+                e
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                h
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                m
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                n
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                e
+                )
+              
+            
+            
+              
+                
+                  
+                    dau
+                  
+                
+                (
+                e
+                ,
+                t
+                )
+                ←
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                m
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                t
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                g
+                ,
+                m
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                t
+                ,
+                e
+                )
+                ∧
+                
+                  
+                    par
+                  
+                
+                (
+                n
+                ,
+                e
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                h
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                m
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                n
+                )
+                ∧
+                
+                  
+                    fem
+                  
+                
+                (
+                e
+                )
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}{\textit {dau}}(m,h)\leftarrow {\textit {par}}(h,m)\land {\textit {par}}(h,t)\land {\textit {par}}(g,m)\land {\textit {par}}(t,e)\land {\textit {par}}(n,e)\land {\textit {fem}}(h)\land {\textit {fem}}(m)\land {\textit {fem}}(n)\land {\textit {fem}}(e)\\{\textit {dau}}(e,t)\leftarrow {\textit {par}}(h,m)\land {\textit {par}}(h,t)\land {\textit {par}}(g,m)\land {\textit {par}}(t,e)\land {\textit {par}}(n,e)\land {\textit {fem}}(h)\land {\textit {fem}}(m)\land {\textit {fem}}(n)\land {\textit {fem}}(e)\end{aligned}}}
+  ,
+
+Convert into clause normal form:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  
+                    dau
+                  
+                
+                (
+                m
+                ,
+                h
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                t
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                g
+                ,
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                t
+                ,
+                e
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                n
+                ,
+                e
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                h
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                n
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                e
+                )
+              
+            
+            
+              
+                
+                  
+                    dau
+                  
+                
+                (
+                e
+                ,
+                t
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                h
+                ,
+                t
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                g
+                ,
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                t
+                ,
+                e
+                )
+                ∨
+                ¬
+                
+                  
+                    par
+                  
+                
+                (
+                n
+                ,
+                e
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                h
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                m
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                n
+                )
+                ∨
+                ¬
+                
+                  
+                    fem
+                  
+                
+                (
+                e
+                )
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}{\textit {dau}}(m,h)\lor \lnot {\textit {par}}(h,m)\lor \lnot {\textit {par}}(h,t)\lor \lnot {\textit {par}}(g,m)\lor \lnot {\textit {par}}(t,e)\lor \lnot {\textit {par}}(n,e)\lor \lnot {\textit {fem}}(h)\lor \lnot {\textit {fem}}(m)\lor \lnot {\textit {fem}}(n)\lor \lnot {\textit {fem}}(e)\\{\textit {dau}}(e,t)\lor \lnot {\textit {par}}(h,m)\lor \lnot {\textit {par}}(h,t)\lor \lnot {\textit {par}}(g,m)\lor \lnot {\textit {par}}(t,e)\lor \lnot {\textit {par}}(n,e)\lor \lnot {\textit {fem}}(h)\lor \lnot {\textit {fem}}(m)\lor \lnot {\textit {fem}}(n)\lor \lnot {\textit {fem}}(e)\end{aligned}}}
+  ,
+
+Anti-unify each compatible  pair  of literals:
+
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        ,
+        
+          x
+          
+            h
+            t
+          
+        
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(x_{me},x_{ht})}
+   from 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        m
+        ,
+        h
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(m,h)}
+   and 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        e
+        ,
+        t
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(e,t)}
+  ,
+
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        
+          x
+          
+            h
+            t
+          
+        
+        ,
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(x_{ht},x_{me})}
+   from 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        h
+        ,
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(h,m)}
+   and 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        t
+        ,
+        e
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(t,e)}
+  ,
+
+  
+    
+      
+        ¬
+        
+          
+            fem
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+      
+    
+    {\displaystyle \lnot {\textit {fem}}(x_{me})}
+   from 
+  
+    
+      
+        ¬
+        
+          
+            fem
+          
+        
+        (
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {fem}}(m)}
+   and 
+  
+    
+      
+        ¬
+        
+          
+            fem
+          
+        
+        (
+        e
+        )
+      
+    
+    {\displaystyle \lnot {\textit {fem}}(e)}
+  ,
+
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        g
+        ,
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(g,m)}
+   from 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        g
+        ,
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(g,m)}
+   and 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        g
+        ,
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(g,m)}
+  , similar for all other background-knowledge literals
+
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        
+          x
+          
+            g
+            t
+          
+        
+        ,
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(x_{gt},x_{me})}
+   from 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        g
+        ,
+        m
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(g,m)}
+   and 
+  
+    
+      
+        ¬
+        
+          
+            par
+          
+        
+        (
+        t
+        ,
+        e
+        )
+      
+    
+    {\displaystyle \lnot {\textit {par}}(t,e)}
+  , and many more negated literals
+
+Delete all negated literals containing variables that don't occur in a positive literal:
+after deleting all negated literals containing other variables than 
+  
+    
+      
+        
+          x
+          
+            m
+            e
+          
+        
+        ,
+        
+          x
+          
+            h
+            t
+          
+        
+      
+    
+    {\displaystyle x_{me},x_{ht}}
+  , only 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        ,
+        
+          x
+          
+            h
+            t
+          
+        
+        )
+        ∨
+        ¬
+        
+          
+            par
+          
+        
+        (
+        
+          x
+          
+            h
+            t
+          
+        
+        ,
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+        ∨
+        ¬
+        
+          
+            fem
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(x_{me},x_{ht})\lor \lnot {\textit {par}}(x_{ht},x_{me})\lor \lnot {\textit {fem}}(x_{me})}
+   remains, together with all ground literals from the background knowledge
+
+Convert clauses back to Horn form:
+
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        ,
+        
+          x
+          
+            h
+            t
+          
+        
+        )
+        ←
+        
+          
+            par
+          
+        
+        (
+        
+          x
+          
+            h
+            t
+          
+        
+        ,
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        
+          x
+          
+            m
+            e
+          
+        
+        )
+        ∧
+        (
+        
+          all background knowledge facts
+        
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(x_{me},x_{ht})\leftarrow {\textit {par}}(x_{ht},x_{me})\land {\textit {fem}}(x_{me})\land ({\text{all background knowledge facts}})}
+  
+
+The resulting Horn clause is the hypothesis h obtained by the rlgg approach. Ignoring the background knowledge facts, the clause informally reads "
+  
+    
+      
+        
+          x
+          
+            m
+            e
+          
+        
+      
+    
+    {\displaystyle x_{me}}
+   is called a daughter of 
+  
+    
+      
+        
+          x
+          
+            h
+            t
+          
+        
+      
+    
+    {\displaystyle x_{ht}}
+   if 
+  
+    
+      
+        
+          x
+          
+            h
+            t
+          
+        
+      
+    
+    {\displaystyle x_{ht}}
+   is the parent of 
+  
+    
+      
+        
+          x
+          
+            m
+            e
+          
+        
+      
+    
+    {\displaystyle x_{me}}
+   and 
+  
+    
+      
+        
+          x
+          
+            m
+            e
+          
+        
+      
+    
+    {\displaystyle x_{me}}
+   is female", which is a commonly accepted definition.
+Concerning the above requirements, "Necessity" was satisfied because the predicate 
+  
+    
+      
+        
+          
+            dau
+          
+        
+      
+    
+    {\displaystyle {\textit {dau}}}
+   doesn't appear in the background knowledge, which hence cannot imply any property containing this predicate, such as the positive examples are. "Sufficiency" is satisfied by the computed hypothesis h, since it, together with 
+  
+    
+      
+        
+          
+            par
+          
+        
+        (
+        h
+        ,
+        m
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        m
+        )
+      
+    
+    {\displaystyle {\textit {par}}(h,m)\land {\textit {fem}}(m)}
+   from the background knowledge, implies the first positive example 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        m
+        ,
+        h
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(m,h)}
+  , and similarly h and 
+  
+    
+      
+        
+          
+            par
+          
+        
+        (
+        t
+        ,
+        e
+        )
+        ∧
+        
+          
+            fem
+          
+        
+        (
+        e
+        )
+      
+    
+    {\displaystyle {\textit {par}}(t,e)\land {\textit {fem}}(e)}
+   from the background knowledge implies the second positive example 
+  
+    
+      
+        
+          
+            dau
+          
+        
+        (
+        e
+        ,
+        t
+        )
+      
+    
+    {\displaystyle {\textit {dau}}(e,t)}
+  . "Weak consistency" is satisfied by h, since h holds in the (finite) Herbrand structure described by the background knowledge; similar for "Strong consistency".
+The common definition of the grandmother relation, viz. 
+  
+    
+      
+        
+          
+            gra
+          
+        
+        (
+        x
+        ,
+        z
+        )
+        ←
+        
+          
+            fem
+          
+        
+        (
+        x
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        x
+        ,
+        y
+        )
+        ∧
+        
+          
+            par
+          
+        
+        (
+        y
+        ,
+        z
+        )
+      
+    
+    {\displaystyle {\textit {gra}}(x,z)\leftarrow {\textit {fem}}(x)\land {\textit {par}}(x,y)\land {\textit {par}}(y,z)}
+  , cannot be learned using the above approach, since the variable y occurs in the clause body only; the corresponding literals would have been deleted in the 4th step of the approach. To overcome this flaw, that step has to be modified such that it can be parametrized with different literal post-selection heuristics. Historically, the GOLEM implementation is based on the rlgg approach.
+
+
+== Inductive Logic Programming system ==
+Inductive Logic Programming system is a program that takes as an input logic theories 
+  
+    
+      
+        B
+        ,
+        
+          E
+          
+            +
+          
+        
+        ,
+        
+          E
+          
+            −
+          
+        
+      
+    
+    {\displaystyle B,E^{+},E^{-}}
+   and outputs a correct hypothesis H wrt theories 
+  
+    
+      
+        B
+        ,
+        
+          E
+          
+            +
+          
+        
+        ,
+        
+          E
+          
+            −
+          
+        
+      
+    
+    {\displaystyle B,E^{+},E^{-}}
+   An algorithm of an ILP system consists of two parts: hypothesis search and hypothesis selection. First a hypothesis is searched with an inductive logic programming procedure, then a subset of the found hypotheses (in most systems one hypothesis) is chosen by a selection algorithm. A selection algorithm scores each of the found hypotheses and returns the ones with the highest score. An example of score function include minimal compression length where a hypothesis with a lowest Kolmogorov complexity has the highest score and is returned. An ILP system is complete iff for any input logic theories 
+  
+    
+      
+        B
+        ,
+        
+          E
+          
+            +
+          
+        
+        ,
+        
+          E
+          
+            −
+          
+        
+      
+    
+    {\displaystyle B,E^{+},E^{-}}
+   any correct hypothesis H wrt to these input theories can be found with its hypothesis search procedure.
+
+
+=== Hypothesis search ===
+Modern ILP systems like Progol, Hail  and Imparo  find a hypothesis H using the principle of the inverse entailment for theories B, E, H: 
+  
+    
+      
+        B
+        ∧
+        H
+        ⊨
+        E
+        
+        ⟺
+        
+        B
+        ∧
+        ¬
+        E
+        ⊨
+        ¬
+        H
+      
+    
+    {\displaystyle B\land H\models E\iff B\land \neg E\models \neg H}
+  . First they construct an intermediate theory F called a bridge theory satisfying the conditions 
+  
+    
+      
+        B
+        ∧
+        ¬
+        E
+        ⊨
+        F
+      
+    
+    {\displaystyle B\land \neg E\models F}
+   and 
+  
+    
+      
+        F
+        ⊨
+        ¬
+        H
+      
+    
+    {\displaystyle F\models \neg H}
+  . Then as 
+  
+    
+      
+        H
+        ⊨
+        ¬
+        F
+      
+    
+    {\displaystyle H\models \neg F}
+  , they generalize the negation of the bridge theory F with the anti-entailment. However, the operation of the anti-entailment since being highly non-deterministic is computationally more expensive. Therefore, an alternative hypothesis search can be conducted using the operation of the inverse subsumption (anti-subsumption) instead which is less non-deterministic than anti-entailment.
+Questions of completeness of a hypothesis search procedure of specific ILP system arise. For example, Progol's hypothesis search procedure based on the inverse entailment inference rule is not complete by Yamamoto's example. On the other hand, Imparo is complete by both anti-entailment procedure  and its extended inverse subsumption  procedure.
+
+
+=== Implementations ===
+1BC and 1BC2: first-order naive Bayesian classifiers: (http://www.cs.bris.ac.uk/Research/MachineLearning/1BC/)
+ACE (A Combined Engine) (http://dtai.cs.kuleuven.be/ACE/)
+Aleph (http://web.comlab.ox.ac.uk/oucl/research/areas/machlearn/Aleph/)
+Atom (http://www.ahlgren.info/research/atom/)
+Claudien (http://dtai.cs.kuleuven.be/claudien/)
+DL-Learner (http://dl-learner.org)
+DMax (http://dtai.cs.kuleuven.be/dmax/)
+FOIL (ftp://ftp.cs.su.oz.au/pub/foil6.sh)
+Golem (ILP) (http://www.doc.ic.ac.uk/~shm/Software/golem)
+Imparo
+Inthelex (INcremental THEory Learner from EXamples) (http://lacam.di.uniba.it:8000/systems/inthelex/)
+Lime (http://cs.anu.edu.au/people/Eric.McCreath/lime.html)
+Metagol (http://github.com/metagol/metagol)
+Mio (http://libra.msra.cn/Publication/3392493/mio-user-s-manual)
+MIS (Model Inference System) by Ehud Shapiro
+PROGOL (http://www.doc.ic.ac.uk/~shm/Software/progol5.0)
+RSD (http://labe.felk.cvut.cz/~zelezny/rsd/)
+Tertius (http://www.cs.bris.ac.uk/publications/Papers/1000545.pdf)
+Warmr (now included in ACE)
+ProGolem (http://ilp.doc.ic.ac.uk/ProGolem/) 
+
+
+== See also ==
+Commonsense reasoning
+Formal concept analysis
+Inductive reasoning
+Inductive programming
+Inductive probability
+Statistical relational learning
+Version space learning
+
+
+== References ==
+
+
+== Further reading ==
